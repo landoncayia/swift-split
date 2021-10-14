@@ -15,16 +15,32 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Swift-Split-Recreated" translatesAutoresizingMaskIntoConstraints="NO" id="Wo8-HD-Q42" propertyAccessControl="all">
+                                <rect key="frame" x="41.5" y="292" width="331" height="312"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="cDF-cJ-pe2">
+                                <rect key="frame" x="197" y="649" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Wo8-HD-Q42" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="HO3-rg-7kl"/>
+                            <constraint firstItem="cDF-cJ-pe2" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="QGT-n1-B3g"/>
+                            <constraint firstItem="Wo8-HD-Q42" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.8" id="Vis-l7-aDo"/>
+                            <constraint firstItem="Wo8-HD-Q42" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="izm-kG-mIh"/>
+                            <constraint firstItem="cDF-cJ-pe2" firstAttribute="top" secondItem="Wo8-HD-Q42" secondAttribute="bottom" constant="45" id="kYb-ln-ERo"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Swift-Split-Recreated" width="504" height="312"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
