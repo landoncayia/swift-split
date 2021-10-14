@@ -10,11 +10,14 @@
 		A7F16CA72715D6DC00B7E8C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CA62715D6DC00B7E8C3 /* AppDelegate.swift */; };
 		A7F16CA92715D6DC00B7E8C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */; };
 		A7F16CAB2715D6DC00B7E8C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CAA2715D6DC00B7E8C3 /* ViewController.swift */; };
-		A7F16CAE2715D6DC00B7E8C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F16CAC2715D6DC00B7E8C3 /* Main.storyboard */; };
+		A7F16CAE2715D6DC00B7E8C3 /* Browse (Main).storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F16CAC2715D6DC00B7E8C3 /* Browse (Main).storyboard */; };
 		A7F16CB02715D6DD00B7E8C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7F16CAF2715D6DD00B7E8C3 /* Assets.xcassets */; };
 		A7F16CB32715D6DD00B7E8C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F16CB12715D6DD00B7E8C3 /* LaunchScreen.storyboard */; };
 		A7F16CBE2715D6DD00B7E8C3 /* SwiftSplitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CBD2715D6DD00B7E8C3 /* SwiftSplitTests.swift */; };
 		A7F16CC92715D6DD00B7E8C3 /* SwiftSplitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CC82715D6DD00B7E8C3 /* SwiftSplitUITests.swift */; };
+		C768A096271872A2009A729C /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A095271872A2009A729C /* Camera.storyboard */; };
+		C768A0982718730B009A729C /* Budget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A0972718730B009A729C /* Budget.storyboard */; };
+		C768A09A27187318009A729C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A09927187318009A729C /* Settings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +42,7 @@
 		A7F16CA62715D6DC00B7E8C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A7F16CAA2715D6DC00B7E8C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A7F16CAD2715D6DC00B7E8C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A7F16CAD2715D6DC00B7E8C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Browse (Main).storyboard"; sourceTree = "<group>"; };
 		A7F16CAF2715D6DD00B7E8C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7F16CB22715D6DD00B7E8C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7F16CB42715D6DD00B7E8C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +52,9 @@
 		A7F16CC42715D6DD00B7E8C3 /* SwiftSplitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSplitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F16CC82715D6DD00B7E8C3 /* SwiftSplitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSplitUITests.swift; sourceTree = "<group>"; };
 		A7F16CCA2715D6DD00B7E8C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C768A095271872A2009A729C /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
+		C768A0972718730B009A729C /* Budget.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Budget.storyboard; sourceTree = "<group>"; };
+		C768A09927187318009A729C /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +108,10 @@
 				A7F16CA62715D6DC00B7E8C3 /* AppDelegate.swift */,
 				A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */,
 				A7F16CAA2715D6DC00B7E8C3 /* ViewController.swift */,
-				A7F16CAC2715D6DC00B7E8C3 /* Main.storyboard */,
+				A7F16CAC2715D6DC00B7E8C3 /* Browse (Main).storyboard */,
+				C768A095271872A2009A729C /* Camera.storyboard */,
+				C768A0972718730B009A729C /* Budget.storyboard */,
+				C768A09927187318009A729C /* Settings.storyboard */,
 				A7F16CAF2715D6DD00B7E8C3 /* Assets.xcassets */,
 				A7F16CB12715D6DD00B7E8C3 /* LaunchScreen.storyboard */,
 				A7F16CB42715D6DD00B7E8C3 /* Info.plist */,
@@ -231,9 +240,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C768A0982718730B009A729C /* Budget.storyboard in Resources */,
 				A7F16CB32715D6DD00B7E8C3 /* LaunchScreen.storyboard in Resources */,
+				C768A096271872A2009A729C /* Camera.storyboard in Resources */,
+				C768A09A27187318009A729C /* Settings.storyboard in Resources */,
 				A7F16CB02715D6DD00B7E8C3 /* Assets.xcassets in Resources */,
-				A7F16CAE2715D6DC00B7E8C3 /* Main.storyboard in Resources */,
+				A7F16CAE2715D6DC00B7E8C3 /* Browse (Main).storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,12 +308,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A7F16CAC2715D6DC00B7E8C3 /* Main.storyboard */ = {
+		A7F16CAC2715D6DC00B7E8C3 /* Browse (Main).storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A7F16CAD2715D6DC00B7E8C3 /* Base */,
 			);
-			name = Main.storyboard;
+			name = "Browse (Main).storyboard";
 			sourceTree = "<group>";
 		};
 		A7F16CB12715D6DD00B7E8C3 /* LaunchScreen.storyboard */ = {
