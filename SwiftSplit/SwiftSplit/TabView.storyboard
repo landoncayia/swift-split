@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="opB-cg-HSB">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Hqe-aJ-XlL">
+            <objects>
+                <tabBarController storyboardIdentifier="TabViewController" id="opB-cg-HSB" sceneMemberID="viewController">
+                    <tabBar key="tabBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qLp-Ed-Iem">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9Bd-Jb-vGf" kind="relationship" relationship="viewControllers" id="hfs-gf-S8b"/>
+                        <segue destination="zVX-S8-Ej3" kind="relationship" relationship="viewControllers" id="uBH-eW-kgH"/>
+                        <segue destination="W62-Ur-FAJ" kind="relationship" relationship="viewControllers" id="LjH-ZV-bo8"/>
+                        <segue destination="X3Q-py-PpT" kind="relationship" relationship="viewControllers" id="Qci-OD-bhs"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ia8-m4-3Oj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1244" y="-210"/>
+        </scene>
+        <!--Browse-->
+        <scene sceneID="0Wb-ph-BY8">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="BrowseSegue" storyboardName="Browse (Main)" referencedIdentifier="BrowseViewController" id="9Bd-Jb-vGf" userLabel="Browse" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="Browse" image="folder" catalog="system" id="uVB-r0-Vb2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Yb-o3-ibW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-649" y="-299"/>
+        </scene>
+        <!--Budget-->
+        <scene sceneID="p7Z-dP-v8g">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="BudgetSegue" storyboardName="Budget" referencedIdentifier="BudgetViewController" id="W62-Ur-FAJ" userLabel="Budget" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="Budget" image="dollarsign.circle" catalog="system" id="3sT-QS-6s5"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Psk-Qr-hAq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-645" y="-226"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="B7M-Ua-bdh">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CameraSegue" storyboardName="Camera" referencedIdentifier="CameraViewController" id="zVX-S8-Ej3" userLabel="Camera" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="Camera" image="camera" catalog="system" id="P8f-lV-i8w"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OZ9-oA-NS9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-647" y="-259"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="Ysc-Dt-Tch">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SettingsSegue" storyboardName="Settings" referencedIdentifier="SettingsViewController" id="X3Q-py-PpT" userLabel="Settings" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="Settings" image="gearshape" catalog="system" id="IhY-i6-Vot"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0y7-Di-8N5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-640" y="-196"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="camera" catalog="system" width="128" height="94"/>
+        <image name="dollarsign.circle" catalog="system" width="128" height="121"/>
+        <image name="folder" catalog="system" width="128" height="97"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
+    </resources>
+</document>
