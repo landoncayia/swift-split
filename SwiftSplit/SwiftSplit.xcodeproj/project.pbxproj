@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A73069BD271E3C91008E48AA /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73069BC271E3C91008E48AA /* Receipt.swift */; };
+		A73069BF271E3CE3008E48AA /* ReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73069BE271E3CE3008E48AA /* ReceiptItem.swift */; };
+		A73069C1271E3D03008E48AA /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73069C0271E3D03008E48AA /* Person.swift */; };
+		A73069C3271E442C008E48AA /* ReceiptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73069C2271E442C008E48AA /* ReceiptStore.swift */; };
 		A7F16CA72715D6DC00B7E8C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CA62715D6DC00B7E8C3 /* AppDelegate.swift */; };
 		A7F16CA92715D6DC00B7E8C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */; };
 		A7F16CAB2715D6DC00B7E8C3 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CAA2715D6DC00B7E8C3 /* TabViewController.swift */; };
@@ -43,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A73069BC271E3C91008E48AA /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
+		A73069BE271E3CE3008E48AA /* ReceiptItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItem.swift; sourceTree = "<group>"; };
+		A73069C0271E3D03008E48AA /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		A73069C2271E442C008E48AA /* ReceiptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStore.swift; sourceTree = "<group>"; };
 		A7F16CA32715D6DC00B7E8C3 /* SwiftSplit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSplit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F16CA62715D6DC00B7E8C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +100,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A73069BB271E3C81008E48AA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A73069BC271E3C91008E48AA /* Receipt.swift */,
+				A73069BE271E3CE3008E48AA /* ReceiptItem.swift */,
+				A73069C0271E3D03008E48AA /* Person.swift */,
+				A73069C2271E442C008E48AA /* ReceiptStore.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		A7F16C9A2715D6DC00B7E8C3 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +134,7 @@
 		A7F16CA52715D6DC00B7E8C3 /* SwiftSplit */ = {
 			isa = PBXGroup;
 			children = (
+				A73069BB271E3C81008E48AA /* Classes */,
 				A7F16CA62715D6DC00B7E8C3 /* AppDelegate.swift */,
 				A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */,
 				A7F16CAA2715D6DC00B7E8C3 /* TabViewController.swift */,
@@ -286,10 +306,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A73069C1271E3D03008E48AA /* Person.swift in Sources */,
 				A7F16CAB2715D6DC00B7E8C3 /* TabViewController.swift in Sources */,
 				A7F16CA72715D6DC00B7E8C3 /* AppDelegate.swift in Sources */,
+				A73069C3271E442C008E48AA /* ReceiptStore.swift in Sources */,
 				D1276F10271A4873002BDD90 /* SettingsViewController.swift in Sources */,
 				D1276F0C271A47F7002BDD90 /* BudgetViewController.swift in Sources */,
+				A73069BF271E3CE3008E48AA /* ReceiptItem.swift in Sources */,
+				A73069BD271E3C91008E48AA /* Receipt.swift in Sources */,
 				A7F16CA92715D6DC00B7E8C3 /* SceneDelegate.swift in Sources */,
 				D11BEA9A271A456D00747542 /* BrowseViewController.swift in Sources */,
 				D1276F0E271A4849002BDD90 /* CameraViewController.swift in Sources */,
