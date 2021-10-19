@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Receipt {
+class Receipt: Equatable, Codable {
     var name: String
     var date: Date
     var items = [ReceiptItem]()
@@ -64,6 +64,15 @@ class Receipt {
         let personToMove = persons[fromIndex]
         persons.remove(at: fromIndex)
         persons.insert(personToMove, at: toIndex)
+    }
+    
+    // -- EQUALITY --
+    
+    static func ==(lhs: Receipt, rhs: Receipt) -> Bool {
+        return lhs.name == rhs.name
+            && lhs.date == rhs.date
+            && lhs.items == rhs.items
+            && lhs.persons == rhs.persons
     }
     
 }

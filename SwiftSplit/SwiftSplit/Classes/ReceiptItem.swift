@@ -9,6 +9,9 @@ class ReceiptItem: Equatable, Codable {
     var name: String
     var price: Double
     var taxed: Bool
+    var persons = [Person]()
+    
+    // -- RECEIPT ITEM ITSELF --
     
     init(name: String, price: Double, taxed: Bool) {
         self.name = name
@@ -21,4 +24,17 @@ class ReceiptItem: Equatable, Codable {
             && lhs.price == rhs.price
             && lhs.taxed == rhs.taxed
     }
+    
+    // -- PERSONS --
+    
+    func addPerson(_ newPerson: Person) {
+        persons.append(newPerson)
+    }
+    
+    func removePerson(_ person: Person) {
+        if let index = persons.firstIndex(of: person) {
+            persons.remove(at: index)
+        }
+    }
+    
 }
