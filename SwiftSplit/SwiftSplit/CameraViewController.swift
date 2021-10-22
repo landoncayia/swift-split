@@ -7,10 +7,70 @@
 
 import UIKit
 
-class CameraViewController : UIViewController {
+class CameraViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @IBOutlet var camera: UIButton!
+    @IBOutlet var photo: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
+    // Creates a UIImagePickerController object which is used for the selection
+    func imagePicker(for sourceType: UIImagePickerController.SourceType)
+    -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = sourceType
+        return picker
+    }
+    
+    // Gets the image and places it on the screen
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        // get picked image from info dictionary
+        let image = info[.originalImage] as! UIImage
+        // put that image on the screen in the image view
+        photo.image = image
+        // take image picker off the screen -- must call this dismiss method
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Chooses a photo source
+    @IBAction func choosePhotoSource(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: nil,
+                                                message: nil,
+                                                preferredStyle: .actionSheet)
+        alertController.modalPresentationStyle = .popover
+        alertController.popoverPresentationController?.barButtonItem = sender
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
+                print("Present camera")
+                let imagePicker = self.imagePicker(for: .camera)
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+            alertController.addAction(cameraAction)
+        }
+        
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { _ in
+            print("Present photo library")
+            let imagePicker = self.imagePicker(for: .photoLibrary)
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        alertController.addAction(photoLibraryAction)
+        
+        let manualAction = UIAlertAction(title: "Manual Entry", style: .default) { _ in
+            print("Present manual entry")
+            
+            //TODO: Need to add a view for manual entry
+            
+        }
+        alertController.addAction(manualAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }
