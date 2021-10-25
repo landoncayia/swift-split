@@ -49,6 +49,10 @@
                     <tabBarItem key="tabBarItem" title="Camera" image="camera" catalog="system" id="Q95-Zv-Ilg"/>
                     <navigationItem key="navigationItem" id="ce9-iD-SwF"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="camera" destination="fFt-yM-Bud" id="zPu-KC-xah"/>
+                        <outlet property="photo" destination="lAh-Lb-sdy" id="sgx-8F-9Sg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
