@@ -65,7 +65,12 @@ class CameraViewController : UIViewController, UIImagePickerControllerDelegate, 
             print("Present manual entry")
             
             //TODO: Need to add a view for manual entry
-            
+            let story = UIStoryboard(name: "Camera", bundle: nil)
+            let controller = story.instantiateViewController(withIdentifier: "ManualEntryController")
+            let navigation = UINavigationController(rootViewController: controller)
+            self.view.addSubview(navigation.view)
+            self.addChild(navigation)
+            navigation.didMove(toParent: self)
         }
         alertController.addAction(manualAction)
         
