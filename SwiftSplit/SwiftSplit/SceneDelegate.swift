@@ -17,6 +17,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        
+        print("Scene Delegate Scene")
+        
+        let receiptStore = ReceiptStore()
+
+        if let t = window?.rootViewController as? UIViewController{
+            print("root controller if passed (scene delegate)")
+            
+            let vcChildren = t.children
+            let browseVC = vcChildren[0] as! BrowseViewController
+            browseVC.receiptStore = receiptStore
+            
+            // TODO: set camera and budget receiptstores
+            let cameraVC = vcChildren[1] as! CameraViewController
+            // cameraVC.receiptStore = receiptStore
+            let budgetVC = vcChildren[2] as! BudgetViewController
+            // budgetVC.receiptStore = receiptStore
+            
+            let settingsVC = vcChildren[3] as! SettingsViewController
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

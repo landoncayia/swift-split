@@ -122,6 +122,30 @@
 			path = Budget;
 			sourceTree = "<group>";
 		};
+		A7A164F1272DB5CA00FF5A5D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C768A0972718730B009A729C /* Budget.storyboard */,
+				A7F16CAC2715D6DC00B7E8C3 /* Browse (Main).storyboard */,
+				C768A095271872A2009A729C /* Camera.storyboard */,
+				C768A09927187318009A729C /* Settings.storyboard */,
+				A7F16CB12715D6DD00B7E8C3 /* LaunchScreen.storyboard */,
+				D1A58EFF2719E44C000B1744 /* TabView.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A7A164F3272DB6F000FF5A5D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A7F16CAA2715D6DC00B7E8C3 /* TabViewController.swift */,
+				D11BEA99271A456D00747542 /* BrowseViewController.swift */,
+				D1276F0D271A4849002BDD90 /* CameraViewController.swift */,
+				D1276F0F271A4873002BDD90 /* SettingsViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		A7F16C9A2715D6DC00B7E8C3 = {
 			isa = PBXGroup;
 			children = (
@@ -145,22 +169,14 @@
 		A7F16CA52715D6DC00B7E8C3 /* SwiftSplit */ = {
 			isa = PBXGroup;
 			children = (
-				C768A0972718730B009A729C /* Budget.storyboard */,
+				A7A164F3272DB6F000FF5A5D /* View Controllers */,
+				A7A164F1272DB5CA00FF5A5D /* Storyboards */,
 				A732F07A2721B2E7007860B8 /* Budget */,
 				A73069BB271E3C81008E48AA /* Classes */,
 				A7F16CA62715D6DC00B7E8C3 /* AppDelegate.swift */,
 				A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */,
-				A7F16CAA2715D6DC00B7E8C3 /* TabViewController.swift */,
-				A7F16CAC2715D6DC00B7E8C3 /* Browse (Main).storyboard */,
-				C768A095271872A2009A729C /* Camera.storyboard */,
-				C768A09927187318009A729C /* Settings.storyboard */,
 				A7F16CAF2715D6DD00B7E8C3 /* Assets.xcassets */,
-				A7F16CB12715D6DD00B7E8C3 /* LaunchScreen.storyboard */,
 				A7F16CB42715D6DD00B7E8C3 /* Info.plist */,
-				D1A58EFF2719E44C000B1744 /* TabView.storyboard */,
-				D11BEA99271A456D00747542 /* BrowseViewController.swift */,
-				D1276F0D271A4849002BDD90 /* CameraViewController.swift */,
-				D1276F0F271A4873002BDD90 /* SettingsViewController.swift */,
 			);
 			path = SwiftSplit;
 			sourceTree = "<group>";

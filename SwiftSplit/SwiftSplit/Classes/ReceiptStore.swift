@@ -34,6 +34,17 @@ class ReceiptStore {
     }
     
     // -- INIT AND SAVES --
-    // TODO
+    // TODO read from storage. these are just temporary
+    init(){
+        
+        //for _ in 0...4 {
+            let receipt = Receipt(name: "Test1", date: .init())
+            receipt.addPerson(Person("Bob"))
+            receipt.addPerson(Person("Dylan"))
+            receipt.addItem(ReceiptItem(name: "Batteries", price: 20.00, taxed: false))
+            receipts.append(receipt)
+        //}
+    }
+    
     
 }
