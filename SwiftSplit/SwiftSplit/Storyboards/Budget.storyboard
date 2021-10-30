@@ -38,6 +38,9 @@
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="eZy-vi-Yq8">
                                                 <rect key="frame" x="41" y="0.0" width="333" height="78"/>
+                                                <connections>
+                                                    <action selector="fromDateChange:" destination="Y6W-OH-hqX" eventType="valueChanged" id="ayY-MS-rIt"/>
+                                                </connections>
                                             </datePicker>
                                         </subviews>
                                     </stackView>
@@ -52,6 +55,10 @@
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="mwX-PC-UVs">
                                                 <rect key="frame" x="41" y="0.0" width="333" height="78"/>
+                                                <connections>
+                                                    <action selector="fromDateChange:" destination="Y6W-OH-hqX" eventType="valueChanged" id="Mk8-CT-OHa"/>
+                                                    <action selector="toDateChange:" destination="Y6W-OH-hqX" eventType="valueChanged" id="dAs-3D-eRe"/>
+                                                </connections>
                                             </datePicker>
                                         </subviews>
                                     </stackView>
@@ -60,7 +67,7 @@
                                     <constraint firstItem="K7m-wr-UtQ" firstAttribute="trailing" secondItem="S6R-bj-2wz" secondAttribute="trailing" id="1vu-Cn-OSE"/>
                                 </constraints>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sdM-RY-aNW">
+                            <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sdM-RY-aNW">
                                 <rect key="frame" x="20" y="271" width="374" height="542"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -123,6 +130,8 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="budgetTable" destination="sdM-RY-aNW" id="RCE-3g-0mJ"/>
+                        <outlet property="fromDatePicker" destination="eZy-vi-Yq8" id="Ezp-KE-9C5"/>
+                        <outlet property="toDatePicker" destination="mwX-PC-UVs" id="UqS-ET-3xE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

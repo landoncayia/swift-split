@@ -18,6 +18,14 @@ class Receipt: Equatable, Codable {
         self.date = date
     }
     
+    // -- GET THE TOTALS --
+    func getTotals() -> ReceiptTotal {
+        // TODO: NEEDS WORK!!!
+        // For now, just returns the first person and a value of 8.99
+        let receiptTotal = ReceiptTotal(person: persons[0], amount: 8.99)
+        return receiptTotal
+    }
+    
     // -- ITEMS --
     
     // Add receipt item
