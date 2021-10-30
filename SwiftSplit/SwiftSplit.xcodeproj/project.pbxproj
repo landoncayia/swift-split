@@ -135,7 +135,7 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		A7A164F3272DB6F000FF5A5D /* View Controllers */ = {
+		A7A164F3272DB6F000FF5A5D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				A7F16CAA2715D6DC00B7E8C3 /* TabViewController.swift */,
@@ -143,7 +143,7 @@
 				D1276F0D271A4849002BDD90 /* CameraViewController.swift */,
 				D1276F0F271A4873002BDD90 /* SettingsViewController.swift */,
 			);
-			path = "View Controllers";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		A7F16C9A2715D6DC00B7E8C3 = {
@@ -169,7 +169,7 @@
 		A7F16CA52715D6DC00B7E8C3 /* SwiftSplit */ = {
 			isa = PBXGroup;
 			children = (
-				A7A164F3272DB6F000FF5A5D /* View Controllers */,
+				A7A164F3272DB6F000FF5A5D /* ViewControllers */,
 				A7A164F1272DB5CA00FF5A5D /* Storyboards */,
 				A732F07A2721B2E7007860B8 /* Budget */,
 				A73069BB271E3C81008E48AA /* Classes */,
