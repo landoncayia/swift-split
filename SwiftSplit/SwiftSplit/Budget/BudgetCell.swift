@@ -7,6 +7,7 @@
 
 import UIKit
 class BudgetCell: UITableViewCell {
+    
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dollarLabel: UILabel!
 }

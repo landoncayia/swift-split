@@ -6,29 +6,35 @@
 //
 
 import UIKit
-class BudgetViewController: UITableViewController {
-    var receipts: ReceiptStore!
+
+class BudgetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    override func tableView(_ tableView: UITableView,
-            numberOfRowsInSection section: Int) -> Int {
-        return receipts.receipts.count
+    @IBOutlet var budgetTable: UITableView! {
+            didSet {
+                budgetTable.delegate = self;
+                budgetTable.dataSource = self;
+            }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    var receipts: ReceiptStore! // Remove later
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+        // return receipts.receipts.count
     }
     
-    func deleteItem(_ indexPath: IndexPath) {
-        
-    }
-    
-    override func tableView(_ tableView: UITableView,
-            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Assign cell to model
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BudgetCell", for: indexPath) as! BudgetCell
-        // Configure the cell with the Item
-        cell.nameLabel.text = "Hello world"
-        cell.dollarLabel.text = "$69"
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = budgetTable.dequeueReusableCell(withIdentifier: "BudgetCell") as! BudgetCell
+        cell.nameLabel.text = "testing"
+        cell.dollarLabel.text = "$9.99"
         return cell
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // let date = Date()
+        // let newReceipt = Receipt(name: "test", date: date)
+        // receipts.addReceipt(newReceipt)
+        print("viewDidLoad")
     }
 }
