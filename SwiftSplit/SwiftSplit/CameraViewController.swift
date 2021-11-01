@@ -9,7 +9,6 @@ import UIKit
 
 class CameraViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet var camera: UIButton!
     @IBOutlet var photo: UIImageView!
     
     
@@ -64,9 +63,10 @@ class CameraViewController : UIViewController, UIImagePickerControllerDelegate, 
         let manualAction = UIAlertAction(title: "Manual Entry", style: .default) { _ in
             print("Present manual entry")
             
-            //TODO: Need to add a view for manual entry
+            // TODO: redo using seques
+            // Transitions to the view for manual entry
             let story = UIStoryboard(name: "Camera", bundle: nil)
-            let controller = story.instantiateViewController(withIdentifier: "ManualEntryController")
+            let controller = story.instantiateViewController(withIdentifier:"ManualEntryController")
             let navigation = UINavigationController(rootViewController: controller)
             self.view.addSubview(navigation.view)
             self.addChild(navigation)
