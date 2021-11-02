@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Foundation
+
 class ReceiptStore {
     var receipts = [Receipt]()
     
@@ -37,12 +39,19 @@ class ReceiptStore {
     // TODO read from storage. these are just temporary
     init(){
         
-        let receipt = Receipt(name: "Shaws", date: .init())
+        let date = Date()
+        let calendar = Calendar.current
+        let startDate = calendar.startOfDay(for: date)
+        let receipt = Receipt(name: "Shaws", date: startDate)
         
         let person_a = Person("Bob")
         receipt.addPerson(person_a)
+        
         let person_b = Person("Dylan")
         receipt.addPerson(person_b)
+        
+        let person_c = Person("Jake")
+        receipt.addPerson(person_c)
         
         receipt.addItem(ReceiptItem(name: "Batteries", price: 5.00, taxed: true))
         receipt.items[0].addPerson(person_a)
@@ -51,6 +60,9 @@ class ReceiptStore {
         receipt.addItem(ReceiptItem(name: "Lettuce", price: 4.00, taxed: false))
         receipt.items[1].addPerson(person_a)
         receipt.items[1].addPerson(person_b)
+        
+        receipt.addItem(ReceiptItem(name: "Onion", price: 0.99, taxed: false))
+        //receipt.items[2].addPerson(person_c)
         
         // Assume 7% tax for a second
         // Should be $0.35 tax total
