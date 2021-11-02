@@ -8,13 +8,17 @@
 import UIKit
 
 class CameraViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+
     @IBOutlet var photo: UIImageView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    // Whenever the create tab is pressed on the tab view the choose source menu will appear
+    override func viewDidAppear(_ animated: Bool) {
+        choosePhotoSource()
     }
     
     // Creates a UIImagePickerController object which is used for the selection
@@ -36,13 +40,14 @@ class CameraViewController : UIViewController, UIImagePickerControllerDelegate, 
         dismiss(animated: true, completion: nil)
     }
     
+    // TODO: Add Segues to other views
     // Chooses a photo source
-    @IBAction func choosePhotoSource(_ sender: UIBarButtonItem) {
+    func choosePhotoSource() {
         let alertController = UIAlertController(title: nil,
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
         alertController.modalPresentationStyle = .popover
-        alertController.popoverPresentationController?.barButtonItem = sender
+        //alertController.popoverPresentationController?.barButtonItem = sender
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
@@ -63,7 +68,7 @@ class CameraViewController : UIViewController, UIImagePickerControllerDelegate, 
         let manualAction = UIAlertAction(title: "Manual Entry", style: .default) { _ in
             print("Present manual entry")
             
-            // TODO: redo using seques
+            // TODO: redo using segues
             // Transitions to the view for manual entry
             let story = UIStoryboard(name: "Camera", bundle: nil)
             let controller = story.instantiateViewController(withIdentifier:"ManualEntryController")
