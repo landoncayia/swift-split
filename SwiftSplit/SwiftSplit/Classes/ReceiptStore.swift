@@ -37,13 +37,17 @@ class ReceiptStore {
     // TODO read from storage. these are just temporary
     init(){
         
-        //for _ in 0...4 {
-            let receipt = Receipt(name: "Test1", date: .init())
-            receipt.addPerson(Person("Bob"))
-            receipt.addPerson(Person("Dylan"))
+        for i in 0...4 {
+            let receipt = Receipt(name: "Test_" + String(i), date: .init())
+            let person_a = Person("Bob")
+            receipt.addPerson(person_a)
+            let person_b = Person("Dylan")
+            receipt.addPerson(person_b)
             receipt.addItem(ReceiptItem(name: "Batteries", price: 20.00, taxed: false))
+            receipt.items[0].addPerson(person_a)
+            receipt.items[0].addPerson(person_b)
             receipts.append(receipt)
-        //}
+        }
     }
     
     

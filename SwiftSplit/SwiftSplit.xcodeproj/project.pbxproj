@@ -13,6 +13,8 @@
 		A73069C3271E442C008E48AA /* ReceiptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73069C2271E442C008E48AA /* ReceiptStore.swift */; };
 		A732F07C2721B313007860B8 /* BudgetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732F07B2721B313007860B8 /* BudgetCell.swift */; };
 		A732F07E2721B7CB007860B8 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732F07D2721B7CB007860B8 /* BudgetViewController.swift */; };
+		A7DED1DA272DC5D70088E728 /* BudgetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DED1D9272DC5D70088E728 /* BudgetItem.swift */; };
+		A7DED1DC272DCBBD0088E728 /* ReceiptTotal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DED1DB272DCBBD0088E728 /* ReceiptTotal.swift */; };
 		A7F16CA72715D6DC00B7E8C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CA62715D6DC00B7E8C3 /* AppDelegate.swift */; };
 		A7F16CA92715D6DC00B7E8C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */; };
 		A7F16CAB2715D6DC00B7E8C3 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CAA2715D6DC00B7E8C3 /* TabViewController.swift */; };
@@ -56,6 +58,8 @@
 		A73069C2271E442C008E48AA /* ReceiptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStore.swift; sourceTree = "<group>"; };
 		A732F07B2721B313007860B8 /* BudgetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCell.swift; sourceTree = "<group>"; };
 		A732F07D2721B7CB007860B8 /* BudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
+		A7DED1D9272DC5D70088E728 /* BudgetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetItem.swift; sourceTree = "<group>"; };
+		A7DED1DB272DCBBD0088E728 /* ReceiptTotal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTotal.swift; sourceTree = "<group>"; };
 		A7F16CA32715D6DC00B7E8C3 /* SwiftSplit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSplit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F16CA62715D6DC00B7E8C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 				A73069BE271E3CE3008E48AA /* ReceiptItem.swift */,
 				A73069C0271E3D03008E48AA /* Person.swift */,
 				A73069C2271E442C008E48AA /* ReceiptStore.swift */,
+				A7DED1DB272DCBBD0088E728 /* ReceiptTotal.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 			children = (
 				A732F07D2721B7CB007860B8 /* BudgetViewController.swift */,
 				A732F07B2721B313007860B8 /* BudgetCell.swift */,
+				A7DED1D9272DC5D70088E728 /* BudgetItem.swift */,
 			);
 			path = Budget;
 			sourceTree = "<group>";
@@ -342,11 +348,13 @@
 				A73069C1271E3D03008E48AA /* Person.swift in Sources */,
 				A7F16CAB2715D6DC00B7E8C3 /* TabViewController.swift in Sources */,
 				A7F16CA72715D6DC00B7E8C3 /* AppDelegate.swift in Sources */,
+				A7DED1DC272DCBBD0088E728 /* ReceiptTotal.swift in Sources */,
 				A73069C3271E442C008E48AA /* ReceiptStore.swift in Sources */,
 				D1276F10271A4873002BDD90 /* SettingsViewController.swift in Sources */,
 				A732F07E2721B7CB007860B8 /* BudgetViewController.swift in Sources */,
 				A73069BF271E3CE3008E48AA /* ReceiptItem.swift in Sources */,
 				C75D6EC3272DD1FA0067BF31 /* ReceiptContentsViewController.swift in Sources */,
+				A7DED1DA272DC5D70088E728 /* BudgetItem.swift in Sources */,
 				A73069BD271E3C91008E48AA /* Receipt.swift in Sources */,
 				A7F16CA92715D6DC00B7E8C3 /* SceneDelegate.swift in Sources */,
 				C75D6EC1272DD1E00067BF31 /* RecognizedTextDataSource.swift in Sources */,

@@ -18,6 +18,35 @@ class Receipt: Equatable, Codable {
         self.date = date
     }
     
+    // -- GET THE TOTALS --
+    func getTotals() -> [ReceiptTotal] {
+        // TODO: NEEDS WORK!!!
+        // Right now, it splits items
+        // But ignores tax, for testing ONLY
+        
+        var receiptTotals = [ReceiptTotal]()
+        
+        // Init a receipt item for each person on the receipt
+        for person in persons {
+            let newTotal = ReceiptTotal(person: person, amount: 0.0)
+            receiptTotals.append(newTotal)
+        }
+        
+        // Loop through all receipt items and add them up
+        for item in items {
+            for person in item.persons {
+                if let index = receiptTotals.firstIndex(where: {$0.person == person}) {
+                    let previousAmt = receiptTotals[index].amount
+                    receiptTotals[index].amount = previousAmt + Double((item.price / Double(item.persons.count)))
+                } else {
+                    print("just go home, it didnt work")
+                }
+            }
+        }
+        
+        return receiptTotals
+    }
+    
     // -- ITEMS --
     
     // Add receipt item
