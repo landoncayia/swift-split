@@ -10,6 +10,8 @@ import Foundation
 class Receipt: Equatable, Codable {
     var name: String
     var date: Date
+    var taxAmt: Double = 0
+    var taxPercent: Double = 0
     var items = [ReceiptItem]()
     var persons = [Person]()
     
@@ -18,7 +20,39 @@ class Receipt: Equatable, Codable {
         self.date = date
     }
     
-    // -- GET THE TOTALS --
+    // -- FOR THE TOTALS --
+    func setTaxAmt(_ amount: Double) {
+        self.taxAmt = amount;
+        
+        // Need to update the percent too
+        var itemTotals = 0.0;
+        
+        for item in items {
+            if item.taxed {
+                itemTotals = itemTotals + item.price
+            }
+        }
+        
+        self.taxPercent = amount / itemTotals
+        
+    }
+    
+    func setTaxPercent(_ percent: Double) {
+        self.taxPercent = percent;
+        
+        // Need to update the amount too
+        var itemTotals = 0.0;
+        
+        for item in items {
+            if item.taxed {
+                itemTotals = itemTotals + item.price
+            }
+        }
+        
+        self.taxAmt = itemTotals * percent
+        
+    }
+    
     func getTotals() -> [ReceiptTotal] {
         // TODO: NEEDS WORK!!!
         // Right now, it splits items
@@ -36,8 +70,20 @@ class Receipt: Equatable, Codable {
         for item in items {
             for person in item.persons {
                 if let index = receiptTotals.firstIndex(where: {$0.person == person}) {
+                    // How much the person currently owes
                     let previousAmt = receiptTotals[index].amount
-                    receiptTotals[index].amount = previousAmt + Double((item.price / Double(item.persons.count)))
+                    
+                    // How much of this item they are responsible for
+                    var itemShare = Double((item.price / Double(item.persons.count)))
+                    
+                    // Consider tax implications
+                    if item.taxed {
+                        itemShare = itemShare + (itemShare * taxPercent)
+                    }
+                    
+                    // Append to this persons total
+                    receiptTotals[index].amount = previousAmt + itemShare
+                    
                 } else {
                     print("just go home, it didnt work")
                 }

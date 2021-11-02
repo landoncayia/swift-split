@@ -37,17 +37,28 @@ class ReceiptStore {
     // TODO read from storage. these are just temporary
     init(){
         
-        for i in 0...4 {
-            let receipt = Receipt(name: "Test_" + String(i), date: .init())
-            let person_a = Person("Bob")
-            receipt.addPerson(person_a)
-            let person_b = Person("Dylan")
-            receipt.addPerson(person_b)
-            receipt.addItem(ReceiptItem(name: "Batteries", price: 20.00, taxed: false))
-            receipt.items[0].addPerson(person_a)
-            receipt.items[0].addPerson(person_b)
-            receipts.append(receipt)
-        }
+        let receipt = Receipt(name: "Shaws", date: .init())
+        
+        let person_a = Person("Bob")
+        receipt.addPerson(person_a)
+        let person_b = Person("Dylan")
+        receipt.addPerson(person_b)
+        
+        receipt.addItem(ReceiptItem(name: "Batteries", price: 5.00, taxed: true))
+        receipt.items[0].addPerson(person_a)
+        receipt.items[0].addPerson(person_b)
+        
+        receipt.addItem(ReceiptItem(name: "Lettuce", price: 4.00, taxed: false))
+        receipt.items[1].addPerson(person_a)
+        receipt.items[1].addPerson(person_b)
+        
+        // Assume 7% tax for a second
+        // Should be $0.35 tax total
+        
+        receipt.setTaxAmt(0.35)
+        
+        receipts.append(receipt)
+
     }
     
     
