@@ -1,55 +1,31 @@
 //
-//  TextRecognizeViewController.swift
+//  ReceiptOCR.swift
 //  SwiftSplit
 //
-//  Created by Landon Cayia on 10/23/21.
+//  Created by Austin Block on 11/4/21.
 //
 
-import UIKit
 import Vision
 import VisionKit
 import Photos
 import Foundation
 import CoreGraphics
 
-class ReceiptContentsViewController: UIViewController {
-    
-    // Use this height value to differentiate between big labels and small labels in a receipt.
-    // NOTE: I currently have this commented out because I cannot figure out how to get it to work (or if it is even necessary for our use case at all).
-    //static textHeightThreshold: CGFloat = 0.035
-    
-    typealias ReceiptContentField = (name: String, value: String)
-    
-    // The information to fetch from a scanned receipt.
-    struct ReceiptContents {
-        
-        var name: String?
-        var items = [ReceiptContentField]()
-    }
-    
-    var contents = ReceiptContents()
-}
+// MARK: RecognizedTextDataSource
+extension ReceiptViewController: RecognizedTextDataSource {
 
-    // MARK: Double StringProtocol Extension
-extension StringProtocol {
-    var double: Double? { Double(self) }
-}
+func processRecognizedText(recognizedText: [VNRecognizedTextObservation]) {
+    // Create a full transcript to run analysis on.
+    var currLabel: String?
+    let maximumCandidates = 1
+    for observation in recognizedText {
+        guard let candidate = observation.topCandidates(maximumCandidates).first else { continue }
+        let isLarge = (observation.boundingBox.height > ReceiptViewController.textHeightThreshold)
+        var text = candidate.string
+        // The value might be preceded by a qualifier (e.g A small '3x' preceding 'Additional shot'.)
+        var valueQualifier: VNRecognizedTextObservation?
 
-    // MARK: RecognizedTextDataSource
-extension ReceiptContentsViewController: RecognizedTextDataSource {
-    func processRecognizedText(recognizedText: [VNRecognizedTextObservation]) {
-        var contents = ReceiptContents()
-        var currLabel: String?
-        let maximumCandidates = 1
-        for observation in recognizedText {
-            guard let candidate = observation.topCandidates(maximumCandidates).first else { continue }
-            // NOTE: Commented out for now because we aren't using textHeightThreshold
-            //let isLarge = (observation.boundingBox.height >
-            //    textHeightThreshold)
-            var text = candidate.string
-            // The value might be preceded by a qualifier (e.g A small '3x' preceding 'Additional shot'.)
-            var valueQualifier: VNRecognizedTextObservation?
-            
+        if isLarge {
             if let label = currLabel {
                 if let qualifier = valueQualifier {
                     if abs(qualifier.boundingBox.minY - observation.boundingBox.minY) < 0.01 {
@@ -65,6 +41,7 @@ extension ReceiptContentsViewController: RecognizedTextDataSource {
                 // Name is located on the top-left of the receipt.
                 contents.name = text
             }
+        } else {
             if text.starts(with: "#") {
                 // Order number is the only thing that starts with #.
                 contents.items.append(("Order", text))
@@ -85,7 +62,11 @@ extension ReceiptContentsViewController: RecognizedTextDataSource {
                 } catch {
                     print(error)
                 }
+
             }
         }
     }
+    tableView.reloadData()
+    navigationItem.title = contents.name != nil ? contents.name : "Scanned Receipt"
+}
 }

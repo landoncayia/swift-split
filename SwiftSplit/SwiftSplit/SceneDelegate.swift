@@ -23,21 +23,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let receiptStore = ReceiptStore()
 
-        if let t = window?.rootViewController as? UIViewController{
-            print("root controller if passed (scene delegate)")
-            
-            let vcChildren = t.children
-            let browseVC = vcChildren[0] as! BrowseViewController
-            browseVC.receiptStore = receiptStore
-            
-            // TODO: set camera and budget receiptstores
-            let cameraVC = vcChildren[1] as! CameraViewController
-            // cameraVC.receiptStore = receiptStore
-            let budgetVC = vcChildren[2] as! BudgetViewController
-            budgetVC.receiptStore = receiptStore
-            
-            let settingsVC = vcChildren[3] as! SettingsViewController
-        }
+        print("root controller if passed (scene delegate)")
+        
+        let vcChildren = window!.rootViewController!.children
+        let browseVC = vcChildren[0] as! BrowseViewController
+        browseVC.receiptStore = receiptStore
+        
+        // TODO: set camera and budget receiptstores
+        let createVC = vcChildren[1] as! CreateViewController
+        
+        // cameraVC.receiptStore = receiptStore
+        let budgetVC = vcChildren[2] as! BudgetViewController
+        budgetVC.receiptStore = receiptStore
+        
+        // let settingsVC = vcChildren[3] as! SettingsViewController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

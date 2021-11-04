@@ -13,9 +13,12 @@
 		A73069C3271E442C008E48AA /* ReceiptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73069C2271E442C008E48AA /* ReceiptStore.swift */; };
 		A732F07C2721B313007860B8 /* BudgetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732F07B2721B313007860B8 /* BudgetCell.swift */; };
 		A732F07E2721B7CB007860B8 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732F07D2721B7CB007860B8 /* BudgetViewController.swift */; };
-		A7B0F9B12734291900AACC1C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B0F9B02734291700AACC1C /* CameraViewController.swift */; };
+		A7B0F9B12734291900AACC1C /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B0F9B02734291700AACC1C /* CreateViewController.swift */; };
 		A7DED1DA272DC5D70088E728 /* BudgetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DED1D9272DC5D70088E728 /* BudgetItem.swift */; };
 		A7DED1DC272DCBBD0088E728 /* ReceiptTotal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DED1DB272DCBBD0088E728 /* ReceiptTotal.swift */; };
+		A7EC71DD27347C2A0097A27C /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC71DC27347C2A0097A27C /* ReceiptViewController.swift */; };
+		A7EC71E327347D670097A27C /* ReceiptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC71E227347D670097A27C /* ReceiptCell.swift */; };
+		A7EC71E527347F220097A27C /* ReceiptOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC71E427347F220097A27C /* ReceiptOCR.swift */; };
 		A7F16CA72715D6DC00B7E8C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CA62715D6DC00B7E8C3 /* AppDelegate.swift */; };
 		A7F16CA92715D6DC00B7E8C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */; };
 		A7F16CAB2715D6DC00B7E8C3 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CAA2715D6DC00B7E8C3 /* TabViewController.swift */; };
@@ -26,7 +29,7 @@
 		A7F16CC92715D6DD00B7E8C3 /* SwiftSplitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CC82715D6DD00B7E8C3 /* SwiftSplitUITests.swift */; };
 		C75D6EC1272DD1E00067BF31 /* RecognizedTextDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */; };
 		C75D6EC3272DD1FA0067BF31 /* ReceiptContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75D6EC2272DD1FA0067BF31 /* ReceiptContentsViewController.swift */; };
-		C768A096271872A2009A729C /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A095271872A2009A729C /* Camera.storyboard */; };
+		C768A096271872A2009A729C /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A095271872A2009A729C /* Create.storyboard */; };
 		C768A0982718730B009A729C /* Budget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A0972718730B009A729C /* Budget.storyboard */; };
 		C768A09A27187318009A729C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A09927187318009A729C /* Settings.storyboard */; };
 		D11BEA9A271A456D00747542 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11BEA99271A456D00747542 /* BrowseViewController.swift */; };
@@ -59,9 +62,12 @@
 		A73069C2271E442C008E48AA /* ReceiptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStore.swift; sourceTree = "<group>"; };
 		A732F07B2721B313007860B8 /* BudgetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCell.swift; sourceTree = "<group>"; };
 		A732F07D2721B7CB007860B8 /* BudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
-		A7B0F9B02734291700AACC1C /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		A7B0F9B02734291700AACC1C /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		A7DED1D9272DC5D70088E728 /* BudgetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetItem.swift; sourceTree = "<group>"; };
 		A7DED1DB272DCBBD0088E728 /* ReceiptTotal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTotal.swift; sourceTree = "<group>"; };
+		A7EC71DC27347C2A0097A27C /* ReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
+		A7EC71E227347D670097A27C /* ReceiptCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCell.swift; sourceTree = "<group>"; };
+		A7EC71E427347F220097A27C /* ReceiptOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptOCR.swift; sourceTree = "<group>"; };
 		A7F16CA32715D6DC00B7E8C3 /* SwiftSplit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSplit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F16CA62715D6DC00B7E8C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +84,7 @@
 		A7F16CCA2715D6DD00B7E8C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedTextDataSource.swift; sourceTree = "<group>"; };
 		C75D6EC2272DD1FA0067BF31 /* ReceiptContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptContentsViewController.swift; sourceTree = "<group>"; };
-		C768A095271872A2009A729C /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
+		C768A095271872A2009A729C /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		C768A0972718730B009A729C /* Budget.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Budget.storyboard; sourceTree = "<group>"; };
 		C768A09927187318009A729C /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		D11BEA99271A456D00747542 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
@@ -139,7 +145,7 @@
 			children = (
 				C768A0972718730B009A729C /* Budget.storyboard */,
 				A7F16CAC2715D6DC00B7E8C3 /* Browse (Main).storyboard */,
-				C768A095271872A2009A729C /* Camera.storyboard */,
+				C768A095271872A2009A729C /* Create.storyboard */,
 				C768A09927187318009A729C /* Settings.storyboard */,
 				A7F16CB12715D6DD00B7E8C3 /* LaunchScreen.storyboard */,
 				D1A58EFF2719E44C000B1744 /* TabView.storyboard */,
@@ -154,10 +160,28 @@
 				D11BEA99271A456D00747542 /* BrowseViewController.swift */,
 				D1276F0D271A4849002BDD90 /* OCR.swift */,
 				D1276F0F271A4873002BDD90 /* SettingsViewController.swift */,
-				A7B0F9B02734291700AACC1C /* CameraViewController.swift */,
-				C75D6EC2272DD1FA0067BF31 /* ReceiptContentsViewController.swift */,
+				A7B0F9B02734291700AACC1C /* CreateViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A7EC71DB27347B880097A27C /* OCR */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OCR;
+			sourceTree = "<group>";
+		};
+		A7EC71E127347D2C0097A27C /* Receipts */ = {
+			isa = PBXGroup;
+			children = (
+				A7EC71DC27347C2A0097A27C /* ReceiptViewController.swift */,
+				A7EC71E227347D670097A27C /* ReceiptCell.swift */,
+				C75D6EC2272DD1FA0067BF31 /* ReceiptContentsViewController.swift */,
+				C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */,
+				A7EC71E427347F220097A27C /* ReceiptOCR.swift */,
+			);
+			path = Receipts;
 			sourceTree = "<group>";
 		};
 		A7F16C9A2715D6DC00B7E8C3 = {
@@ -183,6 +207,8 @@
 		A7F16CA52715D6DC00B7E8C3 /* SwiftSplit */ = {
 			isa = PBXGroup;
 			children = (
+				A7EC71E127347D2C0097A27C /* Receipts */,
+				A7EC71DB27347B880097A27C /* OCR */,
 				A7A164F3272DB6F000FF5A5D /* ViewControllers */,
 				A7A164F1272DB5CA00FF5A5D /* Storyboards */,
 				A732F07A2721B2E7007860B8 /* Budget */,
@@ -191,7 +217,6 @@
 				A7F16CA82715D6DC00B7E8C3 /* SceneDelegate.swift */,
 				A7F16CAF2715D6DD00B7E8C3 /* Assets.xcassets */,
 				A7F16CB42715D6DD00B7E8C3 /* Info.plist */,
-				C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */,
 			);
 			path = SwiftSplit;
 			sourceTree = "<group>";
@@ -320,7 +345,7 @@
 				C768A0982718730B009A729C /* Budget.storyboard in Resources */,
 				A7F16CB32715D6DD00B7E8C3 /* LaunchScreen.storyboard in Resources */,
 				D1A58F002719E44C000B1744 /* TabView.storyboard in Resources */,
-				C768A096271872A2009A729C /* Camera.storyboard in Resources */,
+				C768A096271872A2009A729C /* Create.storyboard in Resources */,
 				C768A09A27187318009A729C /* Settings.storyboard in Resources */,
 				A7F16CB02715D6DD00B7E8C3 /* Assets.xcassets in Resources */,
 				A7F16CAE2715D6DC00B7E8C3 /* Browse (Main).storyboard in Resources */,
@@ -351,11 +376,13 @@
 				A73069C1271E3D03008E48AA /* Person.swift in Sources */,
 				A7F16CAB2715D6DC00B7E8C3 /* TabViewController.swift in Sources */,
 				A7F16CA72715D6DC00B7E8C3 /* AppDelegate.swift in Sources */,
-				A7B0F9B12734291900AACC1C /* CameraViewController.swift in Sources */,
+				A7EC71DD27347C2A0097A27C /* ReceiptViewController.swift in Sources */,
+				A7B0F9B12734291900AACC1C /* CreateViewController.swift in Sources */,
 				A7DED1DC272DCBBD0088E728 /* ReceiptTotal.swift in Sources */,
 				A73069C3271E442C008E48AA /* ReceiptStore.swift in Sources */,
 				D1276F10271A4873002BDD90 /* SettingsViewController.swift in Sources */,
 				A732F07E2721B7CB007860B8 /* BudgetViewController.swift in Sources */,
+				A7EC71E327347D670097A27C /* ReceiptCell.swift in Sources */,
 				A73069BF271E3CE3008E48AA /* ReceiptItem.swift in Sources */,
 				C75D6EC3272DD1FA0067BF31 /* ReceiptContentsViewController.swift in Sources */,
 				A7DED1DA272DC5D70088E728 /* BudgetItem.swift in Sources */,
@@ -365,6 +392,7 @@
 				D11BEA9A271A456D00747542 /* BrowseViewController.swift in Sources */,
 				A732F07C2721B313007860B8 /* BudgetCell.swift in Sources */,
 				D1276F0E271A4849002BDD90 /* OCR.swift in Sources */,
+				A7EC71E527347F220097A27C /* ReceiptOCR.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -63,7 +63,7 @@ class OCR {
 }
 
     // MARK: extension CameraViewController
-extension CameraViewController: VNDocumentCameraViewControllerDelegate {
+//extension CreateViewController: VNDocumentCameraViewControllerDelegate {
 //    func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
 //        resultsViewController = storyboard?.instantiateViewController(withIdentifier: "receiptContentsVC") as? (UIViewController & RecognizedTextDataSource)
 //        self.activityIndicator.startAnimating()
@@ -82,4 +82,4 @@ extension CameraViewController: VNDocumentCameraViewControllerDelegate {
 //            }
 //        }
 //    }
-}
+//}
