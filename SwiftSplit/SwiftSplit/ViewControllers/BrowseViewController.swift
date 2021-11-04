@@ -24,7 +24,7 @@ class BrowseViewController : UITableViewController {
         print("Browse receipt store size: \(receiptStore.receipts.count)")
 
         
-        if let receipts = receiptStore {
+        if receiptStore != nil {
             //let receipt = receipts.receipts[0]
             let receipt = receiptStore.receipts[indexPath.row]
             cell.textLabel?.text = receipt.name
