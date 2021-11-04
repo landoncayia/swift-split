@@ -10,7 +10,7 @@ import Vision
 import UniformTypeIdentifiers
 import VisionKit
 
-class CameraViewController : UIViewController {
+class OCR {
     // Loading circle, which is not yet in our storyboard
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
