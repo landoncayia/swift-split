@@ -26,11 +26,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("root controller if passed (scene delegate)")
         
         let vcChildren = window!.rootViewController!.children
+        
         let browseVC = vcChildren[0] as! BrowseViewController
         browseVC.receiptStore = receiptStore
         
         // TODO: set camera and budget receiptstores
-        let createVC = vcChildren[1] as! CreateViewController
+        let createVC = vcChildren[1] as! CreateNavViewController
         
         // cameraVC.receiptStore = receiptStore
         let budgetVC = vcChildren[2] as! BudgetViewController

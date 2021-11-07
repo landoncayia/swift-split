@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A72F8DB82738749B00FF3E4F /* CreateNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72F8DB72738749B00FF3E4F /* CreateNavViewController.swift */; };
 		A73069BD271E3C91008E48AA /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73069BC271E3C91008E48AA /* Receipt.swift */; };
 		A73069BF271E3CE3008E48AA /* ReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73069BE271E3CE3008E48AA /* ReceiptItem.swift */; };
 		A73069C1271E3D03008E48AA /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73069C0271E3D03008E48AA /* Person.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A72F8DB72738749B00FF3E4F /* CreateNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNavViewController.swift; sourceTree = "<group>"; };
 		A73069BC271E3C91008E48AA /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
 		A73069BE271E3CE3008E48AA /* ReceiptItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItem.swift; sourceTree = "<group>"; };
 		A73069C0271E3D03008E48AA /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				D1276F0D271A4849002BDD90 /* OCR.swift */,
 				D1276F0F271A4873002BDD90 /* SettingsViewController.swift */,
 				A7B0F9B02734291700AACC1C /* CreateViewController.swift */,
+				A72F8DB72738749B00FF3E4F /* CreateNavViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				A7F16CAB2715D6DC00B7E8C3 /* TabViewController.swift in Sources */,
 				A7F16CA72715D6DC00B7E8C3 /* AppDelegate.swift in Sources */,
 				A7EC71DD27347C2A0097A27C /* ReceiptViewController.swift in Sources */,
+				A72F8DB82738749B00FF3E4F /* CreateNavViewController.swift in Sources */,
 				A7B0F9B12734291900AACC1C /* CreateViewController.swift in Sources */,
 				A7DED1DC272DCBBD0088E728 /* ReceiptTotal.swift in Sources */,
 				A73069C3271E442C008E48AA /* ReceiptStore.swift in Sources */,

@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Create Nav View Controller-->
         <scene sceneID="8nn-7Z-oS4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jLe-SY-uwr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CreateNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="jLe-SY-uwr" customClass="CreateNavViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="D0F-Ol-0ag">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -21,7 +21,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="YjG-bB-cJ5"/>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="Ado-fB-gnj"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sRm-sJ-oFk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -31,53 +31,70 @@
         <!--Create-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="CreateViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="CreateViewConroller" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateViewController" id="Y6W-OH-hqX" customClass="CreateViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create by..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71s-gV-cHp">
-                                <rect key="frame" x="75" y="215" width="185" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create by..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71s-gV-cHp">
+                                <rect key="frame" x="10" y="98" width="394" height="37"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7C-aO-BI3">
-                                <rect key="frame" x="174" y="433" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wb-pZ-Led">
+                                <rect key="frame" x="10" y="145" width="84" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Camera">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="CameraBtnAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hL0-RM-fJR"/>
+                                    <action selector="cameraButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="v8A-eC-AV2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7C-aO-BI3">
+                                <rect key="frame" x="10" y="190" width="78" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Gallery">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="galleryButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="HQF-TG-nMN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wC7-7h-9Fx">
-                                <rect key="frame" x="174" y="502" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wC7-7h-9Fx">
+                                <rect key="frame" x="10" y="235" width="80" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Manual">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="manualButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="HC5-Xp-8Yc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wb-pZ-Led">
-                                <rect key="frame" x="170" y="352" width="75" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Camera"/>
-                                <connections>
-                                    <action selector="cameraButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="SOk-uO-e4O"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" name="AccentColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="71s-gV-cHp" secondAttribute="trailing" constant="10" id="5jz-nS-6EN"/>
+                            <constraint firstItem="71s-gV-cHp" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="AkD-lh-MOg"/>
+                            <constraint firstItem="wC7-7h-9Fx" firstAttribute="top" secondItem="c7C-aO-BI3" secondAttribute="bottom" constant="10" id="Gcl-Iv-ICj"/>
+                            <constraint firstItem="wC7-7h-9Fx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="HJZ-1Y-U7l"/>
+                            <constraint firstItem="5Wb-pZ-Led" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="OTQ-sc-ph5"/>
+                            <constraint firstItem="c7C-aO-BI3" firstAttribute="top" secondItem="5Wb-pZ-Led" secondAttribute="bottom" constant="10" id="VZf-PQ-hdm"/>
+                            <constraint firstItem="5Wb-pZ-Led" firstAttribute="top" secondItem="71s-gV-cHp" secondAttribute="bottom" constant="10" id="a2m-hb-ve4"/>
+                            <constraint firstItem="71s-gV-cHp" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="amT-cf-E8P"/>
+                            <constraint firstItem="c7C-aO-BI3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="z8X-7W-6vT"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Create" image="plus.square.fill.on.square.fill" catalog="system" id="Q95-Zv-Ilg"/>
                     <navigationItem key="navigationItem" id="ce9-iD-SwF"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="cameraBtnOutlet" destination="5Wb-pZ-Led" id="NBF-HL-SWF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

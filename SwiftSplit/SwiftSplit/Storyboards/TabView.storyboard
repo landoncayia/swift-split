@@ -20,10 +20,10 @@
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9Bd-Jb-vGf" kind="relationship" relationship="viewControllers" id="hfs-gf-S8b"/>
-                        <segue destination="zVX-S8-Ej3" kind="relationship" relationship="viewControllers" id="uBH-eW-kgH"/>
-                        <segue destination="W62-Ur-FAJ" kind="relationship" relationship="viewControllers" id="LjH-ZV-bo8"/>
-                        <segue destination="X3Q-py-PpT" kind="relationship" relationship="viewControllers" id="Qci-OD-bhs"/>
+                        <segue destination="9Bd-Jb-vGf" kind="relationship" relationship="viewControllers" id="wXU-gi-AZw"/>
+                        <segue destination="nSk-RO-aIL" kind="relationship" relationship="viewControllers" id="w1e-sN-NvF"/>
+                        <segue destination="W62-Ur-FAJ" kind="relationship" relationship="viewControllers" id="hoN-L4-ljg"/>
+                        <segue destination="X3Q-py-PpT" kind="relationship" relationship="viewControllers" id="hwI-Ke-KdA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ia8-m4-3Oj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -38,7 +38,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Yb-o3-ibW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-649" y="-299"/>
+            <point key="canvasLocation" x="-647" y="-327"/>
+        </scene>
+        <!--Create-->
+        <scene sceneID="Pe2-YZ-q6b">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CreateSegue" storyboardName="Create" referencedIdentifier="CreateNavViewController" id="nSk-RO-aIL" userLabel="Create" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="5AO-8K-qDa"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kce-Z1-96H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-650" y="-296"/>
         </scene>
         <!--Budget-->
         <scene sceneID="p7Z-dP-v8g">
@@ -48,17 +58,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Psk-Qr-hAq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-645" y="-226"/>
-        </scene>
-        <!--Camera-->
-        <scene sceneID="B7M-Ua-bdh">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="CameraSegue" storyboardName="Create" referencedIdentifier="CreateViewController" id="zVX-S8-Ej3" userLabel="Camera" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" enabled="NO" title="Camera" image="camera" catalog="system" id="P8f-lV-i8w"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OZ9-oA-NS9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-647" y="-259"/>
+            <point key="canvasLocation" x="-646" y="-266"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Ysc-Dt-Tch">
@@ -68,11 +68,10 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0y7-Di-8N5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-640" y="-196"/>
+            <point key="canvasLocation" x="-643" y="-236"/>
         </scene>
     </scenes>
     <resources>
-        <image name="camera" catalog="system" width="128" height="94"/>
         <image name="dollarsign.circle" catalog="system" width="128" height="121"/>
         <image name="folder" catalog="system" width="128" height="97"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>

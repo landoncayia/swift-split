@@ -1,15 +1,10 @@
-//
-//  CameraViewController.swift
-//  SwiftSplit
-//
-//  Created by user204492 on 10/15/21.
-//
+// 
 
 import UIKit
 import VisionKit
 import Vision
 
-class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateViewController : UINavigationController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     static let receiptContentsVC = "receiptContentsVC"
     
@@ -48,13 +43,13 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
 //        choosePhotoSource()
 //    }
     
-    @IBAction func cameraButton(_ sender: UIButton) {
+    @IBAction func CameraBtnAction(_ sender: UIButton) {
         self.entryMode = .camera
         let documentCameraViewController = VNDocumentCameraViewController()
         documentCameraViewController.delegate = self
         present(documentCameraViewController, animated: true)
     }
-    
+
     // TODO: Write me!
     @IBAction func galleryButton(_ sender: UIButton) {
         self.entryMode = .gallery
