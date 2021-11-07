@@ -4,7 +4,7 @@ import UIKit
 import VisionKit
 import Vision
 
-class CreateViewController : UINavigationController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     static let receiptContentsVC = "receiptContentsVC"
     
