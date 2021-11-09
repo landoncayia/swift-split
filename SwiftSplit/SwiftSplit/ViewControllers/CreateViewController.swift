@@ -15,20 +15,20 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
     }
 
     var entryMode: EntryMode = .camera
-    var resultsViewController: (UIViewController & RecognizedTextDataSource)?
+    var receiptViewController: (UIViewController & RecognizedTextDataSource)?
     var textRecognitionRequest = VNRecognizeTextRequest()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         textRecognitionRequest = VNRecognizeTextRequest(completionHandler: { (request, error) in
-            guard let resultsViewController = self.resultsViewController else {
-                print("resultsViewController is not set")
+            guard let receiptViewController = self.receiptViewController else {
+                print("receiptViewController is not set")
                 return
             }
             if let results = request.results, !results.isEmpty {
                 if let requestResults = request.results as? [VNRecognizedTextObservation] {
                     DispatchQueue.main.async {
-                        resultsViewController.processRecognizedText(recognizedText: requestResults)
+                        receiptViewController.processRecognizedText(recognizedText: requestResults)
                     }
                 }
             }
@@ -152,7 +152,7 @@ extension CreateViewController: VNDocumentCameraViewControllerDelegate {
         
         let vcID = CreateViewController.receiptContentsVC
 
-        resultsViewController = storyboard?.instantiateViewController(withIdentifier: vcID) as? (UIViewController & RecognizedTextDataSource)
+        receiptViewController = storyboard?.instantiateViewController(withIdentifier: vcID) as? (UIViewController & RecognizedTextDataSource)
         
         //self.activityIndicator.startAnimating()
         controller.dismiss(animated: true) {
@@ -162,7 +162,7 @@ extension CreateViewController: VNDocumentCameraViewControllerDelegate {
                     self.processImage(image: image)
                 }
                 DispatchQueue.main.async {
-                    if let resultsVC = self.resultsViewController {
+                    if let resultsVC = self.receiptViewController {
                         self.navigationController?.pushViewController(resultsVC, animated: true)
                     }
                     //self.activityIndicator.stopAnimating()

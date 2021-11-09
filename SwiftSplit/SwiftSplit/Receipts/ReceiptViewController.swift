@@ -35,7 +35,7 @@ extension ReceiptViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let field = contents.items[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptCell", for: indexPath) as! ReceiptCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "receiptCell", for: indexPath) as! ReceiptCell
         
         cell.itemName.text = field.name
         cell.itemPrice.text = field.value
