@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         let createVC = vcChildren[1] as! CreateNavViewController
-        createVC.receiptStore = receiptStore
+        //createVC.receiptStore = receiptStore
         
         let budgetVC = vcChildren[2] as! BudgetViewController
         budgetVC.receiptStore = receiptStore
