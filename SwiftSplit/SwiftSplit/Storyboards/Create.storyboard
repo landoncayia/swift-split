@@ -10,102 +10,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Create Nav View Controller-->
+        <!--Create-->
         <scene sceneID="8nn-7Z-oS4">
             <objects>
                 <navigationController storyboardIdentifier="CreateNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="jLe-SY-uwr" customClass="CreateNavViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Create" selectedImage="plus.square.fill.on.square.fill" catalog="system" id="6tT-Pf-db3"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="D0F-Ol-0ag">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="Ado-fB-gnj"/>
+                        <segue destination="A1e-zY-9vK" kind="relationship" relationship="rootViewController" id="q29-ha-rGY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sRm-sJ-oFk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="83.705357142857139"/>
         </scene>
-        <!--Create-->
-        <scene sceneID="s0d-6b-0kx">
-            <objects>
-                <viewController storyboardIdentifier="CreateViewController" id="Y6W-OH-hqX" customClass="CreateViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create by..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71s-gV-cHp">
-                                <rect key="frame" x="10" y="98" width="394" height="37"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wb-pZ-Led">
-                                <rect key="frame" x="10" y="145" width="84" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Camera">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="CameraBtnAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hL0-RM-fJR"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7C-aO-BI3">
-                                <rect key="frame" x="10" y="190" width="78" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Gallery">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="galleryButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="HQF-TG-nMN"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wC7-7h-9Fx">
-                                <rect key="frame" x="10" y="235" width="80" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Manual">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="manualButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="HC5-Xp-8Yc"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <color key="tintColor" name="AccentColor"/>
-                        <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="71s-gV-cHp" secondAttribute="trailing" constant="10" id="5jz-nS-6EN"/>
-                            <constraint firstItem="71s-gV-cHp" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="AkD-lh-MOg"/>
-                            <constraint firstItem="wC7-7h-9Fx" firstAttribute="top" secondItem="c7C-aO-BI3" secondAttribute="bottom" constant="10" id="Gcl-Iv-ICj"/>
-                            <constraint firstItem="wC7-7h-9Fx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="HJZ-1Y-U7l"/>
-                            <constraint firstItem="5Wb-pZ-Led" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="OTQ-sc-ph5"/>
-                            <constraint firstItem="c7C-aO-BI3" firstAttribute="top" secondItem="5Wb-pZ-Led" secondAttribute="bottom" constant="10" id="VZf-PQ-hdm"/>
-                            <constraint firstItem="5Wb-pZ-Led" firstAttribute="top" secondItem="71s-gV-cHp" secondAttribute="bottom" constant="10" id="a2m-hb-ve4"/>
-                            <constraint firstItem="71s-gV-cHp" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="amT-cf-E8P"/>
-                            <constraint firstItem="c7C-aO-BI3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="z8X-7W-6vT"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Create" image="plus.square.fill.on.square.fill" catalog="system" id="Q95-Zv-Ilg"/>
-                    <navigationItem key="navigationItem" id="ce9-iD-SwF"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="83.705357142857139"/>
-        </scene>
-        <!--UserDate-->
+        <!--Receipt Details-->
         <scene sceneID="RNh-7U-Ys7">
             <objects>
-                <viewController storyboardIdentifier="DateUserController" title="Manual Entry" id="A1e-zY-9vK" userLabel="UserDate" customClass="DateUserViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="receiptDetailsVC" title="Receipt Details" id="A1e-zY-9vK" customClass="CreateViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Si9-gR-Tgb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PAk-bg-jN3">
-                                <rect key="frame" x="22" y="44" width="370" height="300"/>
+                                <rect key="frame" x="22" y="88" width="370" height="300"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xJn-Rr-Lqg">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="34"/>
@@ -143,9 +77,6 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZSK-rU-XlN">
                                                 <rect key="frame" x="328.5" y="0.0" width="41.5" height="34"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system" title=""/>
-                                                <connections>
-                                                    <action selector="addUser:" destination="A1e-zY-9vK" eventType="touchUpInside" id="oSw-ps-ttZ"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -160,32 +91,19 @@
                             <constraint firstItem="PAk-bg-jN3" firstAttribute="top" secondItem="5UY-at-9gR" secondAttribute="top" id="g7I-62-pdr"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="date" destination="ZjH-WG-qee" id="VK7-h8-8BN"/>
-                        <outlet property="firstUser" destination="NMg-kj-bDB" id="FWS-Ze-Re4"/>
-                        <outlet property="receiptName" destination="3pC-L3-abp" id="7j0-vg-7R5"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Receipt Details" id="MBp-wP-osB">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="GDh-Q4-t1k">
+                            <connections>
+                                <action selector="receiptDetailsNext:" destination="A1e-zY-9vK" id="Xj8-54-Bxl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Wz-zx-2mf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1714" y="84"/>
+            <point key="canvasLocation" x="858" y="84"/>
         </scene>
-        <!--Users -->
-        <scene sceneID="2VE-DI-tiw">
-            <objects>
-                <viewController title="Users " id="LVo-2Q-vJQ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="iRk-rH-48h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="vyR-xe-AfS"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hz6-nd-HaB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3429" y="84"/>
-        </scene>
-        <!--Receipt View Controller-->
+        <!--Receipt Items-->
         <scene sceneID="oO0-8x-GNN">
             <objects>
                 <tableViewController storyboardIdentifier="receiptContentsVC" id="Mek-UJ-iqU" customClass="ReceiptViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
@@ -258,6 +176,10 @@
                                         <constraint firstAttribute="trailing" secondItem="HV8-Lv-0Jn" secondAttribute="trailing" id="Wlm-V5-8Fg"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="itemName" destination="8av-hA-fBY" id="CCQ-Ye-yWB"/>
+                                    <outlet property="itemPrice" destination="x9K-S3-V1b" id="BIM-ce-0cg"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -265,10 +187,13 @@
                             <outlet property="delegate" destination="Mek-UJ-iqU" id="HoZ-1h-ESu"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Receipt Items" id="iMF-qE-uby">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="70n-gi-2sx"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u3q-UG-3yB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2484" y="84"/>
+            <point key="canvasLocation" x="1588" y="84"/>
         </scene>
     </scenes>
     <resources>

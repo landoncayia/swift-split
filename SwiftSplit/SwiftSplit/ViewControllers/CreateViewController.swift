@@ -6,15 +6,40 @@ import Vision
 
 class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBAction func receiptDetailsNext(_ sender: UIBarButtonItem) {
+        // Generate a popover to choose the entry mode
+        let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
+        // Setup actions for the popover
+        let camAction = UIAlertAction(title: "Camera", style: .default) { _ in
+            let documentCameraViewController = VNDocumentCameraViewController()
+            documentCameraViewController.delegate = self
+            self.present(documentCameraViewController, animated: true)
+        }
+        let galAction = UIAlertAction(title: "Gallery", style: .default, handler: nil)
+        let manAction = UIAlertAction(title: "Manual", style: .default, handler: nil)
+        let canAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        // Add actions to the popover
+        entryModePopover.addAction(camAction)
+        entryModePopover.addAction(galAction)
+        entryModePopover.addAction(manAction)
+        entryModePopover.addAction(canAction)
+        // Setup the location for popover
+        entryModePopover.popoverPresentationController?.sourceView = self
+        entryModePopover.popoverPresentationController?.sourceRect = .bounds
+        // Actually do the popover
+        present(entryModePopover, animated: true, completion: nil)
+        
+    }
+    
     static let receiptContentsVC = "receiptContentsVC"
     
-    enum EntryMode: Int {
-        case camera
-        case gallery
-        case manual
-    }
-
-    var entryMode: EntryMode = .camera
+//    enum EntryMode: Int {
+//        case camera
+//        case gallery
+//        case manual
+//    }
+//
+//    var entryMode: EntryMode = .camera
     var receiptViewController: (UIViewController & RecognizedTextDataSource)?
     var textRecognitionRequest = VNRecognizeTextRequest()
     
@@ -43,22 +68,22 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
 //        choosePhotoSource()
 //    }
     
-    @IBAction func CameraBtnAction(_ sender: UIButton) {
-        self.entryMode = .camera
-        let documentCameraViewController = VNDocumentCameraViewController()
-        documentCameraViewController.delegate = self
-        present(documentCameraViewController, animated: true)
-    }
-
-    // TODO: Write me!
-    @IBAction func galleryButton(_ sender: UIButton) {
-        self.entryMode = .gallery
-    }
-    
-    // TODO: Write me!
-    @IBAction func manualButton(_ sender: UIButton) {
-        self.entryMode = .manual
-    }
+//    @IBAction func CameraBtnAction(_ sender: UIButton) {
+//        self.entryMode = .camera
+//        let documentCameraViewController = VNDocumentCameraViewController()
+//        documentCameraViewController.delegate = self
+//        present(documentCameraViewController, animated: true)
+//    }
+//
+//    // TODO: Write me!
+//    @IBAction func galleryButton(_ sender: UIButton) {
+//        self.entryMode = .gallery
+//    }
+//
+//    // TODO: Write me!
+//    @IBAction func manualButton(_ sender: UIButton) {
+//        self.entryMode = .manual
+//    }
     
     func processImage(image: UIImage) {
         guard let cgImage = image.cgImage else {
