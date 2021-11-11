@@ -14,7 +14,7 @@
         <scene sceneID="8nn-7Z-oS4">
             <objects>
                 <navigationController storyboardIdentifier="CreateNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="jLe-SY-uwr" customClass="CreateNavViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create" selectedImage="plus.square.fill.on.square.fill" catalog="system" id="6tT-Pf-db3"/>
+                    <tabBarItem key="tabBarItem" title="Create" image="plus.square.fill.on.square.fill" catalog="system" id="6tT-Pf-db3"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="D0F-Ol-0ag">

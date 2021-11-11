@@ -24,8 +24,13 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         entryModePopover.addAction(manAction)
         entryModePopover.addAction(canAction)
         // Setup the location for popover
-        entryModePopover.popoverPresentationController?.sourceView = self
-        entryModePopover.popoverPresentationController?.sourceRect = .bounds
+
+        if let popoverController = entryModePopover.popoverPresentationController {
+            popoverController.barButtonItem = sender as? UIBarButtonItem
+          }
+
+//        entryModePopover.popoverPresentationController?.sourceView = sender.customView
+//        entryModePopover.popoverPresentationController?.sourceRect = sender.customView?.bounds
         // Actually do the popover
         present(entryModePopover, animated: true, completion: nil)
         
