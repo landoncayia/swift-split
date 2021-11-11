@@ -30,10 +30,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let browseVC = vcChildren[0] as! BrowseViewController
         browseVC.receiptStore = receiptStore
         
-        // TODO: set camera and budget receiptstores
-        let createVC = vcChildren[1] as! CreateNavViewController
         
-        // cameraVC.receiptStore = receiptStore
+        let createVC = vcChildren[1] as! CreateNavViewController
+        createVC.receiptStore = receiptStore
+        
         let budgetVC = vcChildren[2] as! BudgetViewController
         budgetVC.receiptStore = receiptStore
         

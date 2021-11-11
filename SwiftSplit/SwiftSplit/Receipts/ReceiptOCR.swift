@@ -35,6 +35,7 @@ func processRecognizedText(recognizedText: [VNRecognizedTextObservation]) {
                     }
                     valueQualifier = nil
                 }
+                
                 contents.items.append((label, text))
                 currLabel = nil
             } else if contents.name == nil && observation.boundingBox.minX < 0.5 && text.count >= 2 {

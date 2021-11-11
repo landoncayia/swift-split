@@ -98,6 +98,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="date" destination="ZjH-WG-qee" id="w0L-jU-Zhu"/>
+                        <outlet property="receiptName" destination="3pC-L3-abp" id="EwA-VV-oBK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Wz-zx-2mf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

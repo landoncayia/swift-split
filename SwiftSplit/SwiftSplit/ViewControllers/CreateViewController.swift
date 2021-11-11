@@ -6,7 +6,18 @@ import Vision
 
 class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var receiptStore: ReceiptStore!
+    @IBOutlet var receiptName: UITextField!
+    @IBOutlet var datePicker: UIDatePicker!
+    
     @IBAction func receiptDetailsNext(_ sender: UIBarButtonItem) {
+        
+        // Read text fields and date into a receipt object
+        let name = receiptName.text ?? ""
+        let date = datePicker.date
+        
+        var receipt = Receipt(name: name, date: date)
+        
         // Generate a popover to choose the entry mode
         let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
         // Setup actions for the popover
@@ -27,7 +38,7 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
 
         if let popoverController = entryModePopover.popoverPresentationController {
             popoverController.barButtonItem = sender as? UIBarButtonItem
-          }
+        }
 
 //        entryModePopover.popoverPresentationController?.sourceView = sender.customView
 //        entryModePopover.popoverPresentationController?.sourceRect = sender.customView?.bounds
@@ -55,6 +66,7 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
                 print("receiptViewController is not set")
                 return
             }
+            
             if let results = request.results, !results.isEmpty {
                 if let requestResults = request.results as? [VNRecognizedTextObservation] {
                     DispatchQueue.main.async {

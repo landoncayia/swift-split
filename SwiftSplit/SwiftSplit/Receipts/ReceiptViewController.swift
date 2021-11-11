@@ -8,7 +8,9 @@
 import UIKit
 
 class ReceiptViewController: UITableViewController {
-
+    
+    var receipt: Receipt!
+    
     static let tableCellIdentifier = "receiptContentCell"
 
     // Use this height value to differentiate between big labels and small labels in a receipt.
@@ -22,8 +24,16 @@ class ReceiptViewController: UITableViewController {
         var name: String?
         var items = [ReceiptContentField]()
     }
-    
     var contents = ReceiptContents()
+    
+    
+    // Converts the ReceiptContentField into a receipt
+    // This is so that ReceiptOCR doesn't have to do anything extra/ makes it easier
+    func convertToReceipt(){
+        
+    }
+    
+    
 }
 
 // MARK: UITableViewDataSource
@@ -39,7 +49,6 @@ extension ReceiptViewController {
         
         cell.itemName.text = field.name
         cell.itemPrice.text = field.value
-        
         print("\(field.name)\t\(field.value)")
         return cell
     }
