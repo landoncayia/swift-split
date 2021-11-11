@@ -21,6 +21,10 @@
 		A7F16CB32715D6DD00B7E8C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F16CB12715D6DD00B7E8C3 /* LaunchScreen.storyboard */; };
 		A7F16CBE2715D6DD00B7E8C3 /* SwiftSplitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CBD2715D6DD00B7E8C3 /* SwiftSplitTests.swift */; };
 		A7F16CC92715D6DD00B7E8C3 /* SwiftSplitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CC82715D6DD00B7E8C3 /* SwiftSplitUITests.swift */; };
+		C72391E727347C1D0077545A /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72391E627347C1D0077545A /* SettingsCell.swift */; };
+		C72391E9273492690077545A /* CustomWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72391E8273492690077545A /* CustomWordCell.swift */; };
+		C72391EB273492DF0077545A /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72391EA273492DF0077545A /* SettingsStore.swift */; };
+		C72F356D273D8C7800F6DB2E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72F356C273D8C7800F6DB2E /* SettingsViewController.swift */; };
 		C75D6EC1272DD1E00067BF31 /* RecognizedTextDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */; };
 		C75D6EC3272DD1FA0067BF31 /* ReceiptContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75D6EC2272DD1FA0067BF31 /* ReceiptContentsViewController.swift */; };
 		C768A096271872A2009A729C /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A095271872A2009A729C /* Camera.storyboard */; };
@@ -28,7 +32,7 @@
 		C768A09A27187318009A729C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A09927187318009A729C /* Settings.storyboard */; };
 		D11BEA9A271A456D00747542 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11BEA99271A456D00747542 /* BrowseViewController.swift */; };
 		D1276F0E271A4849002BDD90 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1276F0D271A4849002BDD90 /* CameraViewController.swift */; };
-		D1276F10271A4873002BDD90 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1276F0F271A4873002BDD90 /* SettingsViewController.swift */; };
+		D1276F10271A4873002BDD90 /* CustomWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1276F0F271A4873002BDD90 /* CustomWordViewController.swift */; };
 		D1A58F002719E44C000B1744 /* TabView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A58EFF2719E44C000B1744 /* TabView.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +74,10 @@
 		A7F16CC42715D6DD00B7E8C3 /* SwiftSplitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSplitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F16CC82715D6DD00B7E8C3 /* SwiftSplitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSplitUITests.swift; sourceTree = "<group>"; };
 		A7F16CCA2715D6DD00B7E8C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C72391E627347C1D0077545A /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		C72391E8273492690077545A /* CustomWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWordCell.swift; sourceTree = "<group>"; };
+		C72391EA273492DF0077545A /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		C72F356C273D8C7800F6DB2E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedTextDataSource.swift; sourceTree = "<group>"; };
 		C75D6EC2272DD1FA0067BF31 /* ReceiptContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptContentsViewController.swift; sourceTree = "<group>"; };
 		C768A095271872A2009A729C /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
@@ -77,7 +85,7 @@
 		C768A09927187318009A729C /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		D11BEA99271A456D00747542 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		D1276F0D271A4849002BDD90 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		D1276F0F271A4873002BDD90 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D1276F0F271A4873002BDD90 /* CustomWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWordViewController.swift; sourceTree = "<group>"; };
 		D1A58EFF2719E44C000B1744 /* TabView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,7 +153,6 @@
 				A7F16CAA2715D6DC00B7E8C3 /* TabViewController.swift */,
 				D11BEA99271A456D00747542 /* BrowseViewController.swift */,
 				D1276F0D271A4849002BDD90 /* CameraViewController.swift */,
-				D1276F0F271A4873002BDD90 /* SettingsViewController.swift */,
 				C75D6EC2272DD1FA0067BF31 /* ReceiptContentsViewController.swift */,
 			);
 			path = ViewControllers;
@@ -174,6 +181,7 @@
 		A7F16CA52715D6DC00B7E8C3 /* SwiftSplit */ = {
 			isa = PBXGroup;
 			children = (
+				C72391E527347C0B0077545A /* Settings */,
 				A7A164F3272DB6F000FF5A5D /* ViewControllers */,
 				A7A164F1272DB5CA00FF5A5D /* Storyboards */,
 				A732F07A2721B2E7007860B8 /* Budget */,
@@ -203,6 +211,18 @@
 				A7F16CCA2715D6DD00B7E8C3 /* Info.plist */,
 			);
 			path = SwiftSplitUITests;
+			sourceTree = "<group>";
+		};
+		C72391E527347C0B0077545A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D1276F0F271A4873002BDD90 /* CustomWordViewController.swift */,
+				C72391E627347C1D0077545A /* SettingsCell.swift */,
+				C72391E8273492690077545A /* CustomWordCell.swift */,
+				C72391EA273492DF0077545A /* SettingsStore.swift */,
+				C72F356C273D8C7800F6DB2E /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,9 +362,11 @@
 				A73069C1271E3D03008E48AA /* Person.swift in Sources */,
 				A7F16CAB2715D6DC00B7E8C3 /* TabViewController.swift in Sources */,
 				A7F16CA72715D6DC00B7E8C3 /* AppDelegate.swift in Sources */,
+				C72391EB273492DF0077545A /* SettingsStore.swift in Sources */,
 				A73069C3271E442C008E48AA /* ReceiptStore.swift in Sources */,
-				D1276F10271A4873002BDD90 /* SettingsViewController.swift in Sources */,
+				D1276F10271A4873002BDD90 /* CustomWordViewController.swift in Sources */,
 				A732F07E2721B7CB007860B8 /* BudgetViewController.swift in Sources */,
+				C72391E9273492690077545A /* CustomWordCell.swift in Sources */,
 				A73069BF271E3CE3008E48AA /* ReceiptItem.swift in Sources */,
 				C75D6EC3272DD1FA0067BF31 /* ReceiptContentsViewController.swift in Sources */,
 				A73069BD271E3C91008E48AA /* Receipt.swift in Sources */,
@@ -353,6 +375,8 @@
 				D11BEA9A271A456D00747542 /* BrowseViewController.swift in Sources */,
 				A732F07C2721B313007860B8 /* BudgetCell.swift in Sources */,
 				D1276F0E271A4849002BDD90 /* CameraViewController.swift in Sources */,
+				C72391E727347C1D0077545A /* SettingsCell.swift in Sources */,
+				C72F356D273D8C7800F6DB2E /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

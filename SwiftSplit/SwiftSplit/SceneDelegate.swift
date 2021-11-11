@@ -36,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let budgetVC = vcChildren[2] as! BudgetViewController
             // budgetVC.receiptStore = receiptStore
             
-            let settingsVC = vcChildren[3] as! SettingsViewController
+//            let settingsVC = vcChildren[3] as! SettingsViewController
         }
     }
 
