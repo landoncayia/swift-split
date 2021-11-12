@@ -44,6 +44,9 @@ class ReceiptViewController: UITableViewController {
             // let itemTaxed = item.taxed
             if let convertPrice = Double(item.value){
                 newItem.price = convertPrice
+            } else {
+                print("Failed to convert item price from \(item.value) to Double")
+                newItem.price = 0.0
             }
             
 
