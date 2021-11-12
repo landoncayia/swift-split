@@ -77,6 +77,7 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         })
         // This doesn't require OCR on a live camera feed, select accurate for more accurate results.
         textRecognitionRequest.recognitionLevel = .accurate
+        textRecognitionRequest.recognitionLanguages = ["en_US"]
         textRecognitionRequest.usesLanguageCorrection = true
     }
     

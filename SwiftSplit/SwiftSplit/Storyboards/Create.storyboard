@@ -99,7 +99,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="date" destination="ZjH-WG-qee" id="w0L-jU-Zhu"/>
+                        <outlet property="datePicker" destination="ZjH-WG-qee" id="UIW-cO-nHw"/>
                         <outlet property="receiptName" destination="3pC-L3-abp" id="EwA-VV-oBK"/>
                     </connections>
                 </viewController>
