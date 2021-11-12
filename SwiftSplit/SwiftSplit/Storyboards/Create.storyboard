@@ -99,7 +99,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="date" destination="ZjH-WG-qee" id="w0L-jU-Zhu"/>
+                        <outlet property="datePicker" destination="ZjH-WG-qee" id="zfn-nH-Fhk"/>
                         <outlet property="receiptName" destination="3pC-L3-abp" id="EwA-VV-oBK"/>
                     </connections>
                 </viewController>
@@ -164,6 +164,9 @@
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LKI-SD-cjv">
                                                             <rect key="frame" x="365" y="0.0" width="51" height="34"/>
+                                                            <connections>
+                                                                <action selector="changeIsTaxed:" destination="Mek-UJ-iqU" eventType="valueChanged" id="uDA-Fh-tTi"/>
+                                                            </connections>
                                                         </switch>
                                                     </subviews>
                                                 </stackView>
@@ -192,12 +195,27 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Receipt Items" id="iMF-qE-uby">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="70n-gi-2sx"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="70n-gi-2sx">
+                            <connections>
+                                <action selector="appendReceipt" destination="Mek-UJ-iqU" id="x6P-We-xjo"/>
+                                <segue destination="uVl-CZ-3rL" kind="show" identifier="itemsToBrowse" id="sAF-Pq-W48"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u3q-UG-3yB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1588" y="84"/>
+        </scene>
+        <!--BrowseViewController-->
+        <scene sceneID="HyI-aQ-1eE">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Browse (Main)" referencedIdentifier="BrowseViewController" id="uVl-CZ-3rL" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="x9T-dO-evF"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OXj-bp-LRx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2211" y="84"/>
         </scene>
     </scenes>
     <resources>

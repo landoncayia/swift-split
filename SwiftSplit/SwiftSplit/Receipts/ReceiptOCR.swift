@@ -67,6 +67,7 @@ func processRecognizedText(recognizedText: [VNRecognizedTextObservation]) {
             }
         }
     }
+    convertToReceipt()
     tableView.reloadData()
     navigationItem.title = contents.name != nil ? contents.name : "Scanned Receipt"
 }

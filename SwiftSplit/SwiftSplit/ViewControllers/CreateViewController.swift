@@ -7,6 +7,7 @@ import Vision
 class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var receiptStore: ReceiptStore!
+    var receipt: Receipt!
     @IBOutlet var receiptName: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
     
@@ -16,7 +17,7 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         let name = receiptName.text ?? ""
         let date = datePicker.date
         
-        var receipt = Receipt(name: name, date: date)
+        receipt = Receipt(name: name, date: date)
         
         // Generate a popover to choose the entry mode
         let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
@@ -56,7 +57,8 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
 //    }
 //
 //    var entryMode: EntryMode = .camera
-    var receiptViewController: (UIViewController & RecognizedTextDataSource)?
+    var receiptViewController: ReceiptViewController?
+    //var receiptViewController: (UIViewController & RecognizedTextDataSource)?
     var textRecognitionRequest = VNRecognizeTextRequest()
     
     override func viewDidLoad() {
@@ -67,6 +69,8 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
                 return
             }
             
+            receiptViewController.receipt = self.receipt
+            receiptViewController.receiptStore = self.receiptStore
             if let results = request.results, !results.isEmpty {
                 if let requestResults = request.results as? [VNRecognizedTextObservation] {
                     DispatchQueue.main.async {
@@ -194,7 +198,9 @@ extension CreateViewController: VNDocumentCameraViewControllerDelegate {
         
         let vcID = CreateViewController.receiptContentsVC
 
-        receiptViewController = storyboard?.instantiateViewController(withIdentifier: vcID) as? (UIViewController & RecognizedTextDataSource)
+        receiptViewController = storyboard?.instantiateViewController(withIdentifier: vcID) as? ReceiptViewController
+        
+//        receiptViewController = storyboard?.instantiateViewController(withIdentifier: vcID) as? (UIViewController & RecognizedTextDataSource)
         
         //self.activityIndicator.startAnimating()
         controller.dismiss(animated: true) {
