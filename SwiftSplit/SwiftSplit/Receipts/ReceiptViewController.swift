@@ -77,8 +77,8 @@ extension ReceiptViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "receiptCell", for: indexPath) as! CreateReceiptCell
         
-        cell.itemName.text = field.name
-        cell.itemPrice.text = "\(field.price)"
+        //cell.itemName.text = field.name
+        //cell.itemPrice.text = "\(field.price)"
         
         cell.taxSwitch.tag = indexPath.row
         cell.taxSwitch.addTarget(self, action: #selector(self.changeIsTaxed(_:)), for: .valueChanged)

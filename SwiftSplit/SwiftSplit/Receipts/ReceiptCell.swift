@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class ReceiptCell: UITableViewCell {
+class ReceiptItemCell: UITableViewCell {
     @IBOutlet var itemName: UITextField!
     @IBOutlet var itemPrice: UITextField!
 }

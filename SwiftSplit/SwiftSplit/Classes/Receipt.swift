@@ -93,6 +93,18 @@ class Receipt: Equatable, Codable {
         return receiptTotals
     }
     
+    
+    // Returns the total receipt cost (not per person)
+    func getWholeCost() -> Double{
+        let totals = getTotals()
+        var totalCost = 0.0
+        for r in totals{
+            totalCost += r.amount
+        }
+        return totalCost
+    }
+    
+    
     // -- ITEMS --
     
     // Add receipt item
