@@ -73,5 +73,9 @@ extension ReceiptViewController: RecognizedTextDataSource {
             print(line)
         }
         
+        convertToReceipt()
+        tableView.reloadData()
+        navigationItem.title = contents.name != nil ? contents.name : "Scanned Receipt"
+        
     }
 }

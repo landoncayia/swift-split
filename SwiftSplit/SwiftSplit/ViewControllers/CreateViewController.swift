@@ -1,4 +1,4 @@
-// 
+//
 
 import UIKit
 import VisionKit
@@ -7,6 +7,7 @@ import Vision
 class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var receiptStore: ReceiptStore!
+    var receipt: Receipt!
     @IBOutlet var receiptName: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
     
@@ -16,7 +17,7 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         let name = receiptName.text ?? ""
         let date = datePicker.date
         
-        var receipt = Receipt(name: name, date: date)
+        receipt = Receipt(name: name, date: date)
         
         // Generate a popover to choose the entry mode
         let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
@@ -56,7 +57,8 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
 //    }
 //
 //    var entryMode: EntryMode = .camera
-    var receiptViewController: (UIViewController & RecognizedTextDataSource)?
+    var receiptViewController: ReceiptViewController?
+    //var receiptViewController: (UIViewController & RecognizedTextDataSource)?
     var textRecognitionRequest = VNRecognizeTextRequest()
     
     override func viewDidLoad() {
@@ -67,6 +69,8 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
                 return
             }
             
+            receiptViewController.receipt = self.receipt
+            receiptViewController.receiptStore = self.receiptStore
             if let results = request.results, !results.isEmpty {
                 if let requestResults = request.results as? [VNRecognizedTextObservation] {
                     DispatchQueue.main.async {
@@ -77,7 +81,6 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         })
         // This doesn't require OCR on a live camera feed, select accurate for more accurate results.
         textRecognitionRequest.recognitionLevel = .accurate
-        textRecognitionRequest.recognitionLanguages = ["en_US"]
         textRecognitionRequest.usesLanguageCorrection = true
     }
     
@@ -118,84 +121,15 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
     
     }
 }
-    
-//    // Creates a UIImagePickerController object which is used for the selection
-//    func imagePicker(for sourceType: UIImagePickerController.SourceType)
-//    -> UIImagePickerController {
-//        let picker = UIImagePickerController()
-//        picker.delegate = self
-//        picker.sourceType = sourceType
-//        return picker
-//    }
-//
-//    // Gets the image and places it on the screen
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-//        // get picked image from info dictionary
-//        let image = info[.originalImage] as! UIImage
-//        // put that image on the screen in the image view
-//        photo.image = image
-//        // take image picker off the screen -- must call this dismiss method
-//        dismiss(animated: true, completion: nil)
-//    }
-    
-//    // TODO: Add Segues to other views
-//    // Chooses a photo source
-//    func choosePhotoSource() {
-//        let alertController = UIAlertController(title: nil,
-//                                                message: nil,
-//                                                preferredStyle: .actionSheet)
-//        alertController.modalPresentationStyle = .popover
-//        // alertController.popoverPresentationController?.barButtonItem = sender
-//
-//        alertController.popoverPresentationController!.sourceView = self.view;
-//
-//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-//            let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
-//                print("Present camera")
-//
-//
-//
-//
-//
-//                // let imagePicker = self.imagePicker(for: .camera)
-//                //self.present(imagePicker, animated: true, completion: nil)
-//            }
-//            alertController.addAction(cameraAction)
-//        }
-        
-//        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { _ in
-//            print("Present photo library")
-//            let imagePicker = self.imagePicker(for: .photoLibrary)
-//            self.present(imagePicker, animated: true, completion: nil)
-//        }
-//        alertController.addAction(photoLibraryAction)
-//
-//        let manualAction = UIAlertAction(title: "Manual Entry", style: .default) { _ in
-//            print("Present manual entry")
-//
-//            // TODO: redo using segues
-//            // Transitions to the view for manual entry
-//            let story = UIStoryboard(name: "Camera", bundle: nil)
-//            let controller = story.instantiateViewController(withIdentifier:"ManualEntryController")
-//            let navigation = UINavigationController(rootViewController: controller)
-//            self.view.addSubview(navigation.view)
-//            self.addChild(navigation)
-//            navigation.didMove(toParent: self)
-//        }
-//        alertController.addAction(manualAction)
-        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        alertController.addAction(cancelAction)
-//        present(alertController, animated: true, completion: nil)
-//    }
-//}
 
 extension CreateViewController: VNDocumentCameraViewControllerDelegate {
     func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
         
         let vcID = CreateViewController.receiptContentsVC
 
-        receiptViewController = storyboard?.instantiateViewController(withIdentifier: vcID) as? (UIViewController & RecognizedTextDataSource)
+        receiptViewController = storyboard?.instantiateViewController(withIdentifier: vcID) as? ReceiptViewController
+        
+//        receiptViewController = storyboard?.instantiateViewController(withIdentifier: vcID) as? (UIViewController & RecognizedTextDataSource)
         
         //self.activityIndicator.startAnimating()
         controller.dismiss(animated: true) {
