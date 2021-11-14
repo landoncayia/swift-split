@@ -19,23 +19,22 @@ extension ReceiptViewController: RecognizedTextDataSource {
         // Create a dictionary
         // observation_content: (min_y, max_y)
         
-        to do: create hashable struct type containing two Ints
-        
-        var observationToLocation = [String:(Double,Double)]()
+        var locToObs = [ReceiptObservation]()
+        // var observationToLocation = [String:(Double,Double)]()
         
         var lines = [[String]]()
         
         let maximumCandidates = 1
         
-        // Loop through all observations
+        // Step 1: Loop through all observations and put them into a dictionary
         for observation in recognizedText {
             
             guard let candidate = observation.topCandidates(maximumCandidates).first else { continue }
             
             // Ignore "title" of receipt
-            let isLarge = (observation.boundingBox.height > ReceiptViewController.textHeightThreshold)
+//            let isLarge = (observation.boundingBox.height > ReceiptViewController.textHeightThreshold)
             
-            if !isLarge {
+//            if !isLarge {
                 
                 // Get text from this observations
                 let text = candidate.string
@@ -46,7 +45,9 @@ extension ReceiptViewController: RecognizedTextDataSource {
                 
                 let bottomOfLine = observation.boundingBox.minY
                 let topOfLine = observation.boundingBox.maxY
-                observationToLocation[text] = (Double(bottomOfLine), Double(topOfLine))
+                let newObs = ReceiptObservation(minY: bottomOfLine, maxY: topOfLine, text: text)
+                
+            locToObs.append(newObs)
                 
 //                // Does the observation start on the left half of receipt?
 //                if observation.boundingBox.minX < 0.5 {
@@ -54,51 +55,39 @@ extension ReceiptViewController: RecognizedTextDataSource {
 //                    let topOfLine = observation.boundingBox.maxY
 //                    lines[text] = (Double(bottomOfLine), Double(topOfLine))
 //                }
-                
-            }
+//
+//            }
             
         }
         
-        var count = 0
-        
-        // Post processing, match up things on the lines
-        
-        for (observation, observationLocation) in observationToLocation {
+        // Step 2: Match up dictionary entries
+        while (!locToObs.isEmpty) {
+
+            // Store temp
+            let thisObservation = locToObs[0]
             
-            let thisObservation = observation
-            let thisObservationLocation = observationLocation
+            lines.append([thisObservation.text])
+
+            let filteredObservations = locToObs.filter({
+                let minYDiff = abs($0.minY - thisObservation.minY)
+                let maxYDiff = abs($0.maxY - thisObservation.maxY)
+                let someBound = 0.5 * abs(thisObservation.maxY - thisObservation.minY)
+                let sameKey = ($0 == thisObservation)
+                return ((minYDiff < someBound) && (maxYDiff < someBound) && !sameKey)
+            })
+            
+            if (!filteredObservations.isEmpty) {
+                for n in 0...filteredObservations.count-1 {
+                    let otherObservation = filteredObservations[n]
+                    lines[lines.count-1].append(otherObservation.text)
+                    locToObs = locToObs.filter({ $0 != otherObservation })
+                }
+            }
             
             // Remove this observation so we don't get it again (inside the second for loop)
-            observationToLocation.removeValue(forKey: observation)
-            
-            lines.append([thisObservation])
-            
-            for (otherObservation, otherObservationLocation) in observationToLocation {
-                
-                let thisOtherObservation = otherObservation
-                let thisOtherObservationLocation = otherObservationLocation
-                
-                let minYDiff = abs(thisObservationLocation.0 - thisOtherObservationLocation.0)
-                let maxYDiff = abs(thisObservationLocation.1 - thisOtherObservationLocation.1)
-                
-                if ((minYDiff < 0.01) && (maxYDiff < 0.01)) {
-                    // otherObservation is on the same line as thisObservation
-                    // Add to array (lines)
-                    
-                    lines[count].append(thisOtherObservation)
-                    
-                    // Remove otherObservation from dict
-                    
-                    observationToLocation.removeValue(forKey: otherObservation)
-                }
-                
-            }
-            
-            count = count + 1
-            
-            
+            locToObs.remove(at: 0)
         }
-        
+
         for line in lines {
             print(line)
         }
