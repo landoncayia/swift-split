@@ -168,13 +168,6 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		A7EC71DB27347B880097A27C /* OCR */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = OCR;
-			sourceTree = "<group>";
-		};
 		A7EC71E127347D2C0097A27C /* Receipts */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				A7EC71E127347D2C0097A27C /* Receipts */,
-				A7EC71DB27347B880097A27C /* OCR */,
 				A7A164F3272DB6F000FF5A5D /* ViewControllers */,
 				A7A164F1272DB5CA00FF5A5D /* Storyboards */,
 				A732F07A2721B2E7007860B8 /* Budget */,
