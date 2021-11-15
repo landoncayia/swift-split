@@ -74,7 +74,7 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
             if let results = request.results, !results.isEmpty {
                 if let requestResults = request.results as? [VNRecognizedTextObservation] {
                     DispatchQueue.main.async {
-                        receiptViewController.processRecognizedText(recognizedText: requestResults)
+                        self.receipt.items = receiptViewController.processRecognizedText(recognizedText: requestResults)
                     }
                 }
             }

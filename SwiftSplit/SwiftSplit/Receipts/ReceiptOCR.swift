@@ -11,15 +11,15 @@ import Photos
 import Foundation
 import CoreGraphics
 
-extension ReceiptViewController: RecognizedTextDataSource {
+extension ReceiptViewController {
     
-    func processRecognizedText(recognizedText: [VNRecognizedTextObservation]) {
+    func processRecognizedText(recognizedText: [VNRecognizedTextObservation])  -> [ReceiptItem] {
         
         // An array of all the observations on the page
         var locToObs = [ReceiptObservation]()
         
         // An array of all the lines on the page
-        var lines = [[String]]()
+        var lines = [String]()
         
         let maximumCandidates = 1
         
@@ -44,7 +44,7 @@ extension ReceiptViewController: RecognizedTextDataSource {
             // Store temp
             let thisObservation = locToObs[0]
             
-            lines.append([thisObservation.text])
+            lines.append(thisObservation.text)
 
             // Filter out every observation NOT on this line
             let filteredObservations = locToObs.filter({
@@ -59,7 +59,8 @@ extension ReceiptViewController: RecognizedTextDataSource {
             if (!filteredObservations.isEmpty) {
                 for n in 0...filteredObservations.count-1 {
                     let otherObservation = filteredObservations[n]
-                    lines[lines.count-1].append(otherObservation.text)
+                    lines[lines.count-1] = lines[lines.count-1] + " " + otherObservation.text
+                    // lines[lines.count-1].append(otherObservation.text)
                     locToObs = locToObs.filter({ $0 != otherObservation })
                 }
             }
@@ -73,9 +74,71 @@ extension ReceiptViewController: RecognizedTextDataSource {
             print(line)
         }
         
-        convertToReceipt()
-        tableView.reloadData()
-        navigationItem.title = contents.name != nil ? contents.name : "Scanned Receipt"
+        return convertScannedReceipt(lines)
+//        convertToReceipt()
+//        tableView.reloadData()
+//        navigationItem.title = contents.name != nil ? contents.name : "Scanned Receipt"
         
     }
+}
+
+func convertScannedReceipt(_ lines: [String]) -> [ReceiptItem] {
+    
+    var items = [ReceiptItem]()
+    
+    // words to ignore
+    var toIgnore = ["price", "sale", "savings", "coupon"]
+    
+    // letters for tax status
+    var taxLetters = ["A", "X"]
+    
+    for line in lines {
+        // Check if this is an item by looking for a name and price
+        
+        // Defaults for the item
+        var name = ""
+        var price = 0.0
+        var taxed = false
+        
+        var foundPrice = false
+        
+        let splitLine = line.components(separatedBy: " ")
+        
+        var currIdx = 0
+        var priceIdx = 0
+        
+        for term in splitLine {
+            // TODO add regex to remove anything other than number, letter, or period
+
+            if Double(term) != nil && term.contains(".") {
+                
+                print("Found double: ", term, "at index", currIdx)
+                priceIdx = currIdx
+                foundPrice = true
+                
+            } else if (term.uppercased().count == 1 && taxLetters.contains(term.uppercased())) {
+                taxed = true
+            }
+            
+            currIdx += 1
+
+        }
+        
+        if foundPrice {
+            
+            name = splitLine[0 ..< priceIdx].joined(separator: " ")
+            price = Double(splitLine[priceIdx]) ?? 0.0
+            
+            // DEBUG
+            print("name:", name, ", price:", price, ", taxed:", taxed, "\n")
+
+            // Add the item
+            let newItem = ReceiptItem(name: name, price: price, taxed: taxed)
+            items.append(newItem)
+        }
+    }
+    
+    // Return an array of receipt items, to put into the receipt
+    return items
+    
 }
