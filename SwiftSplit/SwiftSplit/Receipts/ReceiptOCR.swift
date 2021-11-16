@@ -87,10 +87,13 @@ func convertScannedReceipt(_ lines: [String]) -> [ReceiptItem] {
     var items = [ReceiptItem]()
     
     // words to ignore
-    var toIgnore = ["price", "sale", "savings", "coupon"]
+    var wordsToIgnore = ["price", "sale", "savings", "coupon", "discount"]
     
     // letters for tax status
-    var taxLetters = ["A", "X"]
+    // A for costco
+    // X for walmart
+    // B or T for shaws
+    var taxLetters = ["A", "B", "T", "X"]
     
     for line in lines {
         // Check if this is an item by looking for a name and price
@@ -100,7 +103,8 @@ func convertScannedReceipt(_ lines: [String]) -> [ReceiptItem] {
         var price = 0.0
         var taxed = false
         
-        var foundPrice = false
+        var hasPrice = false
+        var isItem = true
         
         let splitLine = line.components(separatedBy: " ")
         
@@ -110,11 +114,14 @@ func convertScannedReceipt(_ lines: [String]) -> [ReceiptItem] {
         for term in splitLine {
             // TODO add regex to remove anything other than number, letter, or period
 
-            if Double(term) != nil && term.contains(".") {
+            if wordsToIgnore.contains(term.lowercased()) {
+                // This line contains a word that means we should ignore the whole thing
+                isItem = false
+            } else if Double(term) != nil && term.contains(".") {
                 
                 print("Found double: ", term, "at index", currIdx)
                 priceIdx = currIdx
-                foundPrice = true
+                hasPrice = true
                 
             } else if (term.uppercased().count == 1 && taxLetters.contains(term.uppercased())) {
                 taxed = true
@@ -124,7 +131,7 @@ func convertScannedReceipt(_ lines: [String]) -> [ReceiptItem] {
 
         }
         
-        if foundPrice {
+        if (isItem && hasPrice) {
             
             name = splitLine[0 ..< priceIdx].joined(separator: " ")
             price = Double(splitLine[priceIdx]) ?? 0.0
