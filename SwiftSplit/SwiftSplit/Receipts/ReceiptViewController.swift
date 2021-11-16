@@ -13,54 +13,54 @@ class ReceiptViewController: UITableViewController {
     
     static let tableCellIdentifier = "receiptContentCell"
 
-    // Use this height value to differentiate between big labels and small labels in a receipt.
-    static let textHeightThreshold: CGFloat = 0.025
-    
-    typealias ReceiptContentField = (name: String, value: String)
-
-    // The information to fetch from a scanned receipt.
-    struct ReceiptContents {
-
-        var name: String?
-        var items = [ReceiptContentField]()
-    }
-    var contents = ReceiptContents()
-    
-    
-    // Converts the ReceiptContentField into a receipt
-    // This is so that ReceiptOCR doesn't have to do anything extra/ makes it easier
-    // Also because observations aren't put together in groups
-    func convertToReceipt(){
-        receipt.name = contents.name!
-        // date already set here
-        for item in contents.items {
-            if item.name == "Order" || item.name == "Date" {
-                continue
-            }
-            
-            let newItem = ReceiptItem(name: "", price: 0.0, taxed: true)
-            let itemName = item.name
-            let itemPrice = 0.0
-            // let itemTaxed = item.taxed
-            if let convertPrice = Double(item.value){
-                newItem.price = convertPrice
-            } else {
-                print("Failed to convert item price from \(item.value) to Double")
-                newItem.price = 0.0
-            }
-            
-
-            newItem.name = itemName
-            newItem.price = itemPrice
-            newItem.taxed = true // TODO: change this when taxed OCR implemented
-            
-        }
-    }
-    
-    @IBAction func appendReceipt(){
-        self.receiptStore.addReceipt(self.receipt)
-        performSegue(withIdentifier: "itemsToBrowse", sender: self)
-    }
+//    // Use this height value to differentiate between big labels and small labels in a receipt.
+//    static let textHeightThreshold: CGFloat = 0.025
+//
+//    typealias ReceiptContentField = (name: String, value: String)
+//
+//    // The information to fetch from a scanned receipt.
+//    struct ReceiptContents {
+//
+//        var name: String?
+//        var items = [ReceiptContentField]()
+//    }
+//    var contents = ReceiptContents()
+//
+//
+//    // Converts the ReceiptContentField into a receipt
+//    // This is so that ReceiptOCR doesn't have to do anything extra/ makes it easier
+//    // Also because observations aren't put together in groups
+//    func convertToReceipt(){
+//        receipt.name = contents.name!
+//        // date already set here
+//        for item in contents.items {
+//            if item.name == "Order" || item.name == "Date" {
+//                continue
+//            }
+//
+//            let newItem = ReceiptItem(name: "", price: 0.0, taxed: true)
+//            let itemName = item.name
+//            let itemPrice = 0.0
+//            // let itemTaxed = item.taxed
+//            if let convertPrice = Double(item.value){
+//                newItem.price = convertPrice
+//            } else {
+//                print("Failed to convert item price from \(item.value) to Double")
+//                newItem.price = 0.0
+//            }
+//
+//
+//            newItem.name = itemName
+//            newItem.price = itemPrice
+//            newItem.taxed = true // TODO: change this when taxed OCR implemented
+//
+//        }
+//    }
+//
+//    @IBAction func appendReceipt(){
+//        self.receiptStore.addReceipt(self.receipt)
+//        performSegue(withIdentifier: "itemsToBrowse", sender: self)
+//    }
     
     
     
