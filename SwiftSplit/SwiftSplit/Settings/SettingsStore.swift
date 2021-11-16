@@ -16,18 +16,22 @@ struct Settings: Codable {
     // FIRST SECTION (0)
     var recognitionLevel: RecognitionLevel
     var customWords: [String]
+    var ignoredWords: [String]
     var languageCorrection: Bool
     
-    init(recognitionLevel: RecognitionLevel, customWords: [String], languageCorrection: Bool) {
+    init(recognitionLevel: RecognitionLevel, customWords: [String], ignoredWords: [String], languageCorrection: Bool) {
         self.recognitionLevel = recognitionLevel
         self.customWords = customWords
+        self.ignoredWords = ignoredWords
         self.languageCorrection = languageCorrection
     }
     
     // Default settings
     init() {
         recognitionLevel = RecognitionLevel.accurate
+        // MARK: Just to test; tweak after
         customWords = ["Apples", "Oranges", "Bananas"]
+        ignoredWords = ["Savings", "Price", "Sale", "Coupon", "Discount"]
         languageCorrection = true
     }
 }

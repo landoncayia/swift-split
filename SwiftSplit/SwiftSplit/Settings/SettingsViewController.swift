@@ -33,6 +33,9 @@ class SettingsViewController: UITableViewController {
         case "showCustomWords":
             let customWordsViewController = segue.destination as! CustomWordViewController
             customWordsViewController.customWordsList = settingsStore.currentSettings.customWords
+        case "showIgnoredWords":
+            let ignoredWordsViewController = segue.destination as! IgnoredWordViewController
+            ignoredWordsViewController.ignoredWordsList = settingsStore.currentSettings.ignoredWords
         default:
             preconditionFailure("Unexpected segue identifier.")
         }

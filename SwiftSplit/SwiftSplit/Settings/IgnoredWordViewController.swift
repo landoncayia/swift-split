@@ -7,15 +7,15 @@
 
 import UIKit
 
-class CustomWordViewController: UITableViewController {
+class IgnoredWordViewController: UITableViewController {
     
-    var customWordsList: [String]!
+    var ignoredWordsList: [String]!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-//    @IBAction func addNewCustomWord(_ sender: UIBarButtonItem) {
+//    @IBAction func addNewIgnoredWord(_ sender: UIBarButtonItem) {
 //        // Use this to add a new custom word
 //        let newWords: [String] = ["Apple", "Orange", "Banana", "Lime", "Blueberry", "Grapes"]
 //        customWordsList.append(newWords[0])
@@ -48,16 +48,16 @@ class CustomWordViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return customWordsList.count
+        return ignoredWordsList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomWordCell", for: indexPath) as! CustomWordCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoredWordCell", for: indexPath) as! IgnoredWordCell
         
-        let customWord = customWordsList[indexPath.row]
+        let ignoredWord = ignoredWordsList[indexPath.row]
         
-        cell.customWord.text = customWord
+        cell.ignoredWord.text = ignoredWord
         
         return cell
     }

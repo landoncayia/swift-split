@@ -34,6 +34,8 @@
 		A7F16CBE2715D6DD00B7E8C3 /* SwiftSplitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CBD2715D6DD00B7E8C3 /* SwiftSplitTests.swift */; };
 		A7F16CC92715D6DD00B7E8C3 /* SwiftSplitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CC82715D6DD00B7E8C3 /* SwiftSplitUITests.swift */; };
 		A7F1A3C92741B6C300746423 /* Browse (Main).storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F1A3C72741B6C300746423 /* Browse (Main).storyboard */; };
+		C75A4AAE27440B4200B967A5 /* IgnoredWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75A4AAD27440B4200B967A5 /* IgnoredWordViewController.swift */; };
+		C75A4AB027440BDC00B967A5 /* IgnoredWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75A4AAF27440BDC00B967A5 /* IgnoredWordCell.swift */; };
 		C75D6EC1272DD1E00067BF31 /* RecognizedTextDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */; };
 		C768A096271872A2009A729C /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A095271872A2009A729C /* Create.storyboard */; };
 		C768A0982718730B009A729C /* Budget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A0972718730B009A729C /* Budget.storyboard */; };
@@ -93,6 +95,8 @@
 		A7F16CC82715D6DD00B7E8C3 /* SwiftSplitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSplitUITests.swift; sourceTree = "<group>"; };
 		A7F16CCA2715D6DD00B7E8C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F1A3C82741B6C300746423 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Browse (Main).storyboard"; sourceTree = "<group>"; };
+		C75A4AAD27440B4200B967A5 /* IgnoredWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredWordViewController.swift; sourceTree = "<group>"; };
+		C75A4AAF27440BDC00B967A5 /* IgnoredWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredWordCell.swift; sourceTree = "<group>"; };
 		C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedTextDataSource.swift; sourceTree = "<group>"; };
 		C768A095271872A2009A729C /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		C768A0972718730B009A729C /* Budget.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Budget.storyboard; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 				A798A76B2741B0D400FA1147 /* CustomWordViewController.swift */,
 				A798A76C2741B0D400FA1147 /* SettingsStore.swift */,
 				A798A76D2741B0D400FA1147 /* SettingsViewController.swift */,
+				C75A4AAD27440B4200B967A5 /* IgnoredWordViewController.swift */,
+				C75A4AAF27440BDC00B967A5 /* IgnoredWordCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -249,18 +255,6 @@
 				A7F16CCA2715D6DD00B7E8C3 /* Info.plist */,
 			);
 			path = SwiftSplitUITests;
-			sourceTree = "<group>";
-		};
-		C72391E527347C0B0077545A /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				D1276F0F271A4873002BDD90 /* CustomWordViewController.swift */,
-				C72391E627347C1D0077545A /* SettingsCell.swift */,
-				C72391E8273492690077545A /* CustomWordCell.swift */,
-				C72391EA273492DF0077545A /* SettingsStore.swift */,
-				C72F356C273D8C7800F6DB2E /* SettingsViewController.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,9 +405,11 @@
 				A7EC71E327347D670097A27C /* ReceiptCell.swift in Sources */,
 				A73069BF271E3CE3008E48AA /* ReceiptItem.swift in Sources */,
 				A7DED1DA272DC5D70088E728 /* BudgetItem.swift in Sources */,
+				C75A4AB027440BDC00B967A5 /* IgnoredWordCell.swift in Sources */,
 				A73069BD271E3C91008E48AA /* Receipt.swift in Sources */,
 				A798A76F2741B0D400FA1147 /* CustomWordCell.swift in Sources */,
 				A798A76E2741B0D400FA1147 /* SettingsCell.swift in Sources */,
+				C75A4AAE27440B4200B967A5 /* IgnoredWordViewController.swift in Sources */,
 				A798A765274187C000FA1147 /* ReceiptObservation.swift in Sources */,
 				A7F16CA92715D6DC00B7E8C3 /* SceneDelegate.swift in Sources */,
 				C75D6EC1272DD1E00067BF31 /* RecognizedTextDataSource.swift in Sources */,

@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="-645" y="-226"/>
         </scene>
-        <!--Camera-->
+        <!--Create-->
         <scene sceneID="B7M-Ua-bdh">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="CameraSegue" storyboardName="Camera" referencedIdentifier="CameraViewController" id="zVX-S8-Ej3" userLabel="Camera" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="CreateSegue" storyboardName="Create" referencedIdentifier="CreateNavViewController" id="zVX-S8-Ej3" userLabel="Create" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" enabled="NO" title="Camera" image="camera" catalog="system" id="P8f-lV-i8w"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZ9-oA-NS9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

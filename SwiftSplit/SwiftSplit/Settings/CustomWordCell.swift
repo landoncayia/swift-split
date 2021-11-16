@@ -9,5 +9,5 @@ import UIKit
 
 class CustomWordCell: UITableViewCell {
     
-    @IBOutlet var word: UILabel!
+    @IBOutlet var customWord: UILabel!
 }
