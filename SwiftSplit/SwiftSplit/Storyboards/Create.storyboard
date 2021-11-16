@@ -101,6 +101,7 @@
                     <connections>
                         <outlet property="datePicker" destination="ZjH-WG-qee" id="zfn-nH-Fhk"/>
                         <outlet property="receiptName" destination="3pC-L3-abp" id="EwA-VV-oBK"/>
+                        <segue destination="Mek-UJ-iqU" kind="show" identifier="Manual" id="3VX-8p-GgW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Wz-zx-2mf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
