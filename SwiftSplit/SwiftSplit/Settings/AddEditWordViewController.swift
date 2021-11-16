@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CustomWordViewController: UITableViewController {
+class AddEditWordViewController: UITableViewController {
     
-    var customWordsList: [String]!
+    var wordsList: [String]!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -48,16 +48,16 @@ class CustomWordViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return customWordsList.count
+        return wordsList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomWordCell", for: indexPath) as! CustomWordCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomWordCell", for: indexPath) as! WordCell
         
-        let customWord = customWordsList[indexPath.row]
+        let customWord = wordsList[indexPath.row]
         
-        cell.customWord.text = customWord
+        cell.word.text = customWord
         
         return cell
     }

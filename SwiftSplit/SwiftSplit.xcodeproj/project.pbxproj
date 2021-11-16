@@ -16,8 +16,8 @@
 		A732F07E2721B7CB007860B8 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732F07D2721B7CB007860B8 /* BudgetViewController.swift */; };
 		A798A765274187C000FA1147 /* ReceiptObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798A764274187C000FA1147 /* ReceiptObservation.swift */; };
 		A798A76E2741B0D400FA1147 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798A7692741B0D400FA1147 /* SettingsCell.swift */; };
-		A798A76F2741B0D400FA1147 /* CustomWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798A76A2741B0D400FA1147 /* CustomWordCell.swift */; };
-		A798A7702741B0D400FA1147 /* CustomWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798A76B2741B0D400FA1147 /* CustomWordViewController.swift */; };
+		A798A76F2741B0D400FA1147 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798A76A2741B0D400FA1147 /* WordCell.swift */; };
+		A798A7702741B0D400FA1147 /* AddEditWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798A76B2741B0D400FA1147 /* AddEditWordViewController.swift */; };
 		A798A7712741B0D400FA1147 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798A76C2741B0D400FA1147 /* SettingsStore.swift */; };
 		A798A7722741B0D400FA1147 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798A76D2741B0D400FA1147 /* SettingsViewController.swift */; };
 		A7B0F9B12734291900AACC1C /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B0F9B02734291700AACC1C /* CreateViewController.swift */; };
@@ -34,8 +34,7 @@
 		A7F16CBE2715D6DD00B7E8C3 /* SwiftSplitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CBD2715D6DD00B7E8C3 /* SwiftSplitTests.swift */; };
 		A7F16CC92715D6DD00B7E8C3 /* SwiftSplitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16CC82715D6DD00B7E8C3 /* SwiftSplitUITests.swift */; };
 		A7F1A3C92741B6C300746423 /* Browse (Main).storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F1A3C72741B6C300746423 /* Browse (Main).storyboard */; };
-		C75A4AAE27440B4200B967A5 /* IgnoredWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75A4AAD27440B4200B967A5 /* IgnoredWordViewController.swift */; };
-		C75A4AB027440BDC00B967A5 /* IgnoredWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75A4AAF27440BDC00B967A5 /* IgnoredWordCell.swift */; };
+		C75A4AAE27440B4200B967A5 /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75A4AAD27440B4200B967A5 /* WordViewController.swift */; };
 		C75D6EC1272DD1E00067BF31 /* RecognizedTextDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */; };
 		C768A096271872A2009A729C /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A095271872A2009A729C /* Create.storyboard */; };
 		C768A0982718730B009A729C /* Budget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A0972718730B009A729C /* Budget.storyboard */; };
@@ -71,8 +70,8 @@
 		A732F07D2721B7CB007860B8 /* BudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
 		A798A764274187C000FA1147 /* ReceiptObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptObservation.swift; sourceTree = "<group>"; };
 		A798A7692741B0D400FA1147 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
-		A798A76A2741B0D400FA1147 /* CustomWordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWordCell.swift; sourceTree = "<group>"; };
-		A798A76B2741B0D400FA1147 /* CustomWordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWordViewController.swift; sourceTree = "<group>"; };
+		A798A76A2741B0D400FA1147 /* WordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
+		A798A76B2741B0D400FA1147 /* AddEditWordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditWordViewController.swift; sourceTree = "<group>"; };
 		A798A76C2741B0D400FA1147 /* SettingsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		A798A76D2741B0D400FA1147 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A7B0F9B02734291700AACC1C /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
@@ -95,8 +94,7 @@
 		A7F16CC82715D6DD00B7E8C3 /* SwiftSplitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSplitUITests.swift; sourceTree = "<group>"; };
 		A7F16CCA2715D6DD00B7E8C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F1A3C82741B6C300746423 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Browse (Main).storyboard"; sourceTree = "<group>"; };
-		C75A4AAD27440B4200B967A5 /* IgnoredWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredWordViewController.swift; sourceTree = "<group>"; };
-		C75A4AAF27440BDC00B967A5 /* IgnoredWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredWordCell.swift; sourceTree = "<group>"; };
+		C75A4AAD27440B4200B967A5 /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
 		C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedTextDataSource.swift; sourceTree = "<group>"; };
 		C768A095271872A2009A729C /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		C768A0972718730B009A729C /* Budget.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Budget.storyboard; sourceTree = "<group>"; };
@@ -156,12 +154,11 @@
 			isa = PBXGroup;
 			children = (
 				A798A7692741B0D400FA1147 /* SettingsCell.swift */,
-				A798A76A2741B0D400FA1147 /* CustomWordCell.swift */,
-				A798A76B2741B0D400FA1147 /* CustomWordViewController.swift */,
+				A798A76A2741B0D400FA1147 /* WordCell.swift */,
+				A798A76B2741B0D400FA1147 /* AddEditWordViewController.swift */,
 				A798A76C2741B0D400FA1147 /* SettingsStore.swift */,
 				A798A76D2741B0D400FA1147 /* SettingsViewController.swift */,
-				C75A4AAD27440B4200B967A5 /* IgnoredWordViewController.swift */,
-				C75A4AAF27440BDC00B967A5 /* IgnoredWordCell.swift */,
+				C75A4AAD27440B4200B967A5 /* WordViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -405,15 +402,14 @@
 				A7EC71E327347D670097A27C /* ReceiptCell.swift in Sources */,
 				A73069BF271E3CE3008E48AA /* ReceiptItem.swift in Sources */,
 				A7DED1DA272DC5D70088E728 /* BudgetItem.swift in Sources */,
-				C75A4AB027440BDC00B967A5 /* IgnoredWordCell.swift in Sources */,
 				A73069BD271E3C91008E48AA /* Receipt.swift in Sources */,
-				A798A76F2741B0D400FA1147 /* CustomWordCell.swift in Sources */,
+				A798A76F2741B0D400FA1147 /* WordCell.swift in Sources */,
 				A798A76E2741B0D400FA1147 /* SettingsCell.swift in Sources */,
-				C75A4AAE27440B4200B967A5 /* IgnoredWordViewController.swift in Sources */,
+				C75A4AAE27440B4200B967A5 /* WordViewController.swift in Sources */,
 				A798A765274187C000FA1147 /* ReceiptObservation.swift in Sources */,
 				A7F16CA92715D6DC00B7E8C3 /* SceneDelegate.swift in Sources */,
 				C75D6EC1272DD1E00067BF31 /* RecognizedTextDataSource.swift in Sources */,
-				A798A7702741B0D400FA1147 /* CustomWordViewController.swift in Sources */,
+				A798A7702741B0D400FA1147 /* AddEditWordViewController.swift in Sources */,
 				D11BEA9A271A456D00747542 /* BrowseViewController.swift in Sources */,
 				A732F07C2721B313007860B8 /* BudgetCell.swift in Sources */,
 				A7EC71E527347F220097A27C /* ReceiptOCR.swift in Sources */,

@@ -100,7 +100,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="1Ft-Ua-xda" kind="show" identifier="showIgnoredWords" id="4Zq-d7-9ye"/>
+                                            <segue destination="wpE-hP-sbB" kind="show" identifier="showIgnoredWords" id="qOO-sg-Hgt"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LanguageCorrection" id="Zs1-YI-Izf" customClass="SettingsCell" customModule="SwiftSplit" customModuleProvider="target">
@@ -143,7 +143,7 @@
         <!--Custom Words-->
         <scene sceneID="i21-VI-DM9">
             <objects>
-                <tableViewController title="Custom Words" id="wpE-hP-sbB" customClass="CustomWordViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Custom Words" id="wpE-hP-sbB" customClass="WordViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ypE-ya-LPP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -154,14 +154,14 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomWordCell" textLabel="W13-jC-nYu" style="IBUITableViewCellStyleDefault" id="3Sk-ya-wmY" customClass="CustomWordCell" customModule="SwiftSplit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WordCell" textLabel="W13-jC-nYu" style="IBUITableViewCellStyleDefault" id="3Sk-ya-wmY" customClass="WordCell" customModule="SwiftSplit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88.666666030883789" width="414" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Sk-ya-wmY" id="7BA-HF-kk7">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Custom Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" id="W13-jC-nYu">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Ignored/Custom Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" id="W13-jC-nYu">
                                             <rect key="frame" x="20" y="0.0" width="374" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -171,7 +171,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="customWord" destination="W13-jC-nYu" id="HyF-EB-uDh"/>
+                                    <outlet property="word" destination="W13-jC-nYu" id="6op-bt-yUs"/>
+                                    <segue destination="dDG-mQ-dK8" kind="show" identifier="editWord" id="Ciy-Fi-rr7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -183,7 +184,7 @@
                     <navigationItem key="navigationItem" id="2XS-Yu-iwB">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Bla-z5-y49">
                             <connections>
-                                <segue destination="dDG-mQ-dK8" kind="show" identifier="addCustomWord" id="v9e-4Y-hRX"/>
+                                <segue destination="dDG-mQ-dK8" kind="show" identifier="addWord" id="v9e-4Y-hRX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -192,56 +193,10 @@
             </objects>
             <point key="canvasLocation" x="2803" y="92"/>
         </scene>
-        <!--Ignored Word View Controller-->
-        <scene sceneID="drN-yW-RQV">
-            <objects>
-                <tableViewController id="1Ft-Ua-xda" customClass="IgnoredWordViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="f9J-Wb-vee">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="p5c-4V-5CE">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IgnoredWordCell" id="VAN-zn-Kgc" customClass="IgnoredWordCell" customModule="SwiftSplit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88.666666030883789" width="414" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VAN-zn-Kgc" id="sKx-DF-hNU">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ignored Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1FC-K7-Ewo">
-                                            <rect key="frame" x="20" y="11" width="88" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="ignoredWord" destination="1FC-K7-Ewo" id="EM1-qD-xlW"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="1Ft-Ua-xda" id="5x5-Hi-uXz"/>
-                            <outlet property="delegate" destination="1Ft-Ua-xda" id="jZe-Tc-6YS"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="25v-Vb-uJs"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EfE-CT-0ro" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2803" y="848"/>
-        </scene>
-        <!--AddEditCustomWord-->
+        <!--AddEditWord-->
         <scene sceneID="vma-Un-xyl">
             <objects>
-                <viewController title="AddEditCustomWord" id="dDG-mQ-dK8" sceneMemberID="viewController">
+                <viewController title="AddEditWord" id="dDG-mQ-dK8" customClass="AddEditWordViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mkz-DM-cmP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -251,7 +206,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addEditCustomWord" textLabel="cZJ-rF-6r2" style="IBUITableViewCellStyleDefault" id="6xy-wX-6IK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addEditWord" textLabel="cZJ-rF-6r2" style="IBUITableViewCellStyleDefault" id="6xy-wX-6IK">
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="374" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6xy-wX-6IK" id="9U5-3Z-hW9">
@@ -282,6 +237,10 @@
             <point key="canvasLocation" x="3682.608695652174" y="90.489130434782609"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="v9e-4Y-hRX"/>
+        <segue reference="Bax-W1-eMc"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">

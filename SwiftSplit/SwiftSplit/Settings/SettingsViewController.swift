@@ -31,11 +31,11 @@ class SettingsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showCustomWords":
-            let customWordsViewController = segue.destination as! CustomWordViewController
-            customWordsViewController.customWordsList = settingsStore.currentSettings.customWords
+            let customWordsViewController = segue.destination as! WordViewController
+            customWordsViewController.wordsList = settingsStore.currentSettings.customWords
         case "showIgnoredWords":
-            let ignoredWordsViewController = segue.destination as! IgnoredWordViewController
-            ignoredWordsViewController.ignoredWordsList = settingsStore.currentSettings.ignoredWords
+            let ignoredWordsViewController = segue.destination as! WordViewController
+            ignoredWordsViewController.wordsList = settingsStore.currentSettings.ignoredWords
         default:
             preconditionFailure("Unexpected segue identifier.")
         }

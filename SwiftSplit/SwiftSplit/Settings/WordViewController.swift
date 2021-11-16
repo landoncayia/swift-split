@@ -7,9 +7,9 @@
 
 import UIKit
 
-class IgnoredWordViewController: UITableViewController {
+class WordViewController: UITableViewController {
     
-    var ignoredWordsList: [String]!
+    var wordsList: [String]!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -48,16 +48,16 @@ class IgnoredWordViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ignoredWordsList.count
+        return wordsList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoredWordCell", for: indexPath) as! IgnoredWordCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath) as! WordCell
         
-        let ignoredWord = ignoredWordsList[indexPath.row]
+        let ignoredWord = wordsList[indexPath.row]
         
-        cell.ignoredWord.text = ignoredWord
+        cell.word.text = ignoredWord
         
         return cell
     }
