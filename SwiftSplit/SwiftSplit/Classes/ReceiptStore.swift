@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-class ReceiptStore {
+public class ReceiptStore {
     var receipts = [Receipt]()
     let receiptsURL: URL = {
         let documentDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -110,5 +110,9 @@ class ReceiptStore {
             
             receipts.append(receipt)
         }
+        
+        print("RECEIPT STORE LOADED")
+        print("Contents: ")
+        print(receipts)
     }
 }

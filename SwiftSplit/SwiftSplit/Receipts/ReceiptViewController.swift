@@ -8,61 +8,25 @@
 import UIKit
 
 class ReceiptViewController: UITableViewController {
-    var receiptStore: ReceiptStore!
     var receipt: Receipt!
     
     static let tableCellIdentifier = "receiptContentCell"
+    
+    required init?(coder aDecoder: NSCoder) {
+        print("ReceiptViewController loaded")
+        super.init(coder: aDecoder)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-//    // Use this height value to differentiate between big labels and small labels in a receipt.
-//    static let textHeightThreshold: CGFloat = 0.025
-//
-//    typealias ReceiptContentField = (name: String, value: String)
-//
-//    // The information to fetch from a scanned receipt.
-//    struct ReceiptContents {
-//
-//        var name: String?
-//        var items = [ReceiptContentField]()
-//    }
-//    var contents = ReceiptContents()
-//
-//
-//    // Converts the ReceiptContentField into a receipt
-//    // This is so that ReceiptOCR doesn't have to do anything extra/ makes it easier
-//    // Also because observations aren't put together in groups
-//    func convertToReceipt(){
-//        receipt.name = contents.name!
-//        // date already set here
-//        for item in contents.items {
-//            if item.name == "Order" || item.name == "Date" {
-//                continue
-//            }
-//
-//            let newItem = ReceiptItem(name: "", price: 0.0, taxed: true)
-//            let itemName = item.name
-//            let itemPrice = 0.0
-//            // let itemTaxed = item.taxed
-//            if let convertPrice = Double(item.value){
-//                newItem.price = convertPrice
-//            } else {
-//                print("Failed to convert item price from \(item.value) to Double")
-//                newItem.price = 0.0
-//            }
-//
-//
-//            newItem.name = itemName
-//            newItem.price = itemPrice
-//            newItem.taxed = true // TODO: change this when taxed OCR implemented
-//
-//        }
-//    }
-//
-//    @IBAction func appendReceipt(){
-//        self.receiptStore.addReceipt(self.receipt)
-//        performSegue(withIdentifier: "itemsToBrowse", sender: self)
-//    }
-    
-    
+        print("ReceiptViewController will appear")
+        
+        for item in receipt.items {
+            print(item.name)
+        }
+        tableView.reloadData()
+    }
     
 }
 
@@ -75,17 +39,17 @@ extension ReceiptViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let field = receipt.items[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "receiptCell", for: indexPath) as! CreateReceiptCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CreateReceiptCell", for: indexPath) as! CreateReceiptCell
         
-        //cell.itemName.text = field.name
-        //cell.itemPrice.text = "\(field.price)"
+        cell.itemName.text = field.name
+        cell.itemPrice.text = "\(field.price)"
         
-        cell.taxSwitch.tag = indexPath.row
-        cell.taxSwitch.addTarget(self, action: #selector(self.changeIsTaxed(_:)), for: .valueChanged)
+        //cell.taxSwitch.tag = indexPath.row
+        //cell.taxSwitch.addTarget(self, action: #selector(self.changeIsTaxed(_:)), for: .valueChanged)
         
         
 //        cell.itemPrice.text = field.value
-        print("\(field.name)\t\(field.price)")
+        //print("\(field.name)\t\(field.price)")
         return cell
     }
     
@@ -101,10 +65,4 @@ extension ReceiptViewController {
         }
     }
     
-    
-    
-}
-    
-class CreateReceiptCell: ReceiptCell {
-    @IBOutlet var taxSwitch: UISwitch!
 }

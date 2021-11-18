@@ -70,9 +70,9 @@ extension ReceiptViewController {
         }
 
         // DEBUG: Temporary printing of the scanned lines
-        for line in lines {
-            print(line)
-        }
+//        for line in lines {
+//            print(line)
+//        }
         
         return convertScannedReceipt(lines)
 //        convertToReceipt()
@@ -87,13 +87,13 @@ func convertScannedReceipt(_ lines: [String]) -> [ReceiptItem] {
     var items = [ReceiptItem]()
     
     // words to ignore
-    var wordsToIgnore = ["price", "sale", "savings", "coupon", "discount"]
+    let wordsToIgnore = ["price", "sale", "savings", "coupon", "discount"]
     
     // letters for tax status
     // A for costco
     // X for walmart
     // B or T for shaws
-    var taxLetters = ["A", "B", "T", "X"]
+    let taxLetters = ["A", "B", "T", "X"]
     
     for line in lines {
         // Check if this is an item by looking for a name and price
@@ -119,7 +119,7 @@ func convertScannedReceipt(_ lines: [String]) -> [ReceiptItem] {
                 isItem = false
             } else if Double(term) != nil && term.contains(".") {
                 
-                print("Found double: ", term, "at index", currIdx)
+                //print("Found double: ", term, "at index", currIdx)
                 priceIdx = currIdx
                 hasPrice = true
                 
@@ -137,7 +137,7 @@ func convertScannedReceipt(_ lines: [String]) -> [ReceiptItem] {
             price = Double(splitLine[priceIdx]) ?? 0.0
             
             // DEBUG
-            print("name:", name, ", price:", price, ", taxed:", taxed, "\n")
+            // print("name:", name, ", price:", price, ", taxed:", taxed, "\n")
 
             // Add the item
             let newItem = ReceiptItem(name: name, price: price, taxed: taxed)

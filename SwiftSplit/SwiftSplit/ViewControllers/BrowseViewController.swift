@@ -4,7 +4,6 @@
 import UIKit
 
 class BrowseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-    var receiptStore: ReceiptStore!
     var filteredReceipts: [Receipt]!
     
     @IBOutlet var searchBar: UISearchBar!
@@ -23,6 +22,8 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         view.endEditing(true)
+        
+        print("globalReceipts size: " + String(globalReceipts.receipts.count))
     }
     
     override func viewDidLoad() {
@@ -31,8 +32,11 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.placeholder = "Search for a receipt name"
         searchBar.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = .done
-        filteredReceipts = receiptStore.receipts
+        filteredReceipts = globalReceipts.receipts
         print("Browse view controller loaded")
+        
+        
+        
     }
  
     @IBAction func bkgdTapped(_ sender: UITapGestureRecognizer){
@@ -86,7 +90,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // Code from - https://guides.codepath.com/ios/Search-Bar-Guide
-        filteredReceipts = searchText.isEmpty ? receiptStore.receipts : receiptStore.receipts.filter { (receipt: Receipt) ->
+        filteredReceipts = searchText.isEmpty ? globalReceipts.receipts : globalReceipts.receipts.filter { (receipt: Receipt) ->
             Bool in
             return receipt.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
