@@ -6,7 +6,6 @@ import Vision
 
 class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var receiptStore: ReceiptStore!
     var receipt: Receipt!
     var photo: UIImage!
     var users: [Person]
@@ -85,6 +84,7 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
     var textRecognitionRequest = VNRecognizeTextRequest()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         textRecognitionRequest = VNRecognizeTextRequest(completionHandler: { (request, error) in
             guard let receiptViewController = self.receiptViewController else {
@@ -93,7 +93,7 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
             }
             
             receiptViewController.receipt = self.receipt
-            receiptViewController.receiptStore = self.receiptStore
+
             if let results = request.results, !results.isEmpty {
                 if let requestResults = request.results as? [VNRecognizedTextObservation] {
                     DispatchQueue.main.async {
@@ -105,6 +105,17 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         // This doesn't require OCR on a live camera feed, select accurate for more accurate results.
         textRecognitionRequest.recognitionLevel = .accurate
         textRecognitionRequest.usesLanguageCorrection = true
+        
+        //print("CREATE VIEW LOADED")
+        //print("Contents: ")
+        //print(receiptStore!)
+        
+        let newReceipt = Receipt(name: "shit", date: .init())
+        
+        //receiptStore.receipts.append(newReceipt)
+        
+        print("new receipt appeneded")
+        
     }
     
     func userTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -161,7 +172,6 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         case "Manual"?:
             let receiptViewController = segue.destination as! ReceiptViewController
             receiptViewController.receipt = receipt
-            receiptViewController.receiptStore = receiptStore
         default:
             preconditionFailure("Unexpected segue identifier.")
         }
