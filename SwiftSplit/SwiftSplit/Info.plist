@@ -22,6 +22,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>The camera is used to perform receipt scanning with OCR.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The gallery is used to perform receipt scanning with OCR.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
