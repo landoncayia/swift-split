@@ -9,8 +9,14 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
     var receiptStore: ReceiptStore!
     var receipt: Receipt!
     var photo: UIImage!
+    var users: [Person]
     @IBOutlet var receiptName: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var userTableView: UITableView!
+    
+    @IBAction func addUser(_ sender: UIButton) {
+        
+    }
     
     @IBAction func receiptDetailsNext(_ sender: UIBarButtonItem) {
         
@@ -18,7 +24,7 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         let name = receiptName.text ?? ""
         let date = datePicker.date
         
-        
+        // TODO: Block Special Chars and at least one user
         if name == "" {
             let empty = UIAlertController(title: "Required Data Missing", message: "Receipt must have a name", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
@@ -99,6 +105,17 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         // This doesn't require OCR on a live camera feed, select accurate for more accurate results.
         textRecognitionRequest.recognitionLevel = .accurate
         textRecognitionRequest.usesLanguageCorrection = true
+    }
+    
+    func userTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return users.count
+    }
+    
+    func userTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UserCell(style: .value1, reuseIdentifier: "UserCell")
+        let user = users[indexPath.row]
+        cell.textLabel?.text = user.name
+        return cell
     }
     
     // Whenever the create tab is pressed on the tab view the choose source menu will appear
