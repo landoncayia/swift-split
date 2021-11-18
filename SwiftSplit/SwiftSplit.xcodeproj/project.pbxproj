@@ -39,6 +39,7 @@
 		C768A096271872A2009A729C /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A095271872A2009A729C /* Create.storyboard */; };
 		C768A0982718730B009A729C /* Budget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A0972718730B009A729C /* Budget.storyboard */; };
 		C768A09A27187318009A729C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A09927187318009A729C /* Settings.storyboard */; };
+		C7FB67FD2747035500AA6E8B /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FB67FC2747035500AA6E8B /* WordViewController.swift */; };
 		D11BEA9A271A456D00747542 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11BEA99271A456D00747542 /* BrowseViewController.swift */; };
 		D1A58F002719E44C000B1744 /* TabView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A58EFF2719E44C000B1744 /* TabView.storyboard */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,7 @@
 		C768A095271872A2009A729C /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		C768A0972718730B009A729C /* Budget.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Budget.storyboard; sourceTree = "<group>"; };
 		C768A09927187318009A729C /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		C7FB67FC2747035500AA6E8B /* WordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
 		D11BEA99271A456D00747542 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		D1A58EFF2719E44C000B1744 /* TabView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,12 +156,12 @@
 		A798A7682741B0D400FA1147 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				C7FB67FC2747035500AA6E8B /* WordViewController.swift */,
 				A798A7692741B0D400FA1147 /* SettingsCell.swift */,
 				A798A76A2741B0D400FA1147 /* WordCell.swift */,
 				A798A76B2741B0D400FA1147 /* AddEditWordViewController.swift */,
 				A798A76C2741B0D400FA1147 /* SettingsStore.swift */,
 				A798A76D2741B0D400FA1147 /* SettingsViewController.swift */,
-				C75A4AAD27440B4200B967A5 /* WordViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -405,9 +407,9 @@
 				C25C66802746A68A00BA11A9 /* UserCell.swift in Sources */,
 				A7DED1DA272DC5D70088E728 /* BudgetItem.swift in Sources */,
 				A73069BD271E3C91008E48AA /* Receipt.swift in Sources */,
+				C7FB67FD2747035500AA6E8B /* WordViewController.swift in Sources */,
 				A798A76F2741B0D400FA1147 /* WordCell.swift in Sources */,
 				A798A76E2741B0D400FA1147 /* SettingsCell.swift in Sources */,
-				C75A4AAE27440B4200B967A5 /* WordViewController.swift in Sources */,
 				A798A765274187C000FA1147 /* ReceiptObservation.swift in Sources */,
 				A7F16CA92715D6DC00B7E8C3 /* SceneDelegate.swift in Sources */,
 				C75D6EC1272DD1E00067BF31 /* RecognizedTextDataSource.swift in Sources */,

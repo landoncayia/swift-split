@@ -11,6 +11,7 @@ class AddEditWordViewController: UIViewController, UITextFieldDelegate {
     
     var wordsList: [String]!
     var currentWord: String?
+    var callback: ((String)->())?
     @IBOutlet var wordField: UITextField!
     
 //    @IBAction func addNewWord(_ sender: UIBarButtonItem) {
@@ -49,6 +50,9 @@ class AddEditWordViewController: UIViewController, UITextFieldDelegate {
                 currentWord = wordEdit
             } else {
                 currentWord = "Word"
+            }
+            if let returnWord = currentWord {
+                callback?(returnWord)
             }
         }
     }

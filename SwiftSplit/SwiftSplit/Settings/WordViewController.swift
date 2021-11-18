@@ -70,6 +70,11 @@ class WordViewController: UITableViewController {
             addWordViewController.wordsList = wordsList
         case "editWord":
             let editWordViewController = segue.destination as! AddEditWordViewController
+            editWordViewController.callback = { result in
+                if let row = self.tableView.indexPathForSelectedRow?.row {
+                    self.wordsList[row] = result
+                }
+            }
             // In this case, we need the currently-stored word
             editWordViewController.wordsList = wordsList
             if let row = tableView.indexPathForSelectedRow?.row {
