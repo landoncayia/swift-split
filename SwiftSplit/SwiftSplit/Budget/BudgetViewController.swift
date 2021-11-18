@@ -9,9 +9,6 @@ import UIKit
 
 class BudgetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    // the receipt store, which will be set in scene delegate
-    var receiptStore: ReceiptStore!
-    
     // the list of people and amounts to show
     var allBudgets = [BudgetItem]()
     
@@ -47,11 +44,6 @@ class BudgetViewController: UIViewController, UITableViewDataSource, UITableView
         
         // This is the cell
         let cell = budgetTable.dequeueReusableCell(withIdentifier: "BudgetCell") as! BudgetCell
-        
-        // Swift is dumb
-        cell.preservesSuperviewLayoutMargins = false
-        cell.separatorInset = UIEdgeInsets.zero
-        cell.layoutMargins = UIEdgeInsets.zero
         
         // This is the item
         let item = allBudgets[indexPath.row]
@@ -93,7 +85,7 @@ class BudgetViewController: UIViewController, UITableViewDataSource, UITableView
         let minDate = fromDatePicker.date
         let maxDate = toDatePicker.date
         
-        for receipt in receiptStore.receipts {
+        for receipt in globalReceipts.receipts {
             let receiptDate = receipt.date
             
             // Is this receipt within the range?
