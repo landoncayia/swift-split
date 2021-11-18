@@ -7,15 +7,17 @@
 
 import UIKit
 
-class AddEditWordViewController: UITableViewController {
+class AddEditWordViewController: UIViewController, UITextFieldDelegate {
     
     var wordsList: [String]!
+    var currentWord: String?
+    @IBOutlet var word: UITextField!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-//    @IBAction func addNewCustomWord(_ sender: UIBarButtonItem) {
+//    @IBAction func addNewWord(_ sender: UIBarButtonItem) {
 //        // Use this to add a new custom word
 //        let newWords: [String] = ["Apple", "Orange", "Banana", "Lime", "Blueberry", "Grapes"]
 //        customWordsList.append(newWords[0])
@@ -36,52 +38,10 @@ class AddEditWordViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        word.text = currentWord!
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wordsList.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomWordCell", for: indexPath) as! WordCell
-        
-        let customWord = wordsList[indexPath.row]
-        
-        cell.word.text = customWord
-        
-        return cell
-    }
-    
-//    @IBOutlet var settingsTable: UITableView! {
-//        didSet {
-//            settingsTable.delegate = self;
-//            settingsTable.dataSource = self;
-//        }
-//    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "showSetting":
-            // Figure out which setting was selected
-            if let settingsCell = tableView.indexPathForSelectedRow?.row {
-                
-                // Get the setting item associated with this cell and pass it along
-//                let settingsItem = settingStore.allSettings[row]
-//                let settingsItemViewController = segue.destination as! SettingsItemViewController
-//                settingsItemViewController.settingItem = settingsItem
-            }
-        default:
-            preconditionFailure("Unexpected segue identifier.")
-        }
     }
 }

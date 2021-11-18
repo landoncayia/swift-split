@@ -55,30 +55,26 @@ class WordViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath) as! WordCell
         
-        let ignoredWord = wordsList[indexPath.row]
+        let word = wordsList[indexPath.row]
         
-        cell.word.text = ignoredWord
+        cell.word.text = word
         
         return cell
     }
     
-//    @IBOutlet var settingsTable: UITableView! {
-//        didSet {
-//            settingsTable.delegate = self;
-//            settingsTable.dataSource = self;
-//        }
-//    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "showSetting":
-            // Figure out which setting was selected
-            if let settingsCell = tableView.indexPathForSelectedRow?.row {
-                
-                // Get the setting item associated with this cell and pass it along
-//                let settingsItem = settingStore.allSettings[row]
-//                let settingsItemViewController = segue.destination as! SettingsItemViewController
-//                settingsItemViewController.settingItem = settingsItem
+        case "addWord":
+            // In this case, we do not need an existing word
+            let addWordViewController = segue.destination as! AddEditWordViewController
+            addWordViewController.wordsList = self.wordsList
+        case "editWord":
+            let editWordViewController = segue.destination as! AddEditWordViewController
+            // In this case, we need the currently-stored word
+            editWordViewController.wordsList = self.wordsList
+            if let row = tableView.indexPathForSelectedRow?.row {
+                let word = self.wordsList[row]
+                editWordViewController.currentWord = word
             }
         default:
             preconditionFailure("Unexpected segue identifier.")
