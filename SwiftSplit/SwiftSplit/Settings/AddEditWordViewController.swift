@@ -9,7 +9,6 @@ import UIKit
 
 class AddEditWordViewController: UIViewController, UITextFieldDelegate {
     
-    var wordsList: [String]!
     var currentWord: String?
     var callback: ((String)->())?
     @IBOutlet var wordField: UITextField!

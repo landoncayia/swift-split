@@ -67,7 +67,14 @@ class WordViewController: UITableViewController {
         case "addWord":
             // In this case, we do not need an existing word
             let addWordViewController = segue.destination as! AddEditWordViewController
-            addWordViewController.wordsList = wordsList
+            addWordViewController.callback = { result in
+                self.wordsList.append(result)
+                if let index = self.wordsList.firstIndex(of: result) {
+                    let indexPath = IndexPath(row: index, section: 0)
+                    
+                    self.tableView.insertRows(at: [indexPath], with: .automatic)
+                }
+            }
         case "editWord":
             let editWordViewController = segue.destination as! AddEditWordViewController
             editWordViewController.callback = { result in
@@ -76,7 +83,6 @@ class WordViewController: UITableViewController {
                 }
             }
             // In this case, we need the currently-stored word
-            editWordViewController.wordsList = wordsList
             if let row = tableView.indexPathForSelectedRow?.row {
                 let word = wordsList[row]
                 editWordViewController.currentWord = word
