@@ -36,7 +36,7 @@ class WordViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -67,13 +67,13 @@ class WordViewController: UITableViewController {
         case "addWord":
             // In this case, we do not need an existing word
             let addWordViewController = segue.destination as! AddEditWordViewController
-            addWordViewController.wordsList = self.wordsList
+            addWordViewController.wordsList = wordsList
         case "editWord":
             let editWordViewController = segue.destination as! AddEditWordViewController
             // In this case, we need the currently-stored word
-            editWordViewController.wordsList = self.wordsList
+            editWordViewController.wordsList = wordsList
             if let row = tableView.indexPathForSelectedRow?.row {
-                let word = self.wordsList[row]
+                let word = wordsList[row]
                 editWordViewController.currentWord = word
             }
         default:

@@ -206,6 +206,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hXt-Lx-Bo2" id="yG7-ta-Snh"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVk-Yy-vnY">
                                 <rect key="frame" x="20" y="104" width="88" height="17"/>
@@ -220,7 +223,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="PLt-eH-PVh"/>
                     <connections>
-                        <outlet property="word" destination="Ua1-6B-OL6" id="RLC-Gk-9Tz"/>
+                        <outlet property="wordField" destination="Ua1-6B-OL6" id="qb5-wL-GK0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWX-sD-JKI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
