@@ -77,11 +77,24 @@ public class ReceiptStore {
         
         loadReceipts()
         
+        var cnt = 0
+        for r in self.receipts {
+            r.tag = cnt
+            cnt += 1
+        }
+        
         if receipts.isEmpty {
-            let date = Date()
-            let calendar = Calendar.current
-            let startDate = calendar.startOfDay(for: date)
-            let receipt = Receipt(name: "Shaws", date: startDate)
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "MM/dd/yyyy"
+            let d = dateFormat.date(from: "08/10/2021")
+            
+            
+            
+            
+//            let date = Date()
+//            let calendar = Calendar.current
+//            let startDate = calendar.startOfDay(for: date)
+            let receipt = Receipt(name: "Shaws", date: d!)
             
             let person_a = Person("Bob")
             receipt.addPerson(person_a)
@@ -107,7 +120,7 @@ public class ReceiptStore {
             // Should be $0.35 tax total
             
             receipt.setTaxAmt(0.35)
-            
+            receipt.tag = 0
             receipts.append(receipt)
         }
         
