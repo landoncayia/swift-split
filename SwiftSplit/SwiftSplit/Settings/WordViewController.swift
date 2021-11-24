@@ -10,6 +10,7 @@ import UIKit
 class WordViewController: UITableViewController {
     
     var wordsList: [String]!
+    var callback: (([String])->())?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -37,6 +38,17 @@ class WordViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // "Save" changes to word array
+        if let newWordArr = wordsList {
+            if !newWordArr.isEmpty {
+                callback?(newWordArr)
+            }
+        }
     }
     
     override func viewDidLoad() {

@@ -43,7 +43,7 @@ class AddEditWordViewController: UIViewController, UITextFieldDelegate {
         // Clear first responder
         view.endEditing(true)
         
-        // "Save" changes to pokemon
+        // "Save" changes to word field
         if let wordEdit = wordField.text {
             if wordEdit != "" {
                 currentWord = wordEdit
