@@ -70,7 +70,7 @@
                                         </constraints>
                                         <buttonConfiguration key="configuration" style="plain" title="Add User"/>
                                         <connections>
-                                            <action selector="addUser:" destination="A1e-zY-9vK" eventType="touchUpInside" id="KBN-uI-oMD"/>
+                                            <action selector="addUser:" destination="A1e-zY-9vK" eventType="touchUpInside" id="xF6-nF-VnN"/>
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Dm5-c9-S3V">
@@ -78,23 +78,23 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="8CH-ZE-0fE" customClass="UserCell" customModule="SwiftSplit" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="370" height="43.5"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="370" height="44.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8CH-ZE-0fE" id="Chz-ge-OtT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="370" height="44.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xot-Lo-gAg">
-                                                            <rect key="frame" x="0.0" y="4.5" width="370" height="34"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xot-Lo-gAg">
+                                                            <rect key="frame" x="0.0" y="5" width="370" height="34.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRf-Sf-GpZ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="34"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="34.5"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                     <color key="textColor" name="AccentColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NMg-kj-bDB">
-                                                                    <rect key="frame" x="53" y="0.0" width="317" height="34"/>
+                                                                    <rect key="frame" x="53" y="0.0" width="317" height="34.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
@@ -102,10 +102,15 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="Xot-Lo-gAg" secondAttribute="bottom" constant="5" id="EJ0-qu-h2r"/>
                                                         <constraint firstAttribute="trailing" secondItem="Xot-Lo-gAg" secondAttribute="trailing" id="pzn-zy-XXw"/>
                                                         <constraint firstItem="Xot-Lo-gAg" firstAttribute="leading" secondItem="Chz-ge-OtT" secondAttribute="leading" id="qlU-m8-Rdk"/>
+                                                        <constraint firstItem="Xot-Lo-gAg" firstAttribute="top" secondItem="Chz-ge-OtT" secondAttribute="top" constant="5" id="uKc-Zj-2SS"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="userName" destination="NMg-kj-bDB" id="1Yz-5Q-JIw"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
