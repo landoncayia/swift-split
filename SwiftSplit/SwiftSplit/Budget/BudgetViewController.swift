@@ -45,11 +45,6 @@ class BudgetViewController: UIViewController, UITableViewDataSource, UITableView
         // This is the cell
         let cell = budgetTable.dequeueReusableCell(withIdentifier: "BudgetCell") as! BudgetCell
         
-        // Swift is dumb
-        cell.preservesSuperviewLayoutMargins = false
-        cell.separatorInset = UIEdgeInsets.zero
-        cell.layoutMargins = UIEdgeInsets.zero
-        
         // This is the item
         let item = allBudgets[indexPath.row]
         

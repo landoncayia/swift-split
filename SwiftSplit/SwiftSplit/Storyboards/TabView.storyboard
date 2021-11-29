@@ -12,12 +12,18 @@
         <scene sceneID="Hqe-aJ-XlL">
             <objects>
                 <tabBarController storyboardIdentifier="TabViewController" id="opB-cg-HSB" sceneMemberID="viewController">
-                    <tabBar key="tabBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="qLp-Ed-Iem">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="qLp-Ed-Iem">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="AccentColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="AccentColor"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" red="0.14117647058823529" green="0.43787055620160342" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="9Bd-Jb-vGf" kind="relationship" relationship="viewControllers" id="hfs-gf-S8b"/>
@@ -43,7 +49,7 @@
         <!--Budget-->
         <scene sceneID="p7Z-dP-v8g">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="BudgetSegue" storyboardName="Budget" referencedIdentifier="BudgetViewController" id="W62-Ur-FAJ" userLabel="Budget" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="BudgetSegue" storyboardName="Budget" referencedIdentifier="BudgetNavViewController" id="W62-Ur-FAJ" userLabel="Budget" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" enabled="NO" title="Budget" image="dollarsign.circle" catalog="system" id="3sT-QS-6s5"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Psk-Qr-hAq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -63,7 +69,7 @@
         <!--Settings-->
         <scene sceneID="Ysc-Dt-Tch">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SettingsSegue" storyboardName="Settings" referencedIdentifier="SettingsViewController" id="X3Q-py-PpT" userLabel="Settings" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="SettingsSegue" storyboardName="Settings" referencedIdentifier="SettingsNavViewController" id="X3Q-py-PpT" userLabel="Settings" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" enabled="NO" title="Settings" image="gearshape" catalog="system" id="IhY-i6-Vot"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0y7-Di-8N5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
