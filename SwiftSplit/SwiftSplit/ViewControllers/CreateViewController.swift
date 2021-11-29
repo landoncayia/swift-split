@@ -8,7 +8,7 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
     
     var receipt: Receipt!
     var photo: UIImage!
-    var users: [Person]
+    var users: [Person] = []
     @IBOutlet var receiptName: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var userTableView: UITableView!

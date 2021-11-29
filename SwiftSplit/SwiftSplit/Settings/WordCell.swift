@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomWordCell: UITableViewCell {
+class WordCell: UITableViewCell {
     
     @IBOutlet var word: UILabel!
 }
