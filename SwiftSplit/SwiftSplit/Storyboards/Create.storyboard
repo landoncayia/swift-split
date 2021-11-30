@@ -68,7 +68,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Tp2-M8-Dv1"/>
                                         </constraints>
-                                        <buttonConfiguration key="configuration" style="plain" title="Add User"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Add Person"/>
                                         <connections>
                                             <action selector="addUser:" destination="A1e-zY-9vK" eventType="touchUpInside" id="xF6-nF-VnN"/>
                                         </connections>
@@ -87,14 +87,14 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xot-Lo-gAg">
                                                             <rect key="frame" x="0.0" y="5" width="370" height="34.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRf-Sf-GpZ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="34.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Person" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRf-Sf-GpZ">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="59" height="34.5"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                     <color key="textColor" name="AccentColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NMg-kj-bDB">
-                                                                    <rect key="frame" x="53" y="0.0" width="317" height="34.5"/>
+                                                                    <rect key="frame" x="67" y="0.0" width="303" height="34.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
@@ -119,12 +119,16 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5UY-at-9gR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="PAk-bg-jN3" firstAttribute="bottom" secondItem="5UY-at-9gR" secondAttribute="bottom" constant="8" id="Cmt-C0-do5"/>
                             <constraint firstItem="PAk-bg-jN3" firstAttribute="top" secondItem="5UY-at-9gR" secondAttribute="top" constant="8" id="LYT-8a-Ud0"/>
                             <constraint firstItem="PAk-bg-jN3" firstAttribute="leading" secondItem="5UY-at-9gR" secondAttribute="leading" constant="22" id="LdR-4p-fil"/>
                             <constraint firstItem="5UY-at-9gR" firstAttribute="trailing" secondItem="PAk-bg-jN3" secondAttribute="trailing" constant="22" id="ROB-mu-zSH"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="06K-FP-ZNg" appends="YES" id="mlX-2f-PuT"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Receipt Details" id="MBp-wP-osB">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="GDh-Q4-t1k">
@@ -141,6 +145,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Wz-zx-2mf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="06K-FP-ZNg">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="A1e-zY-9vK" id="gUL-BN-suM"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="858" y="84"/>
         </scene>
