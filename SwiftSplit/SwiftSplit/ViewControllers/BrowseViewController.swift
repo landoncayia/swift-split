@@ -19,11 +19,18 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         view.endEditing(true)
         
-        print("globalReceipts size: " + String(globalReceipts.receipts.count))
+        // Clears cell selection when you come from another view
+        if let indexPath = receiptTable.indexPathForSelectedRow {
+            receiptTable.deselectRow(at: indexPath, animated: true)
+        }
+        
+        filteredReceipts = globalReceipts.receipts
+        print("Browse WillAppear globalReceipts size: " + String(globalReceipts.receipts.count))
+        print("BrowseVC WillAppear currReceipt: \(currReceipt)")
     }
     
     override func viewDidLoad() {
@@ -33,10 +40,9 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = .done
         filteredReceipts = globalReceipts.receipts
-        print("Browse view controller loaded")
-        
-        
-        
+    
+        print("BrowseVC loaded")
+        print("BrowseVC viewDidLoad currReceipt: \(currReceipt)")
     }
  
     @IBAction func bkgdTapped(_ sender: UITapGestureRecognizer){
@@ -51,7 +57,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     // Insert a cell at a location in the view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptCell", for: indexPath) as! ReceiptCell
-                
+
         let receipt = filteredReceipts[indexPath.row]
             
         let cost = String(format: "%.2f", receipt.getWholeCost())
@@ -63,7 +69,6 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         let dateFormat = DateFormatter()
         dateFormat.locale = Locale(identifier: "en_US")
             
-        // TODO: uncomment the receipt line when date gets fixed
             
         let date = Date()
         dateFormat.dateFormat = "MM/dd/yyyy"
@@ -73,19 +78,29 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
             dateFormat.dateFormat = "hh:mm a"
             cell.dateLabel.text = "Today @ \(dateFormat.string(from: date))"
         } else {
-            //cell.dateLabel.text = dateFormat.string(from: receipt.date)
-            cell.dateLabel.text = dateFormat.string(from: date)
+            cell.dateLabel.text = dateFormat.string(from: receipt.date)
+            //cell.dateLabel.text = dateFormat.string(from: date)
         }
             
-        cell.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 255)
-        cell.layer.borderWidth = 1.0
-        cell.layer.cornerRadius = 8
+//        cell.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 255)
+//        cell.layer.borderWidth = 1.0
+//        cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
         
-            
         return cell
         
     }
+    
+    // Segue from cell tap to receipt details in create storyboard
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let receipt = filteredReceipts[indexPath.row]
+        currReceipt = receipt.tag
+        
+        print("Browse cell selected with tag \(receipt.tag)")
+
+        self.tabBarController?.selectedIndex = 1
+    }
+    
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

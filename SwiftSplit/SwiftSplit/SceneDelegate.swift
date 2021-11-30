@@ -9,6 +9,7 @@ import UIKit
 
 let globalSettings = SettingsStore()
 let globalReceipts = ReceiptStore()
+var currReceipt = -1
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
