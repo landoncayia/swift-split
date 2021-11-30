@@ -70,7 +70,7 @@
                                         </constraints>
                                         <buttonConfiguration key="configuration" style="plain" title="Add User"/>
                                         <connections>
-                                            <action selector="addUser:" destination="A1e-zY-9vK" eventType="touchUpInside" id="KBN-uI-oMD"/>
+                                            <action selector="addUser:" destination="A1e-zY-9vK" eventType="touchUpInside" id="xF6-nF-VnN"/>
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Dm5-c9-S3V">
@@ -78,23 +78,23 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="8CH-ZE-0fE" customClass="UserCell" customModule="SwiftSplit" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="370" height="43.5"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="370" height="44.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8CH-ZE-0fE" id="Chz-ge-OtT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="370" height="44.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xot-Lo-gAg">
-                                                            <rect key="frame" x="0.0" y="4.5" width="370" height="34"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xot-Lo-gAg">
+                                                            <rect key="frame" x="0.0" y="5" width="370" height="34.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRf-Sf-GpZ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="34"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="34.5"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                     <color key="textColor" name="AccentColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NMg-kj-bDB">
-                                                                    <rect key="frame" x="53" y="0.0" width="317" height="34"/>
+                                                                    <rect key="frame" x="53" y="0.0" width="317" height="34.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
@@ -102,10 +102,15 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="Xot-Lo-gAg" secondAttribute="bottom" constant="5" id="EJ0-qu-h2r"/>
                                                         <constraint firstAttribute="trailing" secondItem="Xot-Lo-gAg" secondAttribute="trailing" id="pzn-zy-XXw"/>
                                                         <constraint firstItem="Xot-Lo-gAg" firstAttribute="leading" secondItem="Chz-ge-OtT" secondAttribute="leading" id="qlU-m8-Rdk"/>
+                                                        <constraint firstItem="Xot-Lo-gAg" firstAttribute="top" secondItem="Chz-ge-OtT" secondAttribute="top" constant="5" id="uKc-Zj-2SS"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="userName" destination="NMg-kj-bDB" id="1Yz-5Q-JIw"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -171,6 +176,9 @@
                                                             <rect key="frame" x="50.5" y="0.0" width="363.5" height="34.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="itemNameChange:" destination="Mek-UJ-iqU" eventType="valueChanged" id="k00-M8-N8D"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -186,7 +194,10 @@
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x9K-S3-V1b">
                                                             <rect key="frame" x="56" y="0.0" width="238" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
+                                                            <connections>
+                                                                <action selector="itemPriceChanged:" destination="Mek-UJ-iqU" eventType="valueChanged" id="5UK-ol-lbU"/>
+                                                            </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taxed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVS-dq-DSy">
                                                             <rect key="frame" x="302" y="0.0" width="55" height="34"/>
@@ -218,6 +229,7 @@
                                 <connections>
                                     <outlet property="itemName" destination="8av-hA-fBY" id="CCQ-Ye-yWB"/>
                                     <outlet property="itemPrice" destination="x9K-S3-V1b" id="BIM-ce-0cg"/>
+                                    <outlet property="taxSwitch" destination="LKI-SD-cjv" id="LPX-Jf-We9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -229,8 +241,7 @@
                     <navigationItem key="navigationItem" title="Receipt Items" id="iMF-qE-uby">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="70n-gi-2sx">
                             <connections>
-                                <action selector="appendReceipt" destination="Mek-UJ-iqU" id="x6P-We-xjo"/>
-                                <segue destination="uVl-CZ-3rL" kind="show" identifier="itemsToBrowse" id="sAF-Pq-W48"/>
+                                <action selector="saveButton:" destination="Mek-UJ-iqU" id="knN-4X-x81"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -238,16 +249,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u3q-UG-3yB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1588" y="84"/>
-        </scene>
-        <!--BrowseViewController-->
-        <scene sceneID="HyI-aQ-1eE">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Browse (Main)" referencedIdentifier="BrowseViewController" id="uVl-CZ-3rL" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="x9T-dO-evF"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OXj-bp-LRx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2211" y="84"/>
         </scene>
     </scenes>
     <resources>

@@ -18,8 +18,8 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 65
+//        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.estimatedRowHeight = 65
     }
     
     override func viewWillAppear(_ animated: Bool) {

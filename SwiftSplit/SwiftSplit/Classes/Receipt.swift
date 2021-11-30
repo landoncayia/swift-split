@@ -14,6 +14,7 @@ class Receipt: Equatable, Codable {
     var taxPercent: Double = 0
     var items = [ReceiptItem]()
     var persons = [Person]()
+    var tag: Int = -1
     
     init(name: String, date: Date) {
         self.name = name

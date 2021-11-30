@@ -4,71 +4,99 @@ import UIKit
 import VisionKit
 import Vision
 
-class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     var receipt: Receipt!
     var photo: UIImage!
     var users: [Person] = []
+    var cellCount = 1
+
     @IBOutlet var receiptName: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var userTableView: UITableView!
     
     @IBAction func addUser(_ sender: UIButton) {
-        
-    }
+        cellCount+=1
+        let newPerson = Person("")
+        users.append(newPerson)
+        if let index = users.lastIndex(of: newPerson) {
+            let indexPath = IndexPath(row: index, section: 0)
+            userTableView.insertRows(at: [indexPath], with: .automatic)
+        }
+   }
     
     @IBAction func receiptDetailsNext(_ sender: UIBarButtonItem) {
         
         // Read text fields and date into a receipt object
         let name = receiptName.text ?? ""
         let date = datePicker.date
+        let cell = userTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! UserCell
         
-        // TODO: Block Special Chars and at least one user
+    
         if name == "" {
             let empty = UIAlertController(title: "Required Data Missing", message: "Receipt must have a name", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             
             empty.addAction(cancel)
             present(empty, animated: true, completion: nil)
+        } else if cell.userName.text == "" {
+            let empty = UIAlertController(title: "Required Data Missing", message: "Must be at least one user", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            
+            empty.addAction(cancel)
+            present(empty, animated: true, completion: nil)
         } else {
-            receipt = Receipt(name: name, date: date)
-            
-            // Generate a popover to choose the entry mode
-            let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
-            // Setup actions for the popover
-            
-            let camAction = UIAlertAction(title: "Camera", style: .default) { _ in
-                let documentCameraViewController = VNDocumentCameraViewController()
-                documentCameraViewController.delegate = self
-                self.present(documentCameraViewController, animated: true)
-            }
-            
-            let galAction = UIAlertAction(title: "Gallery", style: .default) { _ in
-                self.galleryViewController()
-            }
-            
-            let manAction = UIAlertAction(title: "Manual", style: .default) { _ in
+            if currReceipt != -1 {
+                // then segue past the camera to details
                 self.performSegue(withIdentifier: "Manual", sender: sender)
             }
             
-            let canAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            // Add actions to the popover
-            entryModePopover.addAction(camAction)
-            entryModePopover.addAction(galAction)
-            entryModePopover.addAction(manAction)
-            entryModePopover.addAction(canAction)
-            // Setup the location for popover
+            
+            if currReceipt == -1 { // We want to make a new receipt entirely
+                receipt = Receipt(name: name, date: date)
+                
+                // Generate a popover to choose the entry mode
+                let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
+                // Setup actions for the popover
+                
+                let camAction = UIAlertAction(title: "Camera", style: .default) { _ in
+                    let documentCameraViewController = VNDocumentCameraViewController()
+                    documentCameraViewController.delegate = self
+                    self.present(documentCameraViewController, animated: true)
+                }
+                
+                let galAction = UIAlertAction(title: "Gallery", style: .default) { _ in
+                    self.galleryViewController()
+                }
+                
+                let manAction = UIAlertAction(title: "Manual", style: .default) { _ in
+                    self.performSegue(withIdentifier: "Manual", sender: sender)
+                }
+                
+                let canAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                // Add actions to the popover
+                entryModePopover.addAction(camAction)
+                entryModePopover.addAction(galAction)
+                entryModePopover.addAction(manAction)
+                entryModePopover.addAction(canAction)
+                // Setup the location for popover
 
-            if let popoverController = entryModePopover.popoverPresentationController {
-                popoverController.barButtonItem = sender as? UIBarButtonItem
+                if let popoverController = entryModePopover.popoverPresentationController {
+                    popoverController.barButtonItem = sender as? UIBarButtonItem
+                }
+
+        //        entryModePopover.popoverPresentationController?.sourceView = sender.customView
+        //        entryModePopover.popoverPresentationController?.sourceRect = sender.customView?.bounds
+                // Actually do the popover
+                present(entryModePopover, animated: true, completion: nil)
             }
-
-    //        entryModePopover.popoverPresentationController?.sourceView = sender.customView
-    //        entryModePopover.popoverPresentationController?.sourceRect = sender.customView?.bounds
-            // Actually do the popover
-            present(entryModePopover, animated: true, completion: nil)
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.endEditing(false)
+    }
+    
     
     static let receiptContentsVC = "receiptContentsVC"
     
@@ -83,9 +111,32 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
     //var receiptViewController: (UIViewController & RecognizedTextDataSource)?
     var textRecognitionRequest = VNRecognizeTextRequest()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("CreateVC WillAppear currReceipt: \(currReceipt)")
+        if currReceipt != -1 {
+            self.receipt = globalReceipts.receipts[currReceipt]
+            receiptName.text = self.receipt.name
+            datePicker.date = self.receipt.date
+        } else {
+            receiptName.text = ""
+            datePicker.date = Date()
+        }
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        print("CreateVC viewDidLoad currReceipt: \(currReceipt)")
+        if currReceipt != -1 {
+            self.receipt = globalReceipts.receipts[currReceipt]
+            receiptName.text = self.receipt.name
+            datePicker.date = self.receipt.date
+        }
+        
+        receiptName.delegate = self
+        
         textRecognitionRequest = VNRecognizeTextRequest(completionHandler: { (request, error) in
             guard let receiptViewController = self.receiptViewController else {
                 print("receiptViewController is not set")
@@ -110,24 +161,36 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         //print("Contents: ")
         //print(receiptStore!)
         
-        let newReceipt = Receipt(name: "shit", date: .init())
+        
         
         //receiptStore.receipts.append(newReceipt)
         
-        print("new receipt appeneded")
+        //print("new receipt appended")
         
     }
+
+    //updates the user
+    func gatherUsers() {
+        for i in 0...cellCount-1 {
+            let cell = userTableView.cellForRow(at: IndexPath(row: i, section: 0)) as! UserCell
+            if cell.userName.text != "" {
+                users[i] = Person(cell.userName.text!)
+            } else {
+                users.remove(at: i)
+            }
+        }
+    }
     
-    func userTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
     
-    func userTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UserCell(style: .value1, reuseIdentifier: "UserCell")
-        let user = users[indexPath.row]
-        cell.textLabel?.text = user.name
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
+        // TODO: Make this save and add cell button
         return cell
     }
+    
     
     // Whenever the create tab is pressed on the tab view the choose source menu will appear
 //    override func viewDidAppear(_ animated: Bool) {
