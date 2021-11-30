@@ -54,6 +54,15 @@ class WordViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        switch wordType {
+        case .IgnoredWord:
+            navigationItem.title = "Ignored Words"
+        case .CustomWord:
+            navigationItem.title = "Custom Words"
+        default:
+            navigationItem.title = "Words"
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,6 +90,7 @@ class WordViewController: UITableViewController {
             // In this case, we do not need an existing word
             let addWordViewController = segue.destination as! AddEditWordViewController
             addWordViewController.wordType = self.wordType
+            addWordViewController.navigationItem.title = "Add Word"
             addWordViewController.callback = { result in
                 self.wordsList.append(result)
                 if let index = self.wordsList.firstIndex(of: result) {
@@ -92,6 +102,7 @@ class WordViewController: UITableViewController {
         case "editWord":
             let editWordViewController = segue.destination as! AddEditWordViewController
             editWordViewController.wordType = self.wordType
+            editWordViewController.navigationItem.title = "Edit Word"
             editWordViewController.callback = { result in
                 if let row = self.tableView.indexPathForSelectedRow?.row {
                     self.wordsList[row] = result
