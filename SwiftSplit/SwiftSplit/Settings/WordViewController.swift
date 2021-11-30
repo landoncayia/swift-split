@@ -10,6 +10,7 @@ import UIKit
 class WordViewController: UITableViewController {
     
     var wordsList: [String]!
+    var wordType: WordType!
     var callback: (([String])->())?
     
     required init?(coder aDecoder: NSCoder) {
@@ -79,6 +80,7 @@ class WordViewController: UITableViewController {
         case "addWord":
             // In this case, we do not need an existing word
             let addWordViewController = segue.destination as! AddEditWordViewController
+            addWordViewController.wordType = self.wordType
             addWordViewController.callback = { result in
                 self.wordsList.append(result)
                 if let index = self.wordsList.firstIndex(of: result) {
@@ -89,6 +91,7 @@ class WordViewController: UITableViewController {
             }
         case "editWord":
             let editWordViewController = segue.destination as! AddEditWordViewController
+            editWordViewController.wordType = self.wordType
             editWordViewController.callback = { result in
                 if let row = self.tableView.indexPathForSelectedRow?.row {
                     self.wordsList[row] = result

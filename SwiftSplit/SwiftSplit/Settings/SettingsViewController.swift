@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum WordType: Codable {
+    case IgnoredWord, CustomWord
+}
+
 class SettingsViewController: UITableViewController {
     
     var settingsStore = SettingsStore()
@@ -51,12 +55,14 @@ class SettingsViewController: UITableViewController {
         switch segue.identifier {
         case "showCustomWords":
             let customWordsViewController = segue.destination as! WordViewController
+            customWordsViewController.wordType = WordType.CustomWord
             customWordsViewController.wordsList = settingsStore.currentSettings.customWords
             customWordsViewController.callback = { result in
                 self.settingsStore.currentSettings.customWords = result
             }
         case "showIgnoredWords":
             let ignoredWordsViewController = segue.destination as! WordViewController
+            ignoredWordsViewController.wordType = WordType.IgnoredWord
             ignoredWordsViewController.wordsList = settingsStore.currentSettings.ignoredWords
             ignoredWordsViewController.callback = { result in
                 self.settingsStore.currentSettings.ignoredWords = result
