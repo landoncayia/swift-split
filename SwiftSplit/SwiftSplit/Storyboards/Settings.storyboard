@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="985.50724637681162" y="91.741071428571431"/>
         </scene>
-        <!--Settings-->
+        <!--Settings View Controller-->
         <scene sceneID="OSj-6X-VsP">
             <objects>
-                <tableViewController title="Settings" id="8SP-8X-z0u" customClass="SettingsViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Settings View Controller" id="8SP-8X-z0u" customClass="SettingsViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Ojh-qS-Mys">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -159,10 +159,10 @@
             </objects>
             <point key="canvasLocation" x="1895.6521739130437" y="91.741071428571431"/>
         </scene>
-        <!--Word List-->
+        <!--Word View Controller-->
         <scene sceneID="i21-VI-DM9">
             <objects>
-                <tableViewController title="Word List" id="wpE-hP-sbB" customClass="WordViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Word View Controller" id="wpE-hP-sbB" customClass="WordViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ypE-ya-LPP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -201,12 +201,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="2XS-Yu-iwB">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Bla-z5-y49">
-                            <connections>
-                                <segue destination="hXt-Lx-Bo2" kind="show" identifier="addWord" id="o3O-Jg-tMr"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Options Button" image="ellipsis.circle" catalog="system" style="plain" id="Bla-z5-y49"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="optionsButton" destination="Bla-z5-y49" id="N1Y-mF-XgR"/>
+                        <segue destination="hXt-Lx-Bo2" kind="show" identifier="addWord" id="Qaa-5J-Pzm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHL-OL-d6I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -262,10 +262,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="o3O-Jg-tMr"/>
+        <segue reference="BlP-yC-Oub"/>
         <segue reference="Bax-W1-eMc"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="gear.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
