@@ -4,7 +4,7 @@ import UIKit
 import VisionKit
 import Vision
 
-class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     var receipt: Receipt!
     var photo: UIImage!
