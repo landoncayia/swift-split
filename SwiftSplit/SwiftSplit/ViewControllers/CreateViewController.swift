@@ -232,8 +232,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         
         textRecognitionRequest.usesLanguageCorrection = globalSettings.currentSettings.languageCorrection
         
-        print(textRecognitionRequest.recognitionLevel, textRecognitionRequest.usesLanguageCorrection)
-        
         //print("CREATE VIEW LOADED")
         //print("Contents: ")
         //print(receiptStore!)
