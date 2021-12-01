@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="985.50724637681162" y="91.741071428571431"/>
         </scene>
-        <!--Settings-->
+        <!--Settings View Controller-->
         <scene sceneID="OSj-6X-VsP">
             <objects>
-                <tableViewController title="Settings" id="8SP-8X-z0u" customClass="SettingsViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Settings View Controller" id="8SP-8X-z0u" customClass="SettingsViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Ojh-qS-Mys">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -159,10 +159,10 @@
             </objects>
             <point key="canvasLocation" x="1895.6521739130437" y="91.741071428571431"/>
         </scene>
-        <!--Word List-->
+        <!--Word View Controller-->
         <scene sceneID="i21-VI-DM9">
             <objects>
-                <tableViewController title="Word List" id="wpE-hP-sbB" customClass="WordViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Word View Controller" id="wpE-hP-sbB" customClass="WordViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ypE-ya-LPP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -201,12 +201,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="2XS-Yu-iwB">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Bla-z5-y49">
-                            <connections>
-                                <segue destination="hXt-Lx-Bo2" kind="show" identifier="addWord" id="o3O-Jg-tMr"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Options Button" image="ellipsis.circle" catalog="system" style="plain" id="Bla-z5-y49"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="optionsButton" destination="Bla-z5-y49" id="N1Y-mF-XgR"/>
+                        <segue destination="hXt-Lx-Bo2" kind="show" identifier="addWord" id="Qaa-5J-Pzm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHL-OL-d6I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -221,17 +221,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ua1-6B-OL6">
-                                <rect key="frame" x="20" y="62" width="374" height="34"/>
+                                <rect key="frame" x="20" y="96" width="374" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="hXt-Lx-Bo2" id="yG7-ta-Snh"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVk-Yy-vnY">
-                                <rect key="frame" x="20" y="104" width="88" height="17"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setting description" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVk-Yy-vnY">
+                                <rect key="frame" x="20" y="138" width="374" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="2Bm-ru-1G4"/>
+                                    <constraint firstAttribute="width" constant="374" id="gpg-Bn-koW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -241,12 +245,14 @@
                             <constraint firstItem="Ua1-6B-OL6" firstAttribute="leading" secondItem="edL-1x-kfv" secondAttribute="leading" constant="20" id="34s-Mx-JJu"/>
                             <constraint firstItem="HVk-Yy-vnY" firstAttribute="leading" secondItem="edL-1x-kfv" secondAttribute="leading" constant="20" id="5SL-Ia-5aH"/>
                             <constraint firstItem="edL-1x-kfv" firstAttribute="trailing" secondItem="Ua1-6B-OL6" secondAttribute="trailing" constant="20" id="6dr-Hr-0iP"/>
-                            <constraint firstItem="HVk-Yy-vnY" firstAttribute="top" secondItem="edL-1x-kfv" secondAttribute="top" constant="8" id="EOD-QO-2gN"/>
-                            <constraint firstItem="edL-1x-kfv" firstAttribute="top" secondItem="Ua1-6B-OL6" secondAttribute="top" constant="34" id="x8w-0g-wU7"/>
+                            <constraint firstItem="HVk-Yy-vnY" firstAttribute="top" secondItem="Ua1-6B-OL6" secondAttribute="bottom" constant="8" id="EAr-CV-6Ay"/>
+                            <constraint firstItem="edL-1x-kfv" firstAttribute="trailing" secondItem="HVk-Yy-vnY" secondAttribute="trailing" constant="20" id="j1k-Ap-eMr"/>
+                            <constraint firstItem="Ua1-6B-OL6" firstAttribute="top" secondItem="edL-1x-kfv" secondAttribute="top" id="vq2-Mu-kiY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PLt-eH-PVh"/>
                     <connections>
+                        <outlet property="settingDescription" destination="HVk-Yy-vnY" id="XzB-Xx-aCe"/>
                         <outlet property="wordField" destination="Ua1-6B-OL6" id="qb5-wL-GK0"/>
                     </connections>
                 </viewController>
@@ -257,9 +263,10 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="BlP-yC-Oub"/>
-        <segue reference="qOO-sg-Hgt"/>
+        <segue reference="Bax-W1-eMc"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="gear.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

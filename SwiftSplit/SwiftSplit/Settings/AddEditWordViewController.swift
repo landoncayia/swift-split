@@ -11,30 +11,22 @@ class AddEditWordViewController: UIViewController, UITextFieldDelegate {
     
     var currentWord: String?
     var callback: ((String)->())?
+    var wordType: WordType!
     @IBOutlet var wordField: UITextField!
-    
-//    @IBAction func addNewWord(_ sender: UIBarButtonItem) {
-//        // Use this to add a new custom word
-//        let newWords: [String] = ["Apple", "Orange", "Banana", "Lime", "Blueberry", "Grapes"]
-//        customWordsList.append(newWords[0])
-//        customWordsList.append(newWords[1])
-//        
-//        // Use an alert controller to allow the user to type the word
-//        
-//        if let index = customWordsList.firstIndex(of: newWords[0]) {
-//            let indexPath = IndexPath(row: index, section: 0)
-//            tableView.insertRows(at: [indexPath], with: .automatic)
-//        }
-//        if let index = customWordsList.firstIndex(of: newWords[1]) {
-//            let indexPath = IndexPath(row: index, section: 0)
-//            tableView.insertRows(at: [indexPath], with: .automatic)
-//        }
-//    }
+    @IBOutlet weak var settingDescription: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         wordField.text = currentWord ?? ""
+        switch wordType {
+        case .IgnoredWord:
+            settingDescription.text = "Ignored words are a means to have a set of terms that SwiftSplit will ignore in its processing. This is useful for parts of receipts that are not meaningful in context of app usage."
+        case .CustomWord:
+            settingDescription.text = "Custom words are strings that supplement the recognized languages at the word-recognition stage. They help SwiftSplit to recognize terms found commonly on your receipts."
+        default:
+            settingDescription.text = "Setting description"
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

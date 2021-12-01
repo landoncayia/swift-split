@@ -7,8 +7,9 @@ import Vision
 class CreateViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     var receipt: Receipt!
+
     var persons = [Person]()
-    
+
     @IBOutlet var receiptName: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
     
@@ -175,7 +176,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     
     static let receiptContentsVC = "receiptContentsVC"
     var receiptViewController: ReceiptViewController?
-    var textRecognitionRequest = VNRecognizeTextRequest()
+    var textRecognitionRequest = VNRecognizeTextRequest(completionHandler: nil)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -225,9 +226,17 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         })
-        // This doesn't require OCR on a live camera feed, select accurate for more accurate results.
-        textRecognitionRequest.recognitionLevel = .accurate
-        textRecognitionRequest.usesLanguageCorrection = true
+        // Use the global settings to set the options
+        switch globalSettings.currentSettings.recognitionLevel.rawValue {
+        case ".accurate":
+            textRecognitionRequest.recognitionLevel = .accurate
+        case ".fast":
+            textRecognitionRequest.recognitionLevel = .fast
+        default:
+            textRecognitionRequest.recognitionLevel = .accurate
+        }
+        
+        textRecognitionRequest.usesLanguageCorrection = globalSettings.currentSettings.languageCorrection
         
         //print("CREATE VIEW LOADED")
         //print("Contents: ")
