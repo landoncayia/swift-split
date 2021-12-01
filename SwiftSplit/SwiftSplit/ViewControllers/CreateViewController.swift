@@ -48,6 +48,9 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func personCellDelete(_ sender: UIButton) {
+        // Forces editing of cells to stop thus saving the text
+        view.endEditing(true)
+        
         print("delete tag -> ", sender.tag)
         print(persons)
         self.deletePerson(sender.tag)
@@ -86,16 +89,19 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    @objc func personNameChange(_ sender: UITextField, _ row: Int) {
-        let text = sender.text ?? ""
-        self.persons[row].name = text
-    }
+    //@objc func personNameChange(_ sender: UITextField, _ row: Int) {
+    //    let text = sender.text ?? ""
+    //    self.persons[row].name = text
+    //}
     
-    // --- NEXT BUTTON ---
+    // MARK: --- NEXT BUTTON ---
     
     @IBAction func receiptDetailsNext(_ sender: UIBarButtonItem) {
         
         print("---- \n Next clicked \n")
+        
+        // Ends editing for every cell thus saving the text
+        view.endEditing(true)
         
         // Read text fields and date into a receipt object
         let name = receiptName.text ?? ""
@@ -256,29 +262,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             return true
         }
     }
-    
-    
-    // Whenever the create tab is pressed on the tab view the choose source menu will appear
-//    override func viewDidAppear(_ animated: Bool) {
-//        choosePhotoSource()
-//    }
-    
-//    @IBAction func CameraBtnAction(_ sender: UIButton) {
-//        self.entryMode = .camera
-//        let documentCameraViewController = VNDocumentCameraViewController()
-//        documentCameraViewController.delegate = self
-//        present(documentCameraViewController, animated: true)
-//    }
-//
-//    // TODO: Write me!
-//    @IBAction func galleryButton(_ sender: UIButton) {
-//        self.entryMode = .gallery
-//    }
-//
-//    // TODO: Write me!
-//    @IBAction func manualButton(_ sender: UIButton) {
-//        self.entryMode = .manual
-//    }
     
     func processImage(image: UIImage) {
         guard let cgImage = image.cgImage else {

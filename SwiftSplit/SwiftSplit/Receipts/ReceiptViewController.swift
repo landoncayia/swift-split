@@ -39,6 +39,22 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     // TODO: Bradley needs to make it so that you can tap away when editing a price value and it will close the keyboard
     // TapGestureRec maybe needed
     
+    // TODO: connect
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        print("bg tapped")
+            view.endEditing(true)
+    }
+    
+    // TODO: Connect
+    @IBAction func AddItemButton(_ sender: UIButton) {
+        let newItem = ReceiptItem(name: "", price: 0.0, taxed: false)
+        receipt.addItem(newItem)
+        
+        if let index = receipt.items.lastIndex(of: newItem) {
+            let indexPath = IndexPath(row: index, section: 0)
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        }
+    }
     
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
         if currReceipt != -1 {
@@ -54,21 +70,7 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
             navigationController?.popToRootViewController(animated: true)
         }
     }
-    
-    @IBAction func itemNameChange(_ sender: UITextField) {
-        let item = self.receipt.items[sender.tag]
-        item.name = sender.text!
-    }
-    
-    
-    @IBAction func itemPriceChanged(_ sender: UITextField) {
-        let item = self.receipt.items[sender.tag]
-        item.price = Double(sender.text!) ?? 0.0 // Keyboard is set to decimal anyway but just in case
-        sender.text = String(item.price)
-    }
-    
 }
-
 // MARK: UITableViewDataSource
 extension ReceiptViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,22 +86,20 @@ extension ReceiptViewController {
         cell.itemName.delegate = self
         cell.itemPrice.text = "\(field.price)"
         cell.itemPrice.delegate = self
+        cell.taxSwitch.isOn = field.taxed
         
         cell.taxSwitch.tag = indexPath.row
         cell.taxSwitch.addTarget(self, action: #selector(self.changeIsTaxed(_:)), for: .valueChanged)
         
         cell.itemName.tag = indexPath.row
-        cell.itemName.addTarget(self, action: #selector(self.itemNameChange(_:)), for: .valueChanged)
+        cell.itemName.addTarget(self, action: #selector(self.itemNameDidEdit(_:)), for: .editingDidEnd)
         
         cell.itemPrice.tag = indexPath.row
-        cell.itemPrice.addTarget(self, action: #selector(self.itemPriceChanged(_:)), for: .valueChanged)
+        cell.itemPrice.addTarget(self, action: #selector(self.itemPriceDidEdit(_:)), for: .editingDidEnd)
         
         return cell
     }
         
-    
-    
-    
     @IBAction func changeIsTaxed(_ sender: UISwitch){
         let currentState = sender.isOn
         let cellID = sender.tag
@@ -112,4 +112,18 @@ extension ReceiptViewController {
             print("\(item.name) taxed set to false")
         }
     }
+    
+    // TODO: Connect
+    @IBAction func itemNameDidEdit(_ sender: UITextField) {
+        let item = self.receipt.items[sender.tag]
+        item.name = sender.text!
+    }
+    
+    // TODO: Connect
+    @IBAction func itemPriceDidEdit(_ sender: UITextField) {
+        let item = self.receipt.items[sender.tag]
+        item.price = Double(sender.text!) ?? 0.0 // Keyboard is set to decimal anyway but just in case
+        sender.text = String(item.price)
+    }
+    
 }
