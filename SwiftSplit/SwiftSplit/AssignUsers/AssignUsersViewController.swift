@@ -12,26 +12,27 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
     // UIViewController <==> AssignPageViewController
     var views: [UIViewController] = []
     
-        var pageControl: UIPageControl? {
-            for view in view.subviews {
-                if view is UIPageControl {
-                    return view as? UIPageControl
-                }
+    var pageControl: UIPageControl? {
+        for view in view.subviews {
+            if view is UIPageControl {
+                return view as? UIPageControl
             }
-        return nil
         }
-
+        return nil
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
-
+        self.view.backgroundColor = UIColor.white
+        
         let assignVC = self.storyboard?.instantiateViewController(withIdentifier: "assignPageVC") as! AssignPageViewController
         views.append(assignVC)
-
+        
         let assignVC2 = self.storyboard?.instantiateViewController(withIdentifier: "assignPageVC") as! AssignPageViewController
         views.append(assignVC2)
-
+        
         print("viewDidLoad")
         
         if let firstViewController = views.first {
@@ -42,28 +43,30 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
     
     override func viewDidLayoutSubviews() {
         if let pc = pageControl {
-            pc.transform = CGAffineTransform(scaleX: 2, y: 2)
+            pc.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            pc.pageIndicatorTintColor = UIColor.lightGray
+            pc.currentPageIndicatorTintColor = UIColor(named: "AccentColor")
         }
     }
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        dataSource = self;
-//        self.setViewControllers([getViewControllerAtIndex(index: 0)] as [UIViewController], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: nil)
-//    }
-//
-//    func getViewControllerAtIndex(index: Int) -> AssignPageViewController
-//    {
-//        // Create a new view controller and pass suitable data.
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "assignPageVC") as! AssignPageViewController
-//        return vc
-//    }
+    //    override func viewDidLoad() {
+    //        super.viewDidLoad()
+    //        dataSource = self;
+    //        self.setViewControllers([getViewControllerAtIndex(index: 0)] as [UIViewController], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: nil)
+    //    }
+    //
+    //    func getViewControllerAtIndex(index: Int) -> AssignPageViewController
+    //    {
+    //        // Create a new view controller and pass suitable data.
+    //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "assignPageVC") as! AssignPageViewController
+    //        return vc
+    //    }
     
     override func viewWillAppear(_ animated: Bool) {
         // create a view for each person
         
     }
-
+    
 }
 
 extension AssignUsersViewController: UIPageViewControllerDataSource {
@@ -103,20 +106,20 @@ extension AssignUsersViewController: UIPageViewControllerDataSource {
     }
     
     func presentationCount(for _: UIPageViewController) -> Int {
-           return views.count
-       }
-       
-       func presentationIndex(for _: UIPageViewController) -> Int {
-           guard let firstViewController = viewControllers?.first,
-                 let firstViewControllerIndex = views.firstIndex(of: firstViewController) else {
-                   return 0
-           }
-           
-           return firstViewControllerIndex
-       }
+        return views.count
+    }
+    
+    func presentationIndex(for _: UIPageViewController) -> Int {
+        guard let firstViewController = viewControllers?.first,
+              let firstViewControllerIndex = views.firstIndex(of: firstViewController) else {
+                  return 0
+              }
+        
+        return firstViewControllerIndex
+    }
     
     func viewController(at index: Int) -> UIViewController {
-            return views[index]
-        }
-
+        return views[index]
+    }
+    
 }

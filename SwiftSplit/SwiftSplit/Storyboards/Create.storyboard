@@ -301,12 +301,12 @@
         <!--Assign Items-->
         <scene sceneID="Gbm-7h-Rv5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UhM-Jn-pBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <pageViewController storyboardIdentifier="assignItemsPageVC" autoresizesArchivedViewToFullSize="NO" title="Assign Items" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="d7o-th-dK3" customClass="AssignUsersViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="assignItemsPageVC" autoresizesArchivedViewToFullSize="NO" title="Assign Items" interfaceStyle="light" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="d7o-th-dK3" customClass="AssignUsersViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Assign Items" id="bvF-iE-MdO">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="eGD-kN-xqo"/>
                     </navigationItem>
                 </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UhM-Jn-pBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2013" y="473"/>
         </scene>
