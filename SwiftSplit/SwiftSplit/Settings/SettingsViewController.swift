@@ -13,7 +13,7 @@ enum WordType: Codable {
 
 class SettingsViewController: UITableViewController {
     
-    var settingsStore = SettingsStore()
+//    var settingsStore = SettingsStore()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -21,9 +21,6 @@ class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.estimatedRowHeight = 65
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,9 +32,9 @@ class SettingsViewController: UITableViewController {
     @IBAction func toggleRecognitionLevel(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            settingsStore.currentSettings.recognitionLevel = .accurate
+            globalSettings.currentSettings.recognitionLevel = .accurate
         case 1:
-            settingsStore.currentSettings.recognitionLevel = .fast
+            globalSettings.currentSettings.recognitionLevel = .fast
         default:
             break
         }
@@ -45,9 +42,9 @@ class SettingsViewController: UITableViewController {
     
     @IBAction func toggleLanguageCorrection(_ sender: UISwitch!) {
         if sender.isOn {
-            settingsStore.currentSettings.languageCorrection = true
+            globalSettings.currentSettings.languageCorrection = true
         } else {
-            settingsStore.currentSettings.languageCorrection = false
+            globalSettings.currentSettings.languageCorrection = false
         }
     }
     
@@ -56,16 +53,16 @@ class SettingsViewController: UITableViewController {
         case "showCustomWords":
             let customWordsViewController = segue.destination as! WordViewController
             customWordsViewController.wordType = WordType.CustomWord
-            customWordsViewController.wordsList = settingsStore.currentSettings.customWords
+            customWordsViewController.wordsList = globalSettings.currentSettings.customWords
             customWordsViewController.callback = { result in
-                self.settingsStore.currentSettings.customWords = result
+                globalSettings.currentSettings.customWords = result
             }
         case "showIgnoredWords":
             let ignoredWordsViewController = segue.destination as! WordViewController
             ignoredWordsViewController.wordType = WordType.IgnoredWord
-            ignoredWordsViewController.wordsList = settingsStore.currentSettings.ignoredWords
+            ignoredWordsViewController.wordsList = globalSettings.currentSettings.ignoredWords
             ignoredWordsViewController.callback = { result in
-                self.settingsStore.currentSettings.ignoredWords = result
+                globalSettings.currentSettings.ignoredWords = result
             }
         default:
             preconditionFailure("Unexpected segue identifier.")

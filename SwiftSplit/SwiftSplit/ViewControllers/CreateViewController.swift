@@ -109,7 +109,7 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
 //    var entryMode: EntryMode = .camera
     var receiptViewController: ReceiptViewController?
     //var receiptViewController: (UIViewController & RecognizedTextDataSource)?
-    var textRecognitionRequest = VNRecognizeTextRequest()
+    var textRecognitionRequest = VNRecognizeTextRequest(completionHandler: nil)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -153,9 +153,19 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
                 }
             }
         })
-        // This doesn't require OCR on a live camera feed, select accurate for more accurate results.
-        textRecognitionRequest.recognitionLevel = .accurate
-        textRecognitionRequest.usesLanguageCorrection = true
+        // Use the global settings to set the options
+        switch globalSettings.currentSettings.recognitionLevel.rawValue {
+        case ".accurate":
+            textRecognitionRequest.recognitionLevel = .accurate
+        case ".fast":
+            textRecognitionRequest.recognitionLevel = .fast
+        default:
+            textRecognitionRequest.recognitionLevel = .accurate
+        }
+        
+        textRecognitionRequest.usesLanguageCorrection = globalSettings.currentSettings.languageCorrection
+        
+        print(textRecognitionRequest.recognitionLevel, textRecognitionRequest.usesLanguageCorrection)
         
         //print("CREATE VIEW LOADED")
         //print("Contents: ")
