@@ -4,33 +4,103 @@ import UIKit
 import VisionKit
 import Vision
 
-class CreateViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class CreateViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     var receipt: Receipt!
-    var photo: UIImage!
-    var users: [Person] = []
-    var cellCount = 1
+
+    var persons = [Person]()
 
     @IBOutlet var receiptName: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
-    @IBOutlet var userTableView: UITableView!
+    
+    // MARK: userTableView
+    @IBOutlet var userTableView: UITableView! {
+        didSet {
+            userTableView.delegate = self
+            userTableView.dataSource = self
+            userTableView.rowHeight = UITableView.automaticDimension
+        }
+    }
+    
+    // --- USERS TABLE ---
+    
+    // MARK: numberOfRowsInSection
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return persons.count
+    }
+    
+    // MARK: cellForRowAt
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = userTableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
+        cell.userName.text = persons[indexPath.row].name
+        cell.userName.tag = indexPath.row
+        cell.userName.delegate = self
+        
+        cell.deleteBtn.tag = indexPath.row
+        return cell
+    }
+    
+    @IBAction func personCellEditingEnd(_ sender: UITextField) {
+        print("person cell editing end")
+        print(sender.tag, " -> ", sender.text)
+        print(persons)
+        persons[sender.tag].name = sender.text ?? ""
+        print(persons)
+    }
+    
+    @IBAction func personCellDelete(_ sender: UIButton) {
+        print("delete tag -> ", sender.tag)
+        print(persons)
+        self.deletePerson(sender.tag)
+        print(persons)
+    }
+    
+    //    // MARK: textFieldDidEndEditing
+//    func textFieldDidEndEditing(userName: UITextField) {
+//        print("END EDITING")
+//        persons[userName.tag].name = userName.text ?? ""
+//    }
+//
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        print("bg tapped")
+            view.endEditing(true)
+        }
+
+    
+    func deletePerson(_ index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
+        // Remove the item from the store
+        self.persons.remove(at: index)
+        // Also remove that row from the table view with an animation
+        self.userTableView.deleteRows(at: [indexPath], with: .automatic)
+        userTableView.reloadData()
+    }
     
     @IBAction func addUser(_ sender: UIButton) {
-        cellCount+=1
+        
         let newPerson = Person("")
-        users.append(newPerson)
-        if let index = users.lastIndex(of: newPerson) {
+        persons.append(newPerson)
+        
+        if let index = persons.lastIndex(of: newPerson) {
             let indexPath = IndexPath(row: index, section: 0)
             userTableView.insertRows(at: [indexPath], with: .automatic)
         }
-   }
+    }
+    
+    @objc func personNameChange(_ sender: UITextField, _ row: Int) {
+        let text = sender.text ?? ""
+        self.persons[row].name = text
+    }
+    
+    // --- NEXT BUTTON ---
     
     @IBAction func receiptDetailsNext(_ sender: UIBarButtonItem) {
+        
+        print("---- \n Next clicked \n")
         
         // Read text fields and date into a receipt object
         let name = receiptName.text ?? ""
         let date = datePicker.date
-        let cell = userTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! UserCell
         
     
         if name == "" {
@@ -39,14 +109,16 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
             
             empty.addAction(cancel)
             present(empty, animated: true, completion: nil)
-        } else if cell.userName.text == "" {
-            let empty = UIAlertController(title: "Required Data Missing", message: "Must be at least one user", preferredStyle: .alert)
+        } else if !checkPersons() {
+            print("Persons:", persons)
+            let empty = UIAlertController(title: "Required Data Missing", message: "Must be at least one person", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             
             empty.addAction(cancel)
             present(empty, animated: true, completion: nil)
         } else {
             if currReceipt != -1 {
+                // TODO need to update name, persons, and date
                 // then segue past the camera to details
                 self.performSegue(withIdentifier: "Manual", sender: sender)
             }
@@ -54,6 +126,9 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
             
             if currReceipt == -1 { // We want to make a new receipt entirely
                 receipt = Receipt(name: name, date: date)
+                receipt.persons = self.persons
+                
+                print("Persons:", persons)
                 
                 // Generate a popover to choose the entry mode
                 let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
@@ -93,22 +168,8 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return textField.endEditing(false)
-    }
-    
-    
     static let receiptContentsVC = "receiptContentsVC"
-    
-//    enum EntryMode: Int {
-//        case camera
-//        case gallery
-//        case manual
-//    }
-//
-//    var entryMode: EntryMode = .camera
     var receiptViewController: ReceiptViewController?
-    //var receiptViewController: (UIViewController & RecognizedTextDataSource)?
     var textRecognitionRequest = VNRecognizeTextRequest(completionHandler: nil)
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,6 +179,8 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
             self.receipt = globalReceipts.receipts[currReceipt]
             receiptName.text = self.receipt.name
             datePicker.date = self.receipt.date
+            self.persons = self.receipt.persons
+            userTableView.reloadData()
         } else {
             receiptName.text = ""
             datePicker.date = Date()
@@ -128,12 +191,16 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         print("CreateVC viewDidLoad currReceipt: \(currReceipt)")
-        if currReceipt != -1 {
-            self.receipt = globalReceipts.receipts[currReceipt]
-            receiptName.text = self.receipt.name
-            datePicker.date = self.receipt.date
-        }
+//        if currReceipt != -1 {
+//            self.receipt = globalReceipts.receipts[currReceipt]
+//            self.receiptName.text = self.receipt.name
+//            self.datePicker.date = self.receipt.date
+//            self.persons = self.receipt.persons
+//        }
+//
+//        print("persons:", self.persons)
         
         receiptName.delegate = self
         
@@ -179,26 +246,26 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
         
     }
 
-    //updates the user
-    func gatherUsers() {
-        for i in 0...cellCount-1 {
-            let cell = userTableView.cellForRow(at: IndexPath(row: i, section: 0)) as! UserCell
-            if cell.userName.text != "" {
-                users[i] = Person(cell.userName.text!)
-            } else {
-                users.remove(at: i)
+    func checkPersons() -> Bool {
+        if self.persons.isEmpty {
+            return false
+        }
+        
+        for person in self.persons {
+            if person.name == "" {
+                // Person name is empty, delete person
+                if let index = self.persons.firstIndex(of: person) {
+                    self.persons.remove(at: index)
+                    self.userTableView.reloadData()
+                }
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
-        // TODO: Make this save and add cell button
-        return cell
+        
+        if self.persons.isEmpty {
+            return false
+        } else {
+            return true
+        }
     }
     
     
@@ -262,11 +329,9 @@ class CreateViewController : UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         // get picked image from info dictionary
         let image = info[.originalImage] as! UIImage
-        // put that image on the screen in the image view
-        photo = image
         // take image picker off the screen -- must call this dismiss method
         dismiss(animated: true) {
-            self.processImage(image: self.photo)
+            self.processImage(image: image)
             if let resultsVC = self.receiptViewController {
                 self.navigationController?.pushViewController(resultsVC, animated: true)
             }

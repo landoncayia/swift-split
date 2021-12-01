@@ -7,6 +7,14 @@
 
 import UIKit
 
-class UserCell: UITableViewCell {
+class UserCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet var userName: UITextField!
+    @IBOutlet var deleteBtn: UIButton!
+    
+    override func layoutSubviews() {
+        
+        super.layoutSubviews()
+        deleteBtn.setTitle("", for: .normal)
+        
+    }
 }
