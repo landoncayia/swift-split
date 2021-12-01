@@ -122,7 +122,7 @@
                                                                         <action selector="personCellEditingEnd:" destination="A1e-zY-9vK" eventType="editingDidEnd" id="oCK-Ml-4yo"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZA-Fu-1Dl">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZA-Fu-1Dl">
                                                                     <rect key="frame" x="327" y="0.0" width="43" height="34.5"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system">

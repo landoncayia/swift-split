@@ -32,32 +32,26 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userTableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
         cell.userName.text = persons[indexPath.row].name
-        cell.userName.tag = indexPath.row-1
+        cell.userName.tag = indexPath.row
         cell.userName.delegate = self
         
-        cell.deleteBtn.tag = indexPath.row-1
-//        // Assign cell to model
-//        let cell = userTableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
-//        let person = persons[indexPath.row]
-//        cell.userName.text = person.name
-//
-////        cell.userName.addTarget(self, action: #selector(self.personNameChange(sender: cell.userName, row: indexPath.row), for: .valueChanged)
-//
-//        cell.userName.addTarget(self, action: #selector(personNameChange(_:_:)), for: .valueChanged)
-//
+        cell.deleteBtn.tag = indexPath.row
         return cell
     }
     
     @IBAction func personCellEditingEnd(_ sender: UITextField) {
         print("person cell editing end")
         print(sender.tag, " -> ", sender.text)
+        print(persons)
         persons[sender.tag].name = sender.text ?? ""
+        print(persons)
     }
     
     @IBAction func personCellDelete(_ sender: UIButton) {
-        print("person cell delete")
-        print("tag -> ", sender.tag)
+        print("delete tag -> ", sender.tag)
+        print(persons)
         self.deletePerson(sender.tag)
+        print(persons)
     }
     
     //    // MARK: textFieldDidEndEditing
@@ -78,6 +72,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         self.persons.remove(at: index)
         // Also remove that row from the table view with an animation
         self.userTableView.deleteRows(at: [indexPath], with: .automatic)
+        userTableView.reloadData()
     }
     
     @IBAction func addUser(_ sender: UIButton) {
@@ -99,6 +94,8 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     // --- NEXT BUTTON ---
     
     @IBAction func receiptDetailsNext(_ sender: UIBarButtonItem) {
+        
+        print("---- \n Next clicked \n")
         
         // Read text fields and date into a receipt object
         let name = receiptName.text ?? ""
@@ -181,6 +178,8 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             self.receipt = globalReceipts.receipts[currReceipt]
             receiptName.text = self.receipt.name
             datePicker.date = self.receipt.date
+            self.persons = self.receipt.persons
+            userTableView.reloadData()
         } else {
             receiptName.text = ""
             datePicker.date = Date()
@@ -193,14 +192,14 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         
         print("CreateVC viewDidLoad currReceipt: \(currReceipt)")
-        if currReceipt != -1 {
-            self.receipt = globalReceipts.receipts[currReceipt]
-            self.receiptName.text = self.receipt.name
-            self.datePicker.date = self.receipt.date
-            self.persons = self.receipt.persons
-        }
-        
-        print("persons:", self.persons)
+//        if currReceipt != -1 {
+//            self.receipt = globalReceipts.receipts[currReceipt]
+//            self.receiptName.text = self.receipt.name
+//            self.datePicker.date = self.receipt.date
+//            self.persons = self.receipt.persons
+//        }
+//
+//        print("persons:", self.persons)
         
         receiptName.delegate = self
         
