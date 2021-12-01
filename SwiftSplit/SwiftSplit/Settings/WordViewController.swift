@@ -6,16 +6,26 @@
 //
 
 import UIKit
+import simd
 
-class WordViewController: UITableViewController {
+class WordViewController: UITableViewController, UISearchBarDelegate {
     
     var wordsList: [String]!
+    var filteredWords: [String]!  // Used for search
     var wordType: WordType!
     var callback: (([String])->())?
-    @IBOutlet weak var optionsButton: UIBarButtonItem!
+    @IBOutlet weak var wordSearchBar: UISearchBar!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWord))
+        
+        navigationItem.rightBarButtonItems = [editButtonItem, addBarButton]
+    }
+    
+    @objc func addWord() {
+        self.performSegue(withIdentifier: "addWord", sender: UIBarButtonItem())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,38 +39,37 @@ class WordViewController: UITableViewController {
         
         // Menu when options button tapped on Word View Controller in top-right
         
-        let handler: (_ action: UIAction) -> () = { action in
-            print(action.identifier)
-            switch action.identifier.rawValue {
-            case "addWord":
-                // Segue to add edit word view controller (add variant)
-                self.performSegue(withIdentifier: "addWord", sender: nil)
-            case "deleteWord":
-                // Enter "editing mode", which is used to delete
-                self.tableView.setEditing(true, animated: true)
-            default:
-                break
-            }
-        }
-        
-        // Options button menu items
-        let actions = [
-            UIAction(title: "Add Word",
-                     image: UIImage(systemName: "plus"),
-                     identifier: UIAction.Identifier("addWord"),
-                     handler: handler),
-            UIAction(title: "Delete Word(s)",
-                     image: UIImage(systemName: "trash"),
-                     identifier: UIAction.Identifier("deleteWord"),
-                     handler: handler)
-        ]
-        
-        // Create the menu itself
-        let menu = UIMenu(title: "Options", children: actions)
-        
-        // Set the bar button item to the circle ellipse icon and connect menu
-        let rightBarButton = UIBarButtonItem(title: "", image: UIImage(systemName: "ellipsis.circle"), menu: menu)
-        self.navigationItem.rightBarButtonItem = rightBarButton
+//        let handler: (_ action: UIAction) -> () = { action in
+//            switch action.identifier.rawValue {
+//            case "addWord":
+//                // Segue to add edit word view controller (add variant)
+//                self.performSegue(withIdentifier: "addWord", sender: nil)
+//            case "deleteWord":
+//                // Enter "editing mode", which is used to delete
+//                self.tableView.setEditing(true, animated: true)
+//            default:
+//                break
+//            }
+//        }
+//
+//        // Options button menu items
+//        let actions = [
+//            UIAction(title: "Add Word",
+//                     image: UIImage(systemName: "plus"),
+//                     identifier: UIAction.Identifier("addWord"),
+//                     handler: handler),
+//            UIAction(title: "Delete Word(s)",
+//                     image: UIImage(systemName: "trash"),
+//                     identifier: UIAction.Identifier("deleteWord"),
+//                     handler: handler)
+//        ]
+//
+//        // Create the menu itself
+//        let menu = UIMenu(title: "Options", children: actions)
+//
+//        // Set the bar button item to the circle ellipse icon and connect menu
+//        let rightBarButton = UIBarButtonItem(title: "", image: UIImage(systemName: "ellipsis.circle"), menu: menu)
+//        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,6 +86,12 @@ class WordViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        wordSearchBar.delegate = self
+        wordSearchBar.placeholder = "Search for a word"
+        wordSearchBar.enablesReturnKeyAutomatically = false
+        wordSearchBar.returnKeyType = .done
+        filteredWords = wordsList
+        
         switch wordType {
         case .IgnoredWord:
             navigationItem.title = "Ignored Words"
@@ -92,14 +107,14 @@ class WordViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wordsList.count
+        return filteredWords.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath) as! WordCell
         
-        let word = wordsList[indexPath.row]
+        let word = filteredWords[indexPath.row]
         
         cell.word.text = word
         
@@ -142,6 +157,24 @@ class WordViewController: UITableViewController {
             
             present(alertController, animated: true, completion: nil)
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredWords = searchText.isEmpty ? wordsList : wordsList.filter { (word: String) -> Bool in
+            return word.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.wordSearchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        wordSearchBar.showsCancelButton = false
+        wordSearchBar.text = ""
+        wordSearchBar.resignFirstResponder()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
