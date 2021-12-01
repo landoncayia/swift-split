@@ -40,19 +40,20 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     // TapGestureRec maybe needed
     
     
-    @IBAction func saveButton(_ sender: UIBarButtonItem) {
+    @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if currReceipt != -1 {
-            globalReceipts.receipts[currReceipt] = self.receipt
-            currReceipt = -1
-            print("Receipt saved")
-            print("Popping back to CreateNavViewController")
-            navigationController?.popToRootViewController(animated: true)
+//            globalReceipts.receipts[currReceipt] = self.receipt
+//            currReceipt = -1
+//            print("Receipt saved")
+//            print("Popping back to CreateNavViewController")
+//            navigationController?.popToRootViewController(animated: true)
         } else {
-            globalReceipts.receipts.append(self.receipt)
-            print("Receipt appended")
-            print("Popping back to CreateNavViewController")
-            navigationController?.popToRootViewController(animated: true)
+//            globalReceipts.receipts.append(self.receipt)
+//            print("Receipt appended")
+//            print("Popping back to CreateNavViewController")
+//            navigationController?.popToRootViewController(animated: true)
         }
+        self.performSegue(withIdentifier: "goToAssignItems", sender: sender)
     }
     
     @IBAction func itemNameChange(_ sender: UITextField) {
