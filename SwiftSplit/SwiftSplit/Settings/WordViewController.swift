@@ -16,6 +16,14 @@ class WordViewController: UITableViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWord))
+        
+        navigationItem.rightBarButtonItems = [editButtonItem, addBarButton]
+    }
+    
+    @objc func addWord() {
+        self.performSegue(withIdentifier: "addWord", sender: UIBarButtonItem())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,38 +37,37 @@ class WordViewController: UITableViewController {
         
         // Menu when options button tapped on Word View Controller in top-right
         
-        let handler: (_ action: UIAction) -> () = { action in
-            print(action.identifier)
-            switch action.identifier.rawValue {
-            case "addWord":
-                // Segue to add edit word view controller (add variant)
-                self.performSegue(withIdentifier: "addWord", sender: nil)
-            case "deleteWord":
-                // Enter "editing mode", which is used to delete
-                self.tableView.setEditing(true, animated: true)
-            default:
-                break
-            }
-        }
-        
-        // Options button menu items
-        let actions = [
-            UIAction(title: "Add Word",
-                     image: UIImage(systemName: "plus"),
-                     identifier: UIAction.Identifier("addWord"),
-                     handler: handler),
-            UIAction(title: "Delete Word(s)",
-                     image: UIImage(systemName: "trash"),
-                     identifier: UIAction.Identifier("deleteWord"),
-                     handler: handler)
-        ]
-        
-        // Create the menu itself
-        let menu = UIMenu(title: "Options", children: actions)
-        
-        // Set the bar button item to the circle ellipse icon and connect menu
-        let rightBarButton = UIBarButtonItem(title: "", image: UIImage(systemName: "ellipsis.circle"), menu: menu)
-        self.navigationItem.rightBarButtonItem = rightBarButton
+//        let handler: (_ action: UIAction) -> () = { action in
+//            switch action.identifier.rawValue {
+//            case "addWord":
+//                // Segue to add edit word view controller (add variant)
+//                self.performSegue(withIdentifier: "addWord", sender: nil)
+//            case "deleteWord":
+//                // Enter "editing mode", which is used to delete
+//                self.tableView.setEditing(true, animated: true)
+//            default:
+//                break
+//            }
+//        }
+//
+//        // Options button menu items
+//        let actions = [
+//            UIAction(title: "Add Word",
+//                     image: UIImage(systemName: "plus"),
+//                     identifier: UIAction.Identifier("addWord"),
+//                     handler: handler),
+//            UIAction(title: "Delete Word(s)",
+//                     image: UIImage(systemName: "trash"),
+//                     identifier: UIAction.Identifier("deleteWord"),
+//                     handler: handler)
+//        ]
+//
+//        // Create the menu itself
+//        let menu = UIMenu(title: "Options", children: actions)
+//
+//        // Set the bar button item to the circle ellipse icon and connect menu
+//        let rightBarButton = UIBarButtonItem(title: "", image: UIImage(systemName: "ellipsis.circle"), menu: menu)
+//        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     override func viewWillDisappear(_ animated: Bool) {
