@@ -7,8 +7,9 @@ import Vision
 class CreateViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     var receipt: Receipt!
+
     var persons = [Person]()
-    
+
     @IBOutlet var receiptName: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
     
@@ -48,6 +49,9 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func personCellDelete(_ sender: UIButton) {
+        // Forces editing of cells to stop thus saving the text
+        view.endEditing(true)
+        
         print("delete tag -> ", sender.tag)
         print(persons)
         self.deletePerson(sender.tag)
@@ -86,16 +90,19 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    @objc func personNameChange(_ sender: UITextField, _ row: Int) {
-        let text = sender.text ?? ""
-        self.persons[row].name = text
-    }
+    //@objc func personNameChange(_ sender: UITextField, _ row: Int) {
+    //    let text = sender.text ?? ""
+    //    self.persons[row].name = text
+    //}
     
-    // --- NEXT BUTTON ---
+    // MARK: --- NEXT BUTTON ---
     
     @IBAction func receiptDetailsNext(_ sender: UIBarButtonItem) {
         
         print("---- \n Next clicked \n")
+        
+        // Ends editing for every cell thus saving the text
+        view.endEditing(true)
         
         // Read text fields and date into a receipt object
         let name = receiptName.text ?? ""
@@ -169,7 +176,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     
     static let receiptContentsVC = "receiptContentsVC"
     var receiptViewController: ReceiptViewController?
-    var textRecognitionRequest = VNRecognizeTextRequest()
+    var textRecognitionRequest = VNRecognizeTextRequest(completionHandler: nil)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -219,9 +226,17 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         })
-        // This doesn't require OCR on a live camera feed, select accurate for more accurate results.
-        textRecognitionRequest.recognitionLevel = .accurate
-        textRecognitionRequest.usesLanguageCorrection = true
+        // Use the global settings to set the options
+        switch globalSettings.currentSettings.recognitionLevel.rawValue {
+        case ".accurate":
+            textRecognitionRequest.recognitionLevel = .accurate
+        case ".fast":
+            textRecognitionRequest.recognitionLevel = .fast
+        default:
+            textRecognitionRequest.recognitionLevel = .accurate
+        }
+        
+        textRecognitionRequest.usesLanguageCorrection = globalSettings.currentSettings.languageCorrection
         
         //print("CREATE VIEW LOADED")
         //print("Contents: ")
@@ -256,29 +271,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             return true
         }
     }
-    
-    
-    // Whenever the create tab is pressed on the tab view the choose source menu will appear
-//    override func viewDidAppear(_ animated: Bool) {
-//        choosePhotoSource()
-//    }
-    
-//    @IBAction func CameraBtnAction(_ sender: UIButton) {
-//        self.entryMode = .camera
-//        let documentCameraViewController = VNDocumentCameraViewController()
-//        documentCameraViewController.delegate = self
-//        present(documentCameraViewController, animated: true)
-//    }
-//
-//    // TODO: Write me!
-//    @IBAction func galleryButton(_ sender: UIButton) {
-//        self.entryMode = .gallery
-//    }
-//
-//    // TODO: Write me!
-//    @IBAction func manualButton(_ sender: UIButton) {
-//        self.entryMode = .manual
-//    }
     
     func processImage(image: UIImage) {
         guard let cgImage = image.cgImage else {

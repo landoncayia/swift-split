@@ -42,6 +42,7 @@
 		C768A096271872A2009A729C /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A095271872A2009A729C /* Create.storyboard */; };
 		C768A0982718730B009A729C /* Budget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A0972718730B009A729C /* Budget.storyboard */; };
 		C768A09A27187318009A729C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A09927187318009A729C /* Settings.storyboard */; };
+		C7FB67FD2747035500AA6E8B /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FB67FC2747035500AA6E8B /* WordViewController.swift */; };
 		D11BEA9A271A456D00747542 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11BEA99271A456D00747542 /* BrowseViewController.swift */; };
 		D1A58F002719E44C000B1744 /* TabView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A58EFF2719E44C000B1744 /* TabView.storyboard */; };
 /* End PBXBuildFile section */
@@ -105,6 +106,7 @@
 		C768A095271872A2009A729C /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		C768A0972718730B009A729C /* Budget.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Budget.storyboard; sourceTree = "<group>"; };
 		C768A09927187318009A729C /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		C7FB67FC2747035500AA6E8B /* WordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
 		D11BEA99271A456D00747542 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		D1A58EFF2719E44C000B1744 /* TabView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -609,13 +611,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F3RQZ8S6BN;
+				DEVELOPMENT_TEAM = 6XT7CBYZN3;
 				INFOPLIST_FILE = SwiftSplit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.swiftsplitinc.SwiftSplit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftsplitinc.SwiftSplit1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -628,13 +630,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F3RQZ8S6BN;
+				DEVELOPMENT_TEAM = 6XT7CBYZN3;
 				INFOPLIST_FILE = SwiftSplit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.swiftsplitinc.SwiftSplit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftsplitinc.SwiftSplit1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

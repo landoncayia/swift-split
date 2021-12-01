@@ -87,7 +87,7 @@ func convertScannedReceipt(_ lines: [String]) -> [ReceiptItem] {
     var items = [ReceiptItem]()
     
     // words to ignore
-    let wordsToIgnore = ["price", "sale", "savings", "coupon", "discount"]
+    let wordsToIgnore = globalSettings.currentSettings.ignoredWords
     
     // letters for tax status
     // A for costco

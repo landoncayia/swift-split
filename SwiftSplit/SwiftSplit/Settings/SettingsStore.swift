@@ -8,7 +8,7 @@
 import UIKit
 
 enum RecognitionLevel: String, Codable {
-    case accurate = "Accurate", fast = "Fast"
+    case accurate = ".accurate", fast = ".fast"
 }
 
 struct Settings: Codable {
@@ -28,8 +28,7 @@ struct Settings: Codable {
     
     // Default settings
     init() {
-        recognitionLevel = RecognitionLevel.accurate
-        // MARK: Just to test; tweak after
+        recognitionLevel = .accurate
         customWords = ["Apples", "Oranges", "Bananas"]
         ignoredWords = ["Savings", "Price", "Sale", "Coupon", "Discount"]
         languageCorrection = true

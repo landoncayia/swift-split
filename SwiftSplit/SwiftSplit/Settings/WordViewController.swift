@@ -10,34 +10,57 @@ import UIKit
 class WordViewController: UITableViewController {
     
     var wordsList: [String]!
+    var wordType: WordType!
     var callback: (([String])->())?
+    @IBOutlet weak var optionsButton: UIBarButtonItem!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-//    @IBAction func addNewIgnoredWord(_ sender: UIBarButtonItem) {
-//        // Use this to add a new custom word
-//        let newWords: [String] = ["Apple", "Orange", "Banana", "Lime", "Blueberry", "Grapes"]
-//        customWordsList.append(newWords[0])
-//        customWordsList.append(newWords[1])
-//        
-//        // Use an alert controller to allow the user to type the word
-//        
-//        if let index = customWordsList.firstIndex(of: newWords[0]) {
-//            let indexPath = IndexPath(row: index, section: 0)
-//            tableView.insertRows(at: [indexPath], with: .automatic)
-//        }
-//        if let index = customWordsList.firstIndex(of: newWords[1]) {
-//            let indexPath = IndexPath(row: index, section: 0)
-//            tableView.insertRows(at: [indexPath], with: .automatic)
-//        }
-//    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Menu when options button tapped on Word View Controller in top-right
+        
+        let handler: (_ action: UIAction) -> () = { action in
+            print(action.identifier)
+            switch action.identifier.rawValue {
+            case "addWord":
+                // Segue to add edit word view controller (add variant)
+                self.performSegue(withIdentifier: "addWord", sender: nil)
+            case "deleteWord":
+                // Enter "editing mode", which is used to delete
+                self.tableView.setEditing(true, animated: true)
+            default:
+                break
+            }
+        }
+        
+        // Options button menu items
+        let actions = [
+            UIAction(title: "Add Word",
+                     image: UIImage(systemName: "plus"),
+                     identifier: UIAction.Identifier("addWord"),
+                     handler: handler),
+            UIAction(title: "Delete Word(s)",
+                     image: UIImage(systemName: "trash"),
+                     identifier: UIAction.Identifier("deleteWord"),
+                     handler: handler)
+        ]
+        
+        // Create the menu itself
+        let menu = UIMenu(title: "Options", children: actions)
+        
+        // Set the bar button item to the circle ellipse icon and connect menu
+        let rightBarButton = UIBarButtonItem(title: "", image: UIImage(systemName: "ellipsis.circle"), menu: menu)
+        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,6 +76,15 @@ class WordViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        switch wordType {
+        case .IgnoredWord:
+            navigationItem.title = "Ignored Words"
+        case .CustomWord:
+            navigationItem.title = "Custom Words"
+        default:
+            navigationItem.title = "Words"
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -74,11 +106,51 @@ class WordViewController: UITableViewController {
         return cell
     }
     
+    // Allow editing/deleting of all cells
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // Editing/deleting functionality
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            // Remove element
+            let wordToDelete = wordsList[indexPath.row]
+            
+            // Creates an Alert controller
+            let alertController = UIAlertController(title: nil, message: "Are you sure you want to delete \(wordToDelete)", preferredStyle: .alert)
+            
+            let delete = UIAlertAction(title: "Delete", style: .default) { _ in
+                print("Deleting")
+                
+                // Remove the Pokemon from the store
+                if let removeIndex = self.wordsList.firstIndex(of: wordToDelete) {
+                    self.wordsList.remove(at: removeIndex)
+                }
+                
+                // Also remove that row from the table view with an animation
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            alertController.addAction(delete)
+            
+            let cancel = UIAlertAction(title: "Cancel", style: .default) { _ in
+                print("Canceling")
+            }
+            alertController.addAction(cancel)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "addWord":
             // In this case, we do not need an existing word
             let addWordViewController = segue.destination as! AddEditWordViewController
+            addWordViewController.wordType = self.wordType
+            addWordViewController.navigationItem.title = "Add Word"
             addWordViewController.callback = { result in
                 self.wordsList.append(result)
                 if let index = self.wordsList.firstIndex(of: result) {
@@ -89,6 +161,8 @@ class WordViewController: UITableViewController {
             }
         case "editWord":
             let editWordViewController = segue.destination as! AddEditWordViewController
+            editWordViewController.wordType = self.wordType
+            editWordViewController.navigationItem.title = "Edit Word"
             editWordViewController.callback = { result in
                 if let row = self.tableView.indexPathForSelectedRow?.row {
                     self.wordsList[row] = result
