@@ -11,6 +11,8 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet var receiptName: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
+    
+    // MARK: userTableView
     @IBOutlet var userTableView: UITableView! {
         didSet {
             userTableView.delegate = self
@@ -21,27 +23,59 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     
     // --- USERS TABLE ---
     
+    // MARK: numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.persons.count
+        return persons.count
     }
     
+    // MARK: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Assign cell to model
         let cell = userTableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
-        let person = persons[indexPath.row]
-        cell.userName.text = person.name
+        cell.userName.text = persons[indexPath.row].name
+        cell.userName.tag = indexPath.row-1
+        cell.userName.delegate = self
         
-//        cell.userName.addTarget(self, action: #selector(self.personNameChange(sender: cell.userName, row: indexPath.row), for: .valueChanged)
-        
-        cell.userName.addTarget(self, action: #selector(personNameChange(_:_:)), for: .valueChanged)
-        
+        cell.deleteBtn.tag = indexPath.row-1
+//        // Assign cell to model
+//        let cell = userTableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
+//        let person = persons[indexPath.row]
+//        cell.userName.text = person.name
+//
+////        cell.userName.addTarget(self, action: #selector(self.personNameChange(sender: cell.userName, row: indexPath.row), for: .valueChanged)
+//
+//        cell.userName.addTarget(self, action: #selector(personNameChange(_:_:)), for: .valueChanged)
+//
         return cell
     }
     
-    func deletePerson(_ indexPath: IndexPath) {
-        // let person = self.persons[indexPath.row]
+    @IBAction func personCellEditingEnd(_ sender: UITextField) {
+        print("person cell editing end")
+        print(sender.tag, " -> ", sender.text)
+        persons[sender.tag].name = sender.text ?? ""
+    }
+    
+    @IBAction func personCellDelete(_ sender: UIButton) {
+        print("person cell delete")
+        print("tag -> ", sender.tag)
+        self.deletePerson(sender.tag)
+    }
+    
+    //    // MARK: textFieldDidEndEditing
+//    func textFieldDidEndEditing(userName: UITextField) {
+//        print("END EDITING")
+//        persons[userName.tag].name = userName.text ?? ""
+//    }
+//
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        print("bg tapped")
+            view.endEditing(true)
+        }
+
+    
+    func deletePerson(_ index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
         // Remove the item from the store
-        self.persons.remove(at: indexPath.row)
+        self.persons.remove(at: index)
         // Also remove that row from the table view with an animation
         self.userTableView.deleteRows(at: [indexPath], with: .automatic)
     }
@@ -62,10 +96,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         self.persons[row].name = text
     }
     
-    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-    
     // --- NEXT BUTTON ---
     
     @IBAction func receiptDetailsNext(_ sender: UIBarButtonItem) {
@@ -82,6 +112,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             empty.addAction(cancel)
             present(empty, animated: true, completion: nil)
         } else if !checkPersons() {
+            print("Persons:", persons)
             let empty = UIAlertController(title: "Required Data Missing", message: "Must be at least one person", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             
@@ -98,6 +129,8 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             if currReceipt == -1 { // We want to make a new receipt entirely
                 receipt = Receipt(name: name, date: date)
                 receipt.persons = self.persons
+                
+                print("Persons:", persons)
                 
                 // Generate a popover to choose the entry mode
                 let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
@@ -137,11 +170,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return textField.endEditing(false)
-    }
-    
-    
     static let receiptContentsVC = "receiptContentsVC"
     var receiptViewController: ReceiptViewController?
     var textRecognitionRequest = VNRecognizeTextRequest()
@@ -163,12 +191,16 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         print("CreateVC viewDidLoad currReceipt: \(currReceipt)")
         if currReceipt != -1 {
             self.receipt = globalReceipts.receipts[currReceipt]
-            receiptName.text = self.receipt.name
-            datePicker.date = self.receipt.date
+            self.receiptName.text = self.receipt.name
+            self.datePicker.date = self.receipt.date
+            self.persons = self.receipt.persons
         }
+        
+        print("persons:", self.persons)
         
         receiptName.delegate = self
         
@@ -214,7 +246,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                 // Person name is empty, delete person
                 if let index = self.persons.firstIndex(of: person) {
                     self.persons.remove(at: index)
-//                    self.userTableView.reloadData()
+                    self.userTableView.reloadData()
                 }
             }
         }

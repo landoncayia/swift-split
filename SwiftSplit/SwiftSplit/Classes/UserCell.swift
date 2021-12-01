@@ -7,6 +7,7 @@
 
 import UIKit
 
-class UserCell: UITableViewCell {
+class UserCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet var userName: UITextField!
+    @IBOutlet var deleteBtn: UIButton!
 }
