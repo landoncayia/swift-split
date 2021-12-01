@@ -210,6 +210,9 @@
                             <barButtonItem style="plain" systemItem="edit" id="N49-aw-unf"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="wordSearchBar" destination="WeJ-4Q-hJd" id="1CB-hy-7Lo"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHL-OL-d6I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

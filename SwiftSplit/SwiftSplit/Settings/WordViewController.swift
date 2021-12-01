@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import simd
 
-class WordViewController: UITableViewController {
+class WordViewController: UITableViewController, UISearchBarDelegate {
     
     var wordsList: [String]!
+    var filteredWords: [String]!  // Used for search
     var wordType: WordType!
     var callback: (([String])->())?
-    @IBOutlet weak var optionsButton: UIBarButtonItem!
+    @IBOutlet weak var wordSearchBar: UISearchBar!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -84,6 +86,12 @@ class WordViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        wordSearchBar.delegate = self
+        wordSearchBar.placeholder = "Search for a word"
+        wordSearchBar.enablesReturnKeyAutomatically = false
+        wordSearchBar.returnKeyType = .done
+        filteredWords = wordsList
+        
         switch wordType {
         case .IgnoredWord:
             navigationItem.title = "Ignored Words"
@@ -99,14 +107,14 @@ class WordViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wordsList.count
+        return filteredWords.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath) as! WordCell
         
-        let word = wordsList[indexPath.row]
+        let word = filteredWords[indexPath.row]
         
         cell.word.text = word
         
@@ -149,6 +157,24 @@ class WordViewController: UITableViewController {
             
             present(alertController, animated: true, completion: nil)
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredWords = searchText.isEmpty ? wordsList : wordsList.filter { (word: String) -> Bool in
+            return word.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.wordSearchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        wordSearchBar.showsCancelButton = false
+        wordSearchBar.text = ""
+        wordSearchBar.resignFirstResponder()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
