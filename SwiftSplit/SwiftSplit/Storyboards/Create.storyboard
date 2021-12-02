@@ -85,6 +85,9 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZSK-rU-XlN">
                                                 <rect key="frame" x="68.5" y="0.0" width="301.5" height="40"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Tp2-M8-Dv1"/>
                                                 </constraints>
@@ -217,14 +220,23 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8av-hA-fBY">
-                                                            <rect key="frame" x="46" y="0.0" width="328" height="34.5"/>
+                                                        <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8av-hA-fBY">
+                                                            <rect key="frame" x="46" y="0.0" width="277" height="34.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <connections>
                                                                 <action selector="itemNameDidEdit:" destination="Mek-UJ-iqU" eventType="editingDidEnd" id="TeX-nY-lXE"/>
                                                             </connections>
                                                         </textField>
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tei-ZW-CVT" userLabel="Delete Btn">
+                                                            <rect key="frame" x="331" y="0.0" width="43" height="34.5"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system">
+                                                                <color key="baseForegroundColor" name="AccentColor"/>
+                                                            </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="itemCellDelete:" destination="Mek-UJ-iqU" eventType="touchUpInside" id="5Pz-rW-Wt3"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8Di-53-jki">
@@ -236,7 +248,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x9K-S3-V1b">
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x9K-S3-V1b" customClass="CurrencyField" customModule="SwiftSplit" customModuleProvider="target">
                                                             <rect key="frame" x="41" y="0.0" width="245.5" height="31"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
@@ -270,9 +282,13 @@
                                         <constraint firstAttribute="trailing" secondItem="HV8-Lv-0Jn" secondAttribute="trailing" constant="20" id="Wlm-V5-8Fg"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <connections>
+                                    <outlet property="deleteBtn" destination="Tei-ZW-CVT" id="eNv-MG-FJS"/>
                                     <outlet property="itemName" destination="8av-hA-fBY" id="CCQ-Ye-yWB"/>
-                                    <outlet property="itemPrice" destination="x9K-S3-V1b" id="BIM-ce-0cg"/>
+                                    <outlet property="itemPrice" destination="x9K-S3-V1b" id="Q7x-Cu-wbJ"/>
                                     <outlet property="taxSwitch" destination="LKI-SD-cjv" id="LPX-Jf-We9"/>
                                 </connections>
                             </tableViewCell>
@@ -280,6 +296,7 @@
                         <connections>
                             <outlet property="dataSource" destination="Mek-UJ-iqU" id="suR-Bc-Ydx"/>
                             <outlet property="delegate" destination="Mek-UJ-iqU" id="HoZ-1h-ESu"/>
+                            <outletCollection property="gestureRecognizers" destination="Mi3-vn-cQT" appends="YES" id="L6y-FH-4rq"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Receipt Items" id="iMF-qE-uby">

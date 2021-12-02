@@ -19,6 +19,10 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
         super.init(coder: aDecoder)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -42,10 +46,25 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     // Wasnt sure how I want to deal with changing currReceipt back to -1
     // I might have to make a function in TabViewController.
     
-    // TODO: Not working
+    @IBAction func itemCellDelete(_ sender: UIButton) {
+        view.endEditing(true)
+        
+        print("delete tag -> ", sender.tag)
+        print(receipt.items)
+        self.deleteItem(sender.tag)
+        print(receipt.items)
+    }
+    
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         print("bg tapped")
         view.endEditing(true)
+    }
+    
+    func deleteItem(_ index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
+        self.receipt.items.remove(at: index)
+        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.reloadData()
     }
     
     @IBAction func AddItemButton(_ sender: UIBarButtonItem) {
@@ -111,6 +130,7 @@ extension ReceiptViewController {
         cell.itemPrice.text = "\(field.price)"
         cell.itemPrice.delegate = self
         cell.taxSwitch.isOn = field.taxed
+        cell.deleteBtn.tag = indexPath.row
         
         cell.taxSwitch.tag = indexPath.row
         cell.taxSwitch.addTarget(self, action: #selector(self.changeIsTaxed(_:)), for: .valueChanged)
@@ -120,6 +140,9 @@ extension ReceiptViewController {
         
         cell.itemPrice.tag = indexPath.row
         cell.itemPrice.addTarget(self, action: #selector(self.itemPriceDidEdit(_:)), for: .editingDidEnd)
+        // Used for price validation
+        cell.itemPrice.addTarget(self, action: #selector(self.currencyFieldChanged(_:)), for: .editingChanged)
+        cell.itemPrice.locale = Locale(identifier: "en_US")
         
         return cell
     }
@@ -144,8 +167,17 @@ extension ReceiptViewController {
     
     @IBAction func itemPriceDidEdit(_ sender: UITextField) {
         let item = self.receipt.items[sender.tag]
-        item.price = Double(sender.text!) ?? 0.0 // Keyboard is set to decimal anyway but just in case
-        sender.text = String(item.price)
+//        item.price = Double(sender.text!) ?? 0.0 // Keyboard is set to decimal anyway but just in case
+//        sender.text = String(item.price)
+    }
+    
+    @objc func currencyFieldChanged(_ sender: CurrencyField) {
+        // TODO: When deleting receipt items and/or exiting view, the prices all get divided by 10. It has something to do with ".decimal" or ".currency" in "CurrencyField"
+        let item = self.receipt.items[sender.tag]
+        item.price = (sender.decimal as NSDecimalNumber).doubleValue
+        print("currencyField:", sender.text!)
+        print("decimal:", sender.decimal)
+        print("doubleValue:", (sender.decimal as NSDecimalNumber).doubleValue, terminator: "\n\n")
     }
     
 }
