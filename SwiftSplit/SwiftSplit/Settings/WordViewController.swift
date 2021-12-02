@@ -31,6 +31,8 @@ class WordViewController: UITableViewController, UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        filteredWords = wordsList
+        
         tableView.reloadData()
     }
     
@@ -90,7 +92,6 @@ class WordViewController: UITableViewController, UISearchBarDelegate {
         wordSearchBar.placeholder = "Search for a word"
         wordSearchBar.enablesReturnKeyAutomatically = false
         wordSearchBar.returnKeyType = .done
-        filteredWords = wordsList
         
         switch wordType {
         case .IgnoredWord:
@@ -145,6 +146,9 @@ class WordViewController: UITableViewController, UISearchBarDelegate {
                     self.wordsList.remove(at: removeIndex)
                 }
                 
+                // Update filtered words after removing
+                self.filteredWords = self.wordsList
+                
                 // Also remove that row from the table view with an animation
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
@@ -186,6 +190,8 @@ class WordViewController: UITableViewController, UISearchBarDelegate {
             addWordViewController.navigationItem.title = "Add Word"
             addWordViewController.callback = { result in
                 self.wordsList.append(result)
+                // Update filtered words after adding
+                self.filteredWords = self.wordsList
                 if let index = self.wordsList.firstIndex(of: result) {
                     let indexPath = IndexPath(row: index, section: 0)
                     
