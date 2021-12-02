@@ -156,7 +156,7 @@ extension ReceiptViewController {
         
         cell.itemName.text = field.name
         cell.itemName.delegate = self
-        cell.itemPrice.text = "\(field.price)"
+        cell.itemPrice.text = String(field.price).currencyInputFormatting()
         cell.itemPrice.delegate = self
         cell.taxSwitch.isOn = field.taxed
         cell.deleteBtn.tag = indexPath.row
@@ -169,14 +169,7 @@ extension ReceiptViewController {
         
         cell.itemPrice.tag = indexPath.row
         cell.itemPrice.addTarget(self, action: #selector(self.itemPriceDidEdit(_:)), for: .editingDidEnd)
-        
-        // Used for price validation and format
-//        cell.itemPrice.addTarget(self, action: #selector(self.currencyFieldChanged(_:)), for: .editingChanged)
-        
-        
-        
-        
-        
+
         cell.itemPrice.locale = Locale(identifier: "en_US")
         
         return cell
@@ -201,28 +194,24 @@ extension ReceiptViewController {
     }
     
     @IBAction func itemPriceDidEdit(_ sender: UITextField) {
+        // Get the text from input
+        let rawString = sender.text ?? "0.00"
+        
+        // Set input to a cleaned version of the input
+        sender.text = rawString.currencyInputFormatting()
+        
+        // Actually update the item in receipt
         let item = self.receipt.items[sender.tag]
-//        item.price = Double(sender.text!) ?? 0.0 // Keyboard is set to decimal anyway but just in case
-//        sender.text = String(item.price)
+        item.price = rawString.currencyInputFiltering()
     }
-    
-//    @objc func currencyFieldChanged(_ sender: CurrencyField) {
-//        // TODO: When deleting receipt items and/or exiting view, the prices all get divided by 10. It has something to do with ".decimal" or ".currency" in "CurrencyField"
-//        let item = self.receipt.items[sender.tag]
-//
-//        item.price = (sender.decimal as NSDecimalNumber).doubleValue
-//        print("currencyField:", sender.text!)
-//        print("decimal:", sender.decimal)
-//        print("doubleValue:", (sender.decimal as NSDecimalNumber).doubleValue, terminator: "\n\n")
-//    }
     
 }
 
 extension String {
 
-    // formatting text for currency textField
+    // formatting text for currency
     func currencyInputFormatting() -> String {
-
+        
         var number: NSNumber!
         let formatter = NumberFormatter()
         formatter.numberStyle = .currencyAccounting
@@ -230,20 +219,40 @@ extension String {
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
 
-        var amountWithPrefix = self
+        // Clean the string to only contain numbers
+        let uncleaned = self
+        let cleaned = uncleaned.filter("0123456789.".contains)
 
-        // remove from String: "$", ".", ","
-        let regex = try! NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive)
-        amountWithPrefix = regex.stringByReplacingMatches(in: amountWithPrefix, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, self.count), withTemplate: "")
-
-        let double = (amountWithPrefix as NSString).doubleValue
-        number = NSNumber(value: (double / 100))
+        // Convert to a double
+        let double = (cleaned as NSString).doubleValue
+        number = NSNumber(value: double)
 
         // if first number is 0 or all numbers were deleted
         guard number != 0 as NSNumber else {
             return ""
         }
+        
+        let returnVal = formatter.string(from: number)!
+        
+        print("formatting:", self, " -> ", returnVal)
+        
+        return returnVal
+    }
+    
+    func currencyInputFiltering() -> Double {
 
-        return formatter.string(from: number)!
+        // Clean the string to only contain numbers
+        let uncleaned = self
+        let cleaned = uncleaned.filter("0123456789.".contains)
+
+        // Convert to a double
+        let double = (cleaned as NSString).doubleValue
+
+        // if first number is 0 or all numbers were deleted
+        guard double != 0 as Double else {
+            return 0
+        }
+        
+        return double
     }
 }
