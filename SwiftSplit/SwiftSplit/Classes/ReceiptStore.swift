@@ -54,6 +54,15 @@ public class ReceiptStore {
         }
     }
     
+    // Resets tags
+    func setTags(){
+        var cnt = 0
+        for r in self.receipts {
+            r.tag = cnt
+            cnt += 1
+        }
+    }
+    
     // Stores to receipts.plist
     @objc func saveReceipts() -> Bool{
         print("Attempting save to \(receiptsURL)")
@@ -76,12 +85,7 @@ public class ReceiptStore {
         notifCenter.addObserver(self, selector: #selector(saveReceipts), name: UIScene.didEnterBackgroundNotification, object: nil)
         
         loadReceipts()
-        
-        var cnt = 0
-        for r in self.receipts {
-            r.tag = cnt
-            cnt += 1
-        }
+        setTags()
         
         if receipts.isEmpty {
             let dateFormat = DateFormatter()
