@@ -138,38 +138,40 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                 
                 // Generate a popover to choose the entry mode
                 let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
-                // Setup actions for the popover
                 
+                // Setup actions for the popover
                 let camAction = UIAlertAction(title: "Camera", style: .default) { _ in
                     let documentCameraViewController = VNDocumentCameraViewController()
                     documentCameraViewController.delegate = self
                     self.present(documentCameraViewController, animated: true)
                 }
-                
                 let galAction = UIAlertAction(title: "Gallery", style: .default) { _ in
                     self.galleryViewController()
                 }
-                
                 let manAction = UIAlertAction(title: "Manual", style: .default) { _ in
                     self.performSegue(withIdentifier: "Manual", sender: sender)
                 }
-                
                 let canAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                 // Add actions to the popover
                 entryModePopover.addAction(camAction)
                 entryModePopover.addAction(galAction)
                 entryModePopover.addAction(manAction)
                 entryModePopover.addAction(canAction)
+                
                 // Setup the location for popover
-
-//                if let popoverController = entryModePopover.popoverPresentationController {
-//                    popoverController.barButtonItem = sender
-//                }
+                if let popoverController = entryModePopover.popoverPresentationController {
+                    popoverController.barButtonItem = sender
+                }
                 present(entryModePopover, animated: true, completion: nil)
             } else {
                 // OLD receipt so...
-                print("OLD receipt")
-                // TODO Stuff
+                print("OLD receipt, skipping entry modes")
+                
+                // Update all the stuff in this receipt
+                globalReceipts.receipts[currReceipt].name = name
+                globalReceipts.receipts[currReceipt].date = date
+                globalReceipts.receipts[currReceipt].persons = self.persons
+                
                 self.performSegue(withIdentifier: "Manual", sender: sender)
             }
         }

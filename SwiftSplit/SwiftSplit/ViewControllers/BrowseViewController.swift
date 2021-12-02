@@ -37,6 +37,8 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
         filteredReceipts = globalReceipts.receipts
         print("Browse WillAppear globalReceipts size: " + String(globalReceipts.receipts.count))
         print("BrowseVC WillAppear currReceipt: \(currReceipt)")
+        
+        receiptCollection.reloadData()
     }
     
     override func viewDidLoad() {
