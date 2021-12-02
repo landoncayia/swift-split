@@ -42,17 +42,13 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     // Wasnt sure how I want to deal with changing currReceipt back to -1
     // I might have to make a function in TabViewController.
     
-    // TODO: Bradley needs to make it so that you can tap away when editing a price value and it will close the keyboard
-    // TapGestureRec maybe needed
-    
-    // TODO: connect
+    // TODO: Not working
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         print("bg tapped")
-            view.endEditing(true)
+        view.endEditing(true)
     }
     
-    // TODO: Connect
-    @IBAction func AddItemButton(_ sender: UIButton) {
+    @IBAction func AddItemButton(_ sender: UIBarButtonItem) {
         let newItem = ReceiptItem(name: "", price: 0.0, taxed: false)
         receipt.addItem(newItem)
         
@@ -140,14 +136,12 @@ extension ReceiptViewController {
             print("\(item.name) taxed set to false")
         }
     }
-    
-    // TODO: Connect
+
     @IBAction func itemNameDidEdit(_ sender: UITextField) {
         let item = self.receipt.items[sender.tag]
         item.name = sender.text!
     }
     
-    // TODO: Connect
     @IBAction func itemPriceDidEdit(_ sender: UITextField) {
         let item = self.receipt.items[sender.tag]
         item.price = Double(sender.text!) ?? 0.0 // Keyboard is set to decimal anyway but just in case

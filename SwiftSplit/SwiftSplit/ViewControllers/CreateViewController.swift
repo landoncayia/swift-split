@@ -66,8 +66,8 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
 //
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         print("bg tapped")
-            view.endEditing(true)
-        }
+        view.endEditing(true)
+    }
 
     
     func deletePerson(_ index: Int) {

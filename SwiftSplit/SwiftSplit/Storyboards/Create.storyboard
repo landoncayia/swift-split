@@ -222,7 +222,7 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <connections>
-                                                                <action selector="itemNameChange:" destination="Mek-UJ-iqU" eventType="valueChanged" id="k00-M8-N8D"/>
+                                                                <action selector="itemNameDidEdit:" destination="Mek-UJ-iqU" eventType="editingDidEnd" id="TeX-nY-lXE"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -242,6 +242,7 @@
                                                             <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
                                                             <connections>
                                                                 <action selector="itemPriceChanged:" destination="Mek-UJ-iqU" eventType="valueChanged" id="5UK-ol-lbU"/>
+                                                                <action selector="itemPriceDidEdit:" destination="Mek-UJ-iqU" eventType="editingDidEnd" id="ztp-qP-N8z"/>
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVS-dq-DSy">
@@ -288,7 +289,11 @@
                                     <action selector="nextButton:" destination="Mek-UJ-iqU" id="cVc-pK-wT2"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="add" id="w8B-rY-ofa"/>
+                            <barButtonItem systemItem="add" id="w8B-rY-ofa">
+                                <connections>
+                                    <action selector="AddItemButton:" destination="Mek-UJ-iqU" id="glG-OQ-1h1"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -296,6 +301,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u3q-UG-3yB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Mi3-vn-cQT">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="Mek-UJ-iqU" id="pWP-Ud-4wL"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="997" y="473"/>
         </scene>
@@ -304,10 +314,18 @@
             <objects>
                 <pageViewController storyboardIdentifier="assignUsersVC" autoresizesArchivedViewToFullSize="NO" title="Assign Items" interfaceStyle="light" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="d7o-th-dK3" customClass="AssignUsersViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Assign Items" id="bvF-iE-MdO">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="eGD-kN-xqo"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="eGD-kN-xqo">
+                            <connections>
+                                <action selector="nextButton:" destination="dx5-Mo-lmj" id="7lr-dA-37j"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="4R5-Rq-Ntw" kind="show" identifier="toReceiptTotals" id="BMd-TD-EIP"/>
+                    </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UhM-Jn-pBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="dx5-Mo-lmj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2013" y="473"/>
         </scene>
@@ -330,14 +348,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" id="s1o-ie-UfE" customClass="UserItemCell" customModule="SwiftSplit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="41"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="41.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s1o-ie-UfE" id="GZY-9h-0yw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8B-kb-454">
-                                                    <rect key="frame" x="20" y="10" width="374" height="21"/>
+                                                    <rect key="frame" x="20" y="10" width="374" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -387,7 +405,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nA4-T5-wa3">
-                                <rect key="frame" x="20" y="64" width="374" height="697"/>
+                                <rect key="frame" x="20" y="160" width="374" height="601"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jc2-Dm-DRm">

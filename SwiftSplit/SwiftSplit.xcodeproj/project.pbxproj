@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B20AF222758732F000072AF /* ReceiptTotalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B20AF212758732F000072AF /* ReceiptTotalsViewController.swift */; };
 		A72362FE275840AC00E9A5CF /* UserItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72362FD275840AC00E9A5CF /* UserItemCell.swift */; };
 		A72E45C32755193400B473D4 /* AddEditWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E45C02755193400B473D4 /* AddEditWordViewController.swift */; };
 		A72E45C42755193400B473D4 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E45C12755193400B473D4 /* WordCell.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B20AF212758732F000072AF /* ReceiptTotalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTotalsViewController.swift; sourceTree = "<group>"; };
 		A72362FD275840AC00E9A5CF /* UserItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCell.swift; sourceTree = "<group>"; };
 		A72E45C02755193400B473D4 /* AddEditWordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditWordViewController.swift; sourceTree = "<group>"; };
 		A72E45C12755193400B473D4 /* WordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				A7EC71E427347F220097A27C /* ReceiptOCR.swift */,
 				A7EC71DC27347C2A0097A27C /* ReceiptViewController.swift */,
 				C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */,
+				8B20AF212758732F000072AF /* ReceiptTotalsViewController.swift */,
 			);
 			path = Receipts;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				A798A7722741B0D400FA1147 /* SettingsViewController.swift in Sources */,
 				A73069C3271E442C008E48AA /* ReceiptStore.swift in Sources */,
 				A732F07E2721B7CB007860B8 /* BudgetViewController.swift in Sources */,
+				8B20AF222758732F000072AF /* ReceiptTotalsViewController.swift in Sources */,
 				A7EC71E327347D670097A27C /* CreateReceiptCell.swift in Sources */,
 				A77DFD69275808980098A168 /* AssignUsersViewController.swift in Sources */,
 				A72E45C32755193400B473D4 /* AddEditWordViewController.swift in Sources */,

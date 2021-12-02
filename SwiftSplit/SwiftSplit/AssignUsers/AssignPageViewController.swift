@@ -9,11 +9,11 @@ import UIKit
 
 class AssignPageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    // --- VARIABLES ---
+    //MARK: --- VARIABLES ---
     var receipt: Receipt!
     var idx: Int = -1
     
-    // --- WIDGETS ON PAGE ---
+    //MARK: --- WIDGETS ON PAGE ---
     @IBOutlet var personName: UILabel!
     @IBOutlet var assignTable: UITableView! {
         didSet {
@@ -23,7 +23,7 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    // --- SETUP VIEW ---
+    //MARK: --- SETUP VIEW ---
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +33,7 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         print("Number of items that should appear in table:", receipt.items.count)
     }
     
-    // --- TABLE WIDGET ON THIS PAGE ---
+    //MARK: --- TABLE WIDGET ON THIS PAGE ---
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return receipt.items.count
     }
@@ -43,6 +43,23 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         cell.itemName.text = receipt.items[indexPath.row].name
         cell.itemName.tag = indexPath.row
         return cell
+    }
+    //MARK: --- Next Button ---
+    //TODO: Not Sure why this doesn't work
+    //TODO: Some sort of check to make sure the persons were assigned items
+    @IBAction func nextButton(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "toReceiptTotals", sender: sender)
+    }
+    
+    //SEGUE TO ASSIGN USERS
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "toReceiptTotal"?:
+            let receiptTotalViewController = segue.destination as! ReceiptTotalsViewController
+            receiptTotalViewController.receipt = receipt
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+        }
     }
 }
     
