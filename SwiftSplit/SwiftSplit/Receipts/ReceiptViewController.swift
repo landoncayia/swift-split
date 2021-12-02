@@ -19,6 +19,10 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
         super.init(coder: aDecoder)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -136,6 +140,9 @@ extension ReceiptViewController {
         
         cell.itemPrice.tag = indexPath.row
         cell.itemPrice.addTarget(self, action: #selector(self.itemPriceDidEdit(_:)), for: .editingDidEnd)
+        // Used for price validation
+        cell.itemPrice.addTarget(self, action: #selector(self.currencyFieldChanged(_:)), for: .editingChanged)
+        cell.itemPrice.locale = Locale(identifier: "en_US")
         
         return cell
     }
@@ -160,8 +167,17 @@ extension ReceiptViewController {
     
     @IBAction func itemPriceDidEdit(_ sender: UITextField) {
         let item = self.receipt.items[sender.tag]
-        item.price = Double(sender.text!) ?? 0.0 // Keyboard is set to decimal anyway but just in case
-        sender.text = String(item.price)
+//        item.price = Double(sender.text!) ?? 0.0 // Keyboard is set to decimal anyway but just in case
+//        sender.text = String(item.price)
+    }
+    
+    @objc func currencyFieldChanged(_ sender: CurrencyField) {
+        // TODO: When deleting receipt items and/or exiting view, the prices all get divided by 10. It has something to do with ".decimal" or ".currency" in "CurrencyField"
+        let item = self.receipt.items[sender.tag]
+        item.price = (sender.decimal as NSDecimalNumber).doubleValue
+        print("currencyField:", sender.text!)
+        print("decimal:", sender.decimal)
+        print("doubleValue:", (sender.decimal as NSDecimalNumber).doubleValue, terminator: "\n\n")
     }
     
 }
