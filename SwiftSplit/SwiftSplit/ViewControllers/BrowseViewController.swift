@@ -98,7 +98,9 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         print("Browse receipt selected with tag \(receipt.tag)")
 
-        self.tabBarController?.selectedIndex = 1
+        // This is where we open the receipt
+        performSegue(withIdentifier: "openReceipt", sender: self)
+//        self.tabBarController?.selectedIndex = 1
     }
     
     

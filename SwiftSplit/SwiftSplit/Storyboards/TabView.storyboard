@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Tab View Controller-->
         <scene sceneID="Hqe-aJ-XlL">
             <objects>
-                <tabBarController storyboardIdentifier="TabViewController" id="opB-cg-HSB" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabViewController" id="opB-cg-HSB" customClass="TabViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="qLp-Ed-Iem">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -39,7 +39,7 @@
         <!--Browse-->
         <scene sceneID="0Wb-ph-BY8">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="BrowseSegue" storyboardName="Browse (Main)" referencedIdentifier="BrowseViewController" id="9Bd-Jb-vGf" userLabel="Browse" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="BrowseSegue" storyboardName="Browse (Main)" referencedIdentifier="BrowseNavViewController" id="9Bd-Jb-vGf" userLabel="Browse" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" enabled="NO" title="Browse" image="folder" catalog="system" id="uVB-r0-Vb2"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Yb-o3-ibW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
