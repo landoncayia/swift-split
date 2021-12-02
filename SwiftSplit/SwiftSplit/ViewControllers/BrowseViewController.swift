@@ -15,17 +15,15 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
             receiptCollection.dataSource = self
             //receiptCollection.rowHeight = UITableView.automaticDimension
             //receiptCollection.estimatedRowHeight = 80
-            
-            
-            
-            //receiptCollection.addConstraint(<#T##constraint: NSLayoutConstraint##NSLayoutConstraint#>)
-            
+                        
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.endEditing(true)
+        
+        globalReceipts.setTags()
         
         // Clears cell selection when you come from another view
         if let indexPath = receiptCollection?.indexPathsForSelectedItems{
@@ -75,28 +73,24 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
         item.nameLabel.text = receipt.name
         item.costLabel.text = "$\(cost)"
             
-
         let dateFormat = DateFormatter()
         dateFormat.locale = Locale(identifier: "en_US")
         dateFormat.dateFormat = "MM/dd/yyyy"
         item.dateLabel.text = dateFormat.string(from: receipt.date)
             
         item.clipsToBounds = true
-        
         item.layer.cornerRadius = 5
         
         return item
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //filteredReceipts = globalReceipts.receipts
-        let innd = indexPath.row
         let receipt = filteredReceipts[indexPath.row]
         currReceipt = receipt.tag
         
         print("Browse receipt selected with tag \(receipt.tag)")
 
-        // This is where we open the receipt
+        // Open the existing receipt
         performSegue(withIdentifier: "openReceipt", sender: self)
 //        self.tabBarController?.selectedIndex = 1
     }
@@ -158,11 +152,15 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // Code from - https://guides.codepath.com/ios/Search-Bar-Guide
-        filteredReceipts = searchText.isEmpty ? globalReceipts.receipts : globalReceipts.receipts.filter { (receipt: Receipt) ->
-            Bool in
-            return receipt.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        
+        if searchText.isEmpty {
+            filteredReceipts = globalReceipts.receipts
+        } else {
+            filteredReceipts = globalReceipts.receipts.filter {(receipt: Receipt) -> Bool in
+                return receipt.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+            }
         }
+        
         receiptCollection.reloadData()
     }
     

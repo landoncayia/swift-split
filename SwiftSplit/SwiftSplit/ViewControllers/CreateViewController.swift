@@ -42,7 +42,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func personCellEditingEnd(_ sender: UITextField) {
         print("person cell editing end")
-        print(sender.tag, " -> ", sender.text)
+        print("\(sender.tag) -> , \(sender.text ?? "")")
         print(persons)
         persons[sender.tag].name = sender.text ?? ""
         print(persons)
