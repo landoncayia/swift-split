@@ -290,6 +290,7 @@
                         <connections>
                             <outlet property="dataSource" destination="Mek-UJ-iqU" id="suR-Bc-Ydx"/>
                             <outlet property="delegate" destination="Mek-UJ-iqU" id="HoZ-1h-ESu"/>
+                            <outletCollection property="gestureRecognizers" destination="Mi3-vn-cQT" appends="YES" id="L6y-FH-4rq"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Receipt Items" id="iMF-qE-uby">
@@ -358,14 +359,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" id="s1o-ie-UfE" customClass="UserItemCell" customModule="SwiftSplit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="41.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s1o-ie-UfE" id="GZY-9h-0yw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8B-kb-454">
-                                                    <rect key="frame" x="20" y="10" width="374" height="21.5"/>
+                                                    <rect key="frame" x="20" y="10" width="374" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

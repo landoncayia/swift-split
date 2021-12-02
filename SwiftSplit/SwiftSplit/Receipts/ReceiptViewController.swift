@@ -51,7 +51,6 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
         print(receipt.items)
     }
     
-    // TODO: Not working
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         print("bg tapped")
         view.endEditing(true)
