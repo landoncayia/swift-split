@@ -9,9 +9,11 @@ import UIKit
 
 class AssignUsersViewController: UIPageViewController, UIPageViewControllerDelegate {
     
+    // The subviews of this page view controller
     // UIViewController <==> AssignPageViewController
     var views: [UIViewController] = []
     
+    // The page control
     var pageControl: UIPageControl? {
         for view in view.subviews {
             if view is UIPageControl {
@@ -21,20 +23,25 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
         return nil
     }
     
+    // The receipt
+    var receipt: Receipt!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.systemBackground
         
-        let assignVC = self.storyboard?.instantiateViewController(withIdentifier: "assignPageVC") as! AssignPageViewController
-        views.append(assignVC)
+        // Setup a view for each person
+        for idx in 0...receipt.persons.count-1 {
+            print("Creating a subview for", receipt.persons[idx].name)
+            
+            let newView = self.storyboard?.instantiateViewController(withIdentifier: "assignPageVC") as! AssignPageViewController
+            newView.receipt = receipt
+            newView.idx = idx
+            views.append(newView)
+        }
         
-        let assignVC2 = self.storyboard?.instantiateViewController(withIdentifier: "assignPageVC") as! AssignPageViewController
-        views.append(assignVC2)
-        
-        print("viewDidLoad")
-        
+        // Prepare the first view
         if let firstViewController = views.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
             print("setViewControllers")
@@ -42,29 +49,12 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
     }
     
     override func viewDidLayoutSubviews() {
+        // Customize the page control (dots for what page user is on)
         if let pc = pageControl {
             pc.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             pc.pageIndicatorTintColor = UIColor.lightGray
             pc.currentPageIndicatorTintColor = UIColor(named: "AccentColor")
         }
-    }
-    
-    //    override func viewDidLoad() {
-    //        super.viewDidLoad()
-    //        dataSource = self;
-    //        self.setViewControllers([getViewControllerAtIndex(index: 0)] as [UIViewController], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: nil)
-    //    }
-    //
-    //    func getViewControllerAtIndex(index: Int) -> AssignPageViewController
-    //    {
-    //        // Create a new view controller and pass suitable data.
-    //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "assignPageVC") as! AssignPageViewController
-    //        return vc
-    //    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // create a view for each person
-        
     }
     
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A72362FE275840AC00E9A5CF /* UserItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72362FD275840AC00E9A5CF /* UserItemCell.swift */; };
 		A72E45C32755193400B473D4 /* AddEditWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E45C02755193400B473D4 /* AddEditWordViewController.swift */; };
 		A72E45C42755193400B473D4 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E45C12755193400B473D4 /* WordCell.swift */; };
 		A72E45C52755193400B473D4 /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E45C22755193400B473D4 /* WordViewController.swift */; };
@@ -42,7 +43,6 @@
 		C768A096271872A2009A729C /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A095271872A2009A729C /* Create.storyboard */; };
 		C768A0982718730B009A729C /* Budget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A0972718730B009A729C /* Budget.storyboard */; };
 		C768A09A27187318009A729C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A09927187318009A729C /* Settings.storyboard */; };
-		C7FB67FD2747035500AA6E8B /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FB67FC2747035500AA6E8B /* WordViewController.swift */; };
 		D11BEA9A271A456D00747542 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11BEA99271A456D00747542 /* BrowseViewController.swift */; };
 		D1A58F002719E44C000B1744 /* TabView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A58EFF2719E44C000B1744 /* TabView.storyboard */; };
 /* End PBXBuildFile section */
@@ -65,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A72362FD275840AC00E9A5CF /* UserItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCell.swift; sourceTree = "<group>"; };
 		A72E45C02755193400B473D4 /* AddEditWordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditWordViewController.swift; sourceTree = "<group>"; };
 		A72E45C12755193400B473D4 /* WordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
 		A72E45C22755193400B473D4 /* WordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 		C768A095271872A2009A729C /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		C768A0972718730B009A729C /* Budget.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Budget.storyboard; sourceTree = "<group>"; };
 		C768A09927187318009A729C /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		C7FB67FC2747035500AA6E8B /* WordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
 		D11BEA99271A456D00747542 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		D1A58EFF2719E44C000B1744 /* TabView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +164,7 @@
 			children = (
 				A77DFD68275808980098A168 /* AssignUsersViewController.swift */,
 				A77DFD6A27580C210098A168 /* AssignPageViewController.swift */,
+				A72362FD275840AC00E9A5CF /* UserItemCell.swift */,
 			);
 			path = AssignUsers;
 			sourceTree = "<group>";
@@ -407,6 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A72362FE275840AC00E9A5CF /* UserItemCell.swift in Sources */,
 				A73069C1271E3D03008E48AA /* Person.swift in Sources */,
 				A7F16CAB2715D6DC00B7E8C3 /* TabViewController.swift in Sources */,
 				A77DFD6B27580C210098A168 /* AssignPageViewController.swift in Sources */,

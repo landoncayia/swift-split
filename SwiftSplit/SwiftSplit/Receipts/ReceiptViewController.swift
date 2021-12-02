@@ -11,6 +11,9 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     var receipt: Receipt!
     static let tableCellIdentifier = "receiptContentCell"
     
+//    var assignUsersViewController: AssignUsersViewController?
+//    static let assignUsersVC = "assignUsersVC"
+    
     required init?(coder aDecoder: NSCoder) {
         print("ReceiptViewController loaded")
         super.init(coder: aDecoder)
@@ -25,6 +28,9 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
             print(item.name)
         }
         tableView.reloadData()
+        
+//        let vcID = ReceiptViewController.assignUsersVC
+//        assignUsersViewController = storyboard?.instantiateViewController(withIdentifier: vcID) as? AssignUsersViewController
         
     }
     
@@ -69,8 +75,29 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
 //            print("Popping back to CreateNavViewController")
 //            navigationController?.popToRootViewController(animated: true)
         }
+//        
+//        if let assignUsersViewController = self.assignUsersViewController {
+//            assignUsersViewController.receipt = self.receipt
+//            self.performSegue(withIdentifier: "goToAssignItems", sender: sender)
+//        } else {
+//            print("receiptViewController is not set")
+//        }
         self.performSegue(withIdentifier: "goToAssignItems", sender: sender)
+        
     }
+    
+    // SEGUE TO ASSIGN USERS
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "goToAssignItems"?:
+            let assignUsersViewController = segue.destination as! AssignUsersViewController
+            assignUsersViewController.receipt = receipt
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+        }
+    }
+    
+    
 }
 // MARK: UITableViewDataSource
 extension ReceiptViewController {
