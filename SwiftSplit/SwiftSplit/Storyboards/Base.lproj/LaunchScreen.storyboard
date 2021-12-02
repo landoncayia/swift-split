@@ -17,16 +17,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Swift-Split-Recreated" translatesAutoresizingMaskIntoConstraints="NO" id="Wo8-HD-Q42" propertyAccessControl="all">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwiftSplitLogos" translatesAutoresizingMaskIntoConstraints="NO" id="3ft-zQ-slK">
                                 <rect key="frame" x="41.5" y="292" width="331" height="312"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Wo8-HD-Q42" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="HO3-rg-7kl"/>
-                            <constraint firstItem="Wo8-HD-Q42" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.8" id="Vis-l7-aDo"/>
-                            <constraint firstItem="Wo8-HD-Q42" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="izm-kG-mIh"/>
+                            <constraint firstItem="3ft-zQ-slK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="jgA-Gv-Bmu"/>
+                            <constraint firstItem="3ft-zQ-slK" firstAttribute="width" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.8" id="kPV-Be-7d0"/>
+                            <constraint firstItem="3ft-zQ-slK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="mdl-Px-8I1"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,7 +36,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Swift-Split-Recreated" width="504" height="312"/>
+        <image name="SwiftSplitLogos" width="504" height="312"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

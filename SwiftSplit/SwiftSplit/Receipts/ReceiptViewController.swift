@@ -78,18 +78,18 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
-        if currReceipt != -1 {
+//        if currReceipt != -1 {
 //            globalReceipts.receipts[currReceipt] = self.receipt
 //            currReceipt = -1
 //            print("Receipt saved")
 //            print("Popping back to CreateNavViewController")
 //            navigationController?.popToRootViewController(animated: true)
-        } else {
+//        } else {
 //            globalReceipts.receipts.append(self.receipt)
 //            print("Receipt appended")
 //            print("Popping back to CreateNavViewController")
 //            navigationController?.popToRootViewController(animated: true)
-        }
+//        }
 //        
 //        if let assignUsersViewController = self.assignUsersViewController {
 //            assignUsersViewController.receipt = self.receipt
@@ -97,8 +97,15 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
 //        } else {
 //            print("receiptViewController is not set")
 //        }
-        self.performSegue(withIdentifier: "goToAssignItems", sender: sender)
-        
+        if receipt.items.isEmpty {
+            let alert = UIAlertController(title: "Required Data Missing", message: "Receipt must have one item", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        } else {
+            self.performSegue(withIdentifier: "goToAssignItems", sender: sender)
+        }
     }
     
     // SEGUE TO ASSIGN USERS
@@ -112,6 +119,28 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    func checkItems() -> Bool {
+        if self.receipt.items.isEmpty {
+            return false
+        }
+        
+        for item in self.receipt.items {
+            if item.name == "" {
+                // item name is empty, delete item
+                if let index = self.receipt.items.firstIndex(of: item) {
+                    self.receipt.items.remove(at: index)
+                    self.tableView.reloadData()
+                }
+            }
+            // TODO: maybe make a requirement for price to be non zero
+        }
+        
+        if self.receipt.items.isEmpty {
+            return false
+        } else {
+            return true
+        }
+    }
     
 }
 // MARK: UITableViewDataSource

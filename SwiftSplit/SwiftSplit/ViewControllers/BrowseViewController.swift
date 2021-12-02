@@ -15,13 +15,15 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
             receiptCollection.dataSource = self
             //receiptCollection.rowHeight = UITableView.automaticDimension
             //receiptCollection.estimatedRowHeight = 80
-            
+                        
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.endEditing(true)
+        
+        globalReceipts.setTags()
         
         // Clears cell selection when you come from another view
         if let indexPath = receiptCollection?.indexPathsForSelectedItems{
@@ -37,6 +39,8 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
         filteredReceipts = globalReceipts.receipts
         print("Browse WillAppear globalReceipts size: " + String(globalReceipts.receipts.count))
         print("BrowseVC WillAppear currReceipt: \(currReceipt)")
+        
+        receiptCollection.reloadData()
     }
     
     override func viewDidLoad() {
@@ -69,23 +73,13 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
         item.nameLabel.text = receipt.name
         item.costLabel.text = "$\(cost)"
             
-
         let dateFormat = DateFormatter()
         dateFormat.locale = Locale(identifier: "en_US")
-            
-            
-        let date = Date()
         dateFormat.dateFormat = "MM/dd/yyyy"
-        let today = dateFormat.string(from: date)
-        
-        if today == dateFormat.string(from: receipt.date){
-            dateFormat.dateFormat = "hh:mm a"
-            item.dateLabel.text = "Today @ \(dateFormat.string(from: date))"
-        } else {
-            item.dateLabel.text = dateFormat.string(from: receipt.date)
-        }
+        item.dateLabel.text = dateFormat.string(from: receipt.date)
             
         item.clipsToBounds = true
+        item.layer.cornerRadius = 5
         
         return item
     }
@@ -96,7 +90,9 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         print("Browse receipt selected with tag \(receipt.tag)")
 
-        self.tabBarController?.selectedIndex = 1
+        // Open the existing receipt
+        performSegue(withIdentifier: "openReceipt", sender: self)
+//        self.tabBarController?.selectedIndex = 1
     }
     
     
@@ -156,11 +152,15 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // Code from - https://guides.codepath.com/ios/Search-Bar-Guide
-        filteredReceipts = searchText.isEmpty ? globalReceipts.receipts : globalReceipts.receipts.filter { (receipt: Receipt) ->
-            Bool in
-            return receipt.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        
+        if searchText.isEmpty {
+            filteredReceipts = globalReceipts.receipts
+        } else {
+            filteredReceipts = globalReceipts.receipts.filter {(receipt: Receipt) -> Bool in
+                return receipt.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+            }
         }
+        
         receiptCollection.reloadData()
     }
     

@@ -44,12 +44,6 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         cell.itemName.tag = indexPath.row
         return cell
     }
-    //MARK: --- Next Button ---
-    //TODO: Not Sure why this doesn't work
-    //TODO: Some sort of check to make sure the persons were assigned items
-    @IBAction func nextButton(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "toReceiptTotals", sender: sender)
-    }
     
     //SEGUE TO ASSIGN USERS
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

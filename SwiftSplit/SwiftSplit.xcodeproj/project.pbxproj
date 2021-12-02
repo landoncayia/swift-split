@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B20AF222758732F000072AF /* ReceiptTotalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B20AF212758732F000072AF /* ReceiptTotalsViewController.swift */; };
+		8B97B812275918F500F8D56F /* UserTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97B811275918F500F8D56F /* UserTotalCell.swift */; };
 		A72362FE275840AC00E9A5CF /* UserItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72362FD275840AC00E9A5CF /* UserItemCell.swift */; };
 		A72E45C32755193400B473D4 /* AddEditWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E45C02755193400B473D4 /* AddEditWordViewController.swift */; };
 		A72E45C42755193400B473D4 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E45C12755193400B473D4 /* WordCell.swift */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		8B20AF212758732F000072AF /* ReceiptTotalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTotalsViewController.swift; sourceTree = "<group>"; };
+		8B97B811275918F500F8D56F /* UserTotalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserTotalCell.swift; path = SwiftSplit/Receipts/UserTotalCell.swift; sourceTree = SOURCE_ROOT; };
 		A72362FD275840AC00E9A5CF /* UserItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCell.swift; sourceTree = "<group>"; };
 		A72E45C02755193400B473D4 /* AddEditWordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditWordViewController.swift; sourceTree = "<group>"; };
 		A72E45C12755193400B473D4 /* WordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				A7EC71DC27347C2A0097A27C /* ReceiptViewController.swift */,
 				C75D6EC0272DD1E00067BF31 /* RecognizedTextDataSource.swift */,
 				8B20AF212758732F000072AF /* ReceiptTotalsViewController.swift */,
+				8B97B811275918F500F8D56F /* UserTotalCell.swift */,
 			);
 			path = Receipts;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				A7F16CA92715D6DC00B7E8C3 /* SceneDelegate.swift in Sources */,
 				C75D6EC1272DD1E00067BF31 /* RecognizedTextDataSource.swift in Sources */,
 				D11BEA9A271A456D00747542 /* BrowseViewController.swift in Sources */,
+				8B97B812275918F500F8D56F /* UserTotalCell.swift in Sources */,
 				A72E45C42755193400B473D4 /* WordCell.swift in Sources */,
 				A732F07C2721B313007860B8 /* BudgetCell.swift in Sources */,
 				A7EC71E527347F220097A27C /* ReceiptOCR.swift in Sources */,
