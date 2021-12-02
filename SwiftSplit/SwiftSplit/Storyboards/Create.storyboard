@@ -316,7 +316,7 @@
                     <navigationItem key="navigationItem" title="Assign Items" id="bvF-iE-MdO">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="eGD-kN-xqo">
                             <connections>
-                                <action selector="nextButton:" destination="dx5-Mo-lmj" id="7lr-dA-37j"/>
+                                <action selector="nextButton:" destination="d7o-th-dK3" id="FED-iA-xcV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -325,7 +325,6 @@
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UhM-Jn-pBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="dx5-Mo-lmj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2013" y="473"/>
         </scene>
