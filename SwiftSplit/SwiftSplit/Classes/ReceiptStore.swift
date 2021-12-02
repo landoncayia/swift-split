@@ -100,17 +100,16 @@ public class ReceiptStore {
             let person_b = Person("Jony Ive")
             let person_c = Person("Tim Cook")
             
-            let receipt = Receipt(name: "Shaws", date: d!, persons: [person_a, person_b, person_c])
+            let receipt = Receipt(name: "Apple", date: d!, persons: [person_a, person_b, person_c])
             
-            receipt.addItem(ReceiptItem(name: "Batteries", price: 5.00, taxed: true))
+            receipt.addItem(ReceiptItem(name: "MacBook", price: 999.00, taxed: true))
             receipt.items[0].addPerson(person_a)
             receipt.items[0].addPerson(person_b)
             
-            receipt.addItem(ReceiptItem(name: "Lettuce", price: 4.00, taxed: false))
+            receipt.addItem(ReceiptItem(name: "USB-C Cable", price: 19.99, taxed: false))
             receipt.items[1].addPerson(person_a)
             receipt.items[1].addPerson(person_b)
             
-            receipt.addItem(ReceiptItem(name: "Onion", price: 0.99, taxed: false))
             //receipt.items[2].addPerson(person_c)
             
             // Assume 7% tax for a second

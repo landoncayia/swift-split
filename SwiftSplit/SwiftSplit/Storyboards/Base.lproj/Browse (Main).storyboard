@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Search for a receipt name" translatesAutoresizingMaskIntoConstraints="NO" id="fwO-8d-kyp">
-                                <rect key="frame" x="10" y="44" width="394" height="51"/>
+                                <rect key="frame" x="10" y="140" width="394" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
                                     <string>Title</string>
@@ -28,7 +28,7 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LNY-Mw-Rf8">
-                                <rect key="frame" x="20" y="95" width="374" height="718"/>
+                                <rect key="frame" x="20" y="191" width="374" height="622"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d69-6D-LYR">
                                     <size key="itemSize" width="310" height="128"/>
@@ -111,11 +111,12 @@
                             <outletCollection property="gestureRecognizers" destination="c2b-3y-BFv" appends="YES" id="Aem-t7-QLw"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Browse" image="folder.fill" catalog="system" id="CUp-jN-gih"/>
+                    <navigationItem key="navigationItem" title="Browse" id="MgL-vY-iun"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="receiptCollection" destination="LNY-Mw-Rf8" id="aeT-nt-ya0"/>
                         <outlet property="searchBar" destination="fwO-8d-kyp" id="J3T-r1-6f8"/>
+                        <segue destination="eTS-9W-CWD" kind="show" identifier="openReceipt" id="pot-fJ-9qu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jav-Cr-d24" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -124,6 +125,35 @@
                         <action selector="bkgdTapped:" destination="OzS-9F-vdw" id="h9w-sQ-sk1"/>
                     </connections>
                 </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2047.826086956522" y="-647.54464285714278"/>
+        </scene>
+        <!--receiptDetailsVC-->
+        <scene sceneID="LnU-EV-Ztq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Create" referencedIdentifier="receiptDetailsVC" id="eTS-9W-CWD" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="l5y-Ld-OGr"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bzm-74-h8a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2638" y="-648"/>
+        </scene>
+        <!--Browse-->
+        <scene sceneID="dMH-xO-yn8">
+            <objects>
+                <navigationController storyboardIdentifier="BrowseNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="laB-if-Yn4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Browse" image="folder.fill" catalog="system" id="CUp-jN-gih"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Psz-wl-qdU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OzS-9F-vdw" kind="relationship" relationship="rootViewController" id="akS-BV-Urx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JRG-ok-BoC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1137.68115942029" y="-647.54464285714278"/>
         </scene>
