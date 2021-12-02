@@ -94,16 +94,13 @@ public class ReceiptStore {
 //            let date = Date()
 //            let calendar = Calendar.current
 //            let startDate = calendar.startOfDay(for: date)
-            let receipt = Receipt(name: "Shaws", date: d!)
             
-            let person_a = Person("Bob")
-            receipt.addPerson(person_a)
+            // Create a default receipt for new users
+            let person_a = Person("Steve Jobs")
+            let person_b = Person("Jony Ive")
+            let person_c = Person("Tim Cook")
             
-            let person_b = Person("Dylan")
-            receipt.addPerson(person_b)
-            
-            let person_c = Person("Jake")
-            receipt.addPerson(person_c)
+            let receipt = Receipt(name: "Shaws", date: d!, persons: [person_a, person_b, person_c])
             
             receipt.addItem(ReceiptItem(name: "Batteries", price: 5.00, taxed: true))
             receipt.items[0].addPerson(person_a)
