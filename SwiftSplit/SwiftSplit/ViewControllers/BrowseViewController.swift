@@ -8,6 +8,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     @IBOutlet var searchBar: UISearchBar!
     
+    
     // Nested collection view
     @IBOutlet var receiptCollection: UICollectionView!{
         didSet {
@@ -50,7 +51,10 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
         searchBar.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = .done
         filteredReceipts = globalReceipts.receipts
-    
+
+        navigationItem.rightBarButtonItem = editButtonItem
+        //navigationItem.rightBarButtonItem?.primaryAction =
+        
         print("BrowseVC loaded")
         print("BrowseVC viewDidLoad currReceipt: \(currReceipt)")
     }
@@ -58,7 +62,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBAction func bkgdTapped(_ sender: UITapGestureRecognizer){
         view.endEditing(true)
     }
-    
+        
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredReceipts.count
     }
@@ -84,18 +88,58 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
         return item
     }
     
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let receipt = filteredReceipts[indexPath.row]
-        currReceipt = receipt.tag
-        
-        print("Browse receipt selected with tag \(receipt.tag)")
+        if !isEditing {
+            let receipt = filteredReceipts[indexPath.row]
+            currReceipt = receipt.tag
+            
+            print("Browse receipt selected with tag \(receipt.tag)")
 
-        // Open the existing receipt
-        performSegue(withIdentifier: "openReceipt", sender: self)
-//        self.tabBarController?.selectedIndex = 1
+            // Open the existing receipt
+            performSegue(withIdentifier: "openReceipt", sender: self)
+    //        self.tabBarController?.selectedIndex = 1
+        }
+        
+        
+        
+        
+        
     }
     
     
+    @IBAction func toggleEdit(_ sender: UIBarButtonItem){
+        if isEditing {
+            setEditing(false, animated: true)
+            self.receiptCollection.isEditing = false
+        } else {
+            setEditing(true, animated: true)
+            self.receiptCollection.isEditing = true
+        }
+    }
+    
+    
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+
+        
+//        for path in receiptCollection.indexPathsForVisibleItems {
+//            let item = receiptCollection.cellForItem(at: path) as! ReceiptCell
+//
+//
+//
+//
+//        }
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
     // Return num of rows in a section of the view
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -177,4 +221,8 @@ class ReceiptCell: UICollectionViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var costLabel: UILabel!
+    
+//    var isinEditingMode: Bool {
+//        return (superview as! UICollectionView).allowsMultipleSelection
+//    }
 }
