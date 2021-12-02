@@ -16,6 +16,10 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
             //receiptCollection.rowHeight = UITableView.automaticDimension
             //receiptCollection.estimatedRowHeight = 80
             
+            
+            
+            //receiptCollection.addConstraint(<#T##constraint: NSLayoutConstraint##NSLayoutConstraint#>)
+            
         }
     }
     
@@ -74,25 +78,19 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 
         let dateFormat = DateFormatter()
         dateFormat.locale = Locale(identifier: "en_US")
-            
-            
-        let date = Date()
         dateFormat.dateFormat = "MM/dd/yyyy"
-        let today = dateFormat.string(from: date)
-        
-        if today == dateFormat.string(from: receipt.date){
-            dateFormat.dateFormat = "hh:mm a"
-            item.dateLabel.text = "Today @ \(dateFormat.string(from: date))"
-        } else {
-            item.dateLabel.text = dateFormat.string(from: receipt.date)
-        }
+        item.dateLabel.text = dateFormat.string(from: receipt.date)
             
         item.clipsToBounds = true
+        
+        item.layer.cornerRadius = 5
         
         return item
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //filteredReceipts = globalReceipts.receipts
+        let innd = indexPath.row
         let receipt = filteredReceipts[indexPath.row]
         currReceipt = receipt.tag
         
