@@ -217,14 +217,23 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8av-hA-fBY">
-                                                            <rect key="frame" x="46" y="0.0" width="328" height="34.5"/>
+                                                        <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8av-hA-fBY">
+                                                            <rect key="frame" x="46" y="0.0" width="277" height="34.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <connections>
                                                                 <action selector="itemNameDidEdit:" destination="Mek-UJ-iqU" eventType="editingDidEnd" id="TeX-nY-lXE"/>
                                                             </connections>
                                                         </textField>
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tei-ZW-CVT" userLabel="Delete Btn">
+                                                            <rect key="frame" x="331" y="0.0" width="43" height="34.5"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system">
+                                                                <color key="baseForegroundColor" name="AccentColor"/>
+                                                            </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="itemCellDelete:" destination="Mek-UJ-iqU" eventType="touchUpInside" id="5Pz-rW-Wt3"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8Di-53-jki">
@@ -271,6 +280,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="deleteBtn" destination="Tei-ZW-CVT" id="eNv-MG-FJS"/>
                                     <outlet property="itemName" destination="8av-hA-fBY" id="CCQ-Ye-yWB"/>
                                     <outlet property="itemPrice" destination="x9K-S3-V1b" id="BIM-ce-0cg"/>
                                     <outlet property="taxSwitch" destination="LKI-SD-cjv" id="LPX-Jf-We9"/>

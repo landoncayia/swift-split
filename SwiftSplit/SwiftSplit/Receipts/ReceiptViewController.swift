@@ -42,10 +42,26 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     // Wasnt sure how I want to deal with changing currReceipt back to -1
     // I might have to make a function in TabViewController.
     
+    @IBAction func itemCellDelete(_ sender: UIButton) {
+        view.endEditing(true)
+        
+        print("delete tag -> ", sender.tag)
+        print(receipt.items)
+        self.deleteItem(sender.tag)
+        print(receipt.items)
+    }
+    
     // TODO: Not working
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         print("bg tapped")
         view.endEditing(true)
+    }
+    
+    func deleteItem(_ index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
+        self.receipt.items.remove(at: index)
+        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.reloadData()
     }
     
     @IBAction func AddItemButton(_ sender: UIBarButtonItem) {
@@ -111,6 +127,7 @@ extension ReceiptViewController {
         cell.itemPrice.text = "\(field.price)"
         cell.itemPrice.delegate = self
         cell.taxSwitch.isOn = field.taxed
+        cell.deleteBtn.tag = indexPath.row
         
         cell.taxSwitch.tag = indexPath.row
         cell.taxSwitch.addTarget(self, action: #selector(self.changeIsTaxed(_:)), for: .valueChanged)

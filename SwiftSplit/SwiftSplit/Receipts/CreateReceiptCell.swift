@@ -9,5 +9,6 @@ import UIKit
 class CreateReceiptCell: UITableViewCell {
     @IBOutlet var itemName: UITextField!
     @IBOutlet var itemPrice: UITextField!
-    @IBOutlet var taxSwitch: UISwitch! 
+    @IBOutlet var taxSwitch: UISwitch!
+    @IBOutlet var deleteBtn: UIButton!
 }

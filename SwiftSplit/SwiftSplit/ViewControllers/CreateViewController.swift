@@ -36,7 +36,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         cell.userName.tag = indexPath.row
         cell.userName.delegate = self
         
-        cell.deleteBtn.tag = indexPath.row
+        
         return cell
     }
     
