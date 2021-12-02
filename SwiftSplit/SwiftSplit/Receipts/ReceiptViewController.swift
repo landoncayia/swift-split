@@ -97,7 +97,7 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
 //        } else {
 //            print("receiptViewController is not set")
 //        }
-        if receipt.items.isEmpty {
+        if !checkItems() {
             let alert = UIAlertController(title: "Required Data Missing", message: "Receipt must have one item", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             

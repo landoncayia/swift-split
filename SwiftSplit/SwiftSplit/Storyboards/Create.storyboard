@@ -415,7 +415,7 @@
         <!--Receipt Totals-->
         <scene sceneID="ZdH-JO-4cB">
             <objects>
-                <viewController storyboardIdentifier="receiptTotalsVC" id="4R5-Rq-Ntw" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="receiptTotalsVC" id="4R5-Rq-Ntw" customClass="ReceiptTotalsViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hRx-TY-6qA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -424,7 +424,7 @@
                                 <rect key="frame" x="20" y="160" width="374" height="601"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jc2-Dm-DRm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jc2-Dm-DRm" customClass="UserTotalCell" customModule="SwiftSplit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="374" height="21"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jc2-Dm-DRm" id="3Bb-vG-eEH">
@@ -456,6 +456,10 @@
                                                 <constraint firstItem="92b-LO-9ZC" firstAttribute="leading" secondItem="3Bb-vG-eEH" secondAttribute="leading" id="jTd-1Z-ABg"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="name" destination="X9M-jZ-Etn" id="zAP-EO-PPZ"/>
+                                            <outlet property="total" destination="1Oi-BV-6KM" id="fD2-av-BVR"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -510,6 +514,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Receipt Totals" id="rQ4-jy-deL"/>
+                    <connections>
+                        <outlet property="tax" destination="te1-Xg-1rr" id="zgI-9V-UlI"/>
+                        <outlet property="total" destination="HMj-PX-ok1" id="SHJ-Co-2Jm"/>
+                        <outlet property="userTableView" destination="nA4-T5-wa3" id="C2t-Fq-jav"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ckx-XS-81A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
