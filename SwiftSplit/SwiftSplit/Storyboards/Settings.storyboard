@@ -13,7 +13,7 @@
         <!--Settings-->
         <scene sceneID="Qof-hG-tfw">
             <objects>
-                <navigationController storyboardIdentifier="SettingsNavViewController" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="2N4-1x-jr1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SettingsNavViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="2N4-1x-jr1" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Settings" image="gear.circle.fill" catalog="system" id="n2s-4h-HOX"/>
                     <toolbarItems/>
