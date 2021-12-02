@@ -26,6 +26,13 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
     // The receipt
     var receipt: Receipt!
     
+    //MARK: --- NEXT BUTTON ---
+    @IBAction func nextButton(_ sender: UIBarButtonItem) {
+        print("next button clicked")
+        performSegue(withIdentifier: "toReceiptTotals", sender: sender)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self

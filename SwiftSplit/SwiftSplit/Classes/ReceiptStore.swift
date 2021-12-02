@@ -94,26 +94,22 @@ public class ReceiptStore {
 //            let date = Date()
 //            let calendar = Calendar.current
 //            let startDate = calendar.startOfDay(for: date)
-            let receipt = Receipt(name: "Shaws", date: d!)
             
-            let person_a = Person("Bob")
-            receipt.addPerson(person_a)
+            // Create a default receipt for new users
+            let person_a = Person("Steve Jobs")
+            let person_b = Person("Jony Ive")
+            let person_c = Person("Tim Cook")
             
-            let person_b = Person("Dylan")
-            receipt.addPerson(person_b)
+            let receipt = Receipt(name: "Apple", date: d!, persons: [person_a, person_b, person_c])
             
-            let person_c = Person("Jake")
-            receipt.addPerson(person_c)
-            
-            receipt.addItem(ReceiptItem(name: "Batteries", price: 5.00, taxed: true))
+            receipt.addItem(ReceiptItem(name: "MacBook", price: 999.00, taxed: true))
             receipt.items[0].addPerson(person_a)
             receipt.items[0].addPerson(person_b)
             
-            receipt.addItem(ReceiptItem(name: "Lettuce", price: 4.00, taxed: false))
+            receipt.addItem(ReceiptItem(name: "USB-C Cable", price: 19.99, taxed: false))
             receipt.items[1].addPerson(person_a)
             receipt.items[1].addPerson(person_b)
             
-            receipt.addItem(ReceiptItem(name: "Onion", price: 0.99, taxed: false))
             //receipt.items[2].addPerson(person_c)
             
             // Assume 7% tax for a second

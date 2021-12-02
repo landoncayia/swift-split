@@ -16,9 +16,10 @@ class Receipt: Equatable, Codable {
     var persons = [Person]()
     var tag: Int = -1
     
-    init(name: String, date: Date) {
+    init(name: String, date: Date, persons: [Person]) {
         self.name = name
         self.date = date
+        self.persons = persons
     }
     
     // -- FOR THE TOTALS --

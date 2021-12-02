@@ -45,6 +45,7 @@
 		C768A096271872A2009A729C /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A095271872A2009A729C /* Create.storyboard */; };
 		C768A0982718730B009A729C /* Budget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A0972718730B009A729C /* Budget.storyboard */; };
 		C768A09A27187318009A729C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C768A09927187318009A729C /* Settings.storyboard */; };
+		C79E156127590FBB00964603 /* CurrencyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79E156027590FBB00964603 /* CurrencyField.swift */; };
 		D11BEA9A271A456D00747542 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11BEA99271A456D00747542 /* BrowseViewController.swift */; };
 		D1A58F002719E44C000B1744 /* TabView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A58EFF2719E44C000B1744 /* TabView.storyboard */; };
 /* End PBXBuildFile section */
@@ -111,6 +112,7 @@
 		C768A095271872A2009A729C /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		C768A0972718730B009A729C /* Budget.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Budget.storyboard; sourceTree = "<group>"; };
 		C768A09927187318009A729C /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		C79E156027590FBB00964603 /* CurrencyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyField.swift; sourceTree = "<group>"; };
 		D11BEA99271A456D00747542 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		D1A58EFF2719E44C000B1744 /* TabView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 				A73069C2271E442C008E48AA /* ReceiptStore.swift */,
 				A7DED1DB272DCBBD0088E728 /* ReceiptTotal.swift */,
 				C25C667F2746A68A00BA11A9 /* UserCell.swift */,
+				C79E156027590FBB00964603 /* CurrencyField.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				C25C66802746A68A00BA11A9 /* UserCell.swift in Sources */,
 				A7DED1DA272DC5D70088E728 /* BudgetItem.swift in Sources */,
 				A72E45C52755193400B473D4 /* WordViewController.swift in Sources */,
+				C79E156127590FBB00964603 /* CurrencyField.swift in Sources */,
 				A73069BD271E3C91008E48AA /* Receipt.swift in Sources */,
 				A798A76E2741B0D400FA1147 /* SettingsCell.swift in Sources */,
 				A798A765274187C000FA1147 /* ReceiptObservation.swift in Sources */,
