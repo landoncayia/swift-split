@@ -65,12 +65,6 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         self.receiptTable.setEditing(editing, animated: animated)
-        
-        if editing {
-            
-        }
-        
-        
     }
     
     
