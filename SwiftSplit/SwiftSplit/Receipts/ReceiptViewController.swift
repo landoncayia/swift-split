@@ -65,7 +65,7 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     func deleteItem(_ index: Int) {
         let indexPath = IndexPath(item: index, section: 0)
         self.receipt.items.remove(at: index)
-        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        self.tableView.deleteRows(at: [indexPath], with: .none)
         tableView.reloadData()
     }
     
@@ -76,6 +76,8 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
         if let index = receipt.items.lastIndex(of: newItem) {
             let indexPath = IndexPath(row: index, section: 0)
             tableView.insertRows(at: [indexPath], with: .none)
+            // Move to the new cell, focus on the name field
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
             let newRow = tableView.cellForRow(at: indexPath) as! CreateReceiptCell
             newRow.itemName.becomeFirstResponder()
         }

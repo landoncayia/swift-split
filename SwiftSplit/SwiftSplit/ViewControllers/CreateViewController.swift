@@ -89,6 +89,8 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         if let index = persons.lastIndex(of: newPerson) {
             let indexPath = IndexPath(row: index, section: 0)
             userTableView.insertRows(at: [indexPath], with: .none)
+            // Move to the new cell, focus on the name field
+            userTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
             let newRow = userTableView.cellForRow(at: indexPath) as! UserCell
             newRow.userName.becomeFirstResponder()
         }
