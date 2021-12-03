@@ -247,7 +247,9 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             if let results = request.results, !results.isEmpty {
                 if let requestResults = request.results as? [VNRecognizedTextObservation] {
                     DispatchQueue.main.async {
-                        self.receipt.items = receiptViewController.processRecognizedText(recognizedText: requestResults)
+                        // FINDME
+//                        self.receipt.items = receiptViewController.processRecognizedText(recognizedText: requestResults)
+                        receiptViewController.processRecognizedText(recognizedText: requestResults)
                     }
                 }
             }
