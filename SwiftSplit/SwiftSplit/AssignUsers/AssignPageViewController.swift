@@ -33,13 +33,18 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         print("Number of items that should appear in table:", receipt.items.count)
     }
     
-    // TODO: On the last page when pressing next the table view loads before this is executed
-    override func viewDidDisappear(_ animated: Bool) {
-        for i in 0...receipt.items.count-1 {
-            if assignTable.cellForRow(at: IndexPath(row: i, section: 0))!.isSelected {
-                let person = receipt.persons.firstIndex(of: Person(personName.text!))!
-                receipt.items[i].addPerson(receipt.persons[person])
-            }
+    func updateItemPersons(indexPath: IndexPath, selected: Bool) {
+        let item = receipt.items[indexPath.row]
+        let person = Person("")
+        var index = 0
+        if selected {
+            person.name = personName.text!
+            index = receipt.persons.firstIndex(of: person)!
+            item.addPerson(receipt.persons[index])
+        } else {
+            person.name = personName.text!
+            index = receipt.persons.firstIndex(of: person)!
+            item.removePerson(receipt.persons[index])
         }
     }
     
@@ -53,6 +58,18 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         cell.itemName.text = receipt.items[indexPath.row].name
         cell.itemName.tag = indexPath.row
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = assignTable.cellForRow(at: indexPath) as! UserItemCell
+        cell.setSelected(true, animated: true)
+        updateItemPersons(indexPath: indexPath, selected: true)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = assignTable.cellForRow(at: indexPath) as! UserItemCell
+        cell.setSelected(false, animated: false)
+        updateItemPersons(indexPath: indexPath, selected: false)
     }
     
 }
