@@ -28,7 +28,7 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LNY-Mw-Rf8">
-                                <rect key="frame" x="20" y="191" width="374" height="622"/>
+                                <rect key="frame" x="20" y="201" width="374" height="612"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d69-6D-LYR">
                                     <size key="itemSize" width="310" height="128"/>
@@ -100,7 +100,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fwO-8d-kyp" firstAttribute="leading" secondItem="f17-ON-UNQ" secondAttribute="leading" constant="10" id="5Ic-WO-ltf"/>
-                            <constraint firstItem="LNY-Mw-Rf8" firstAttribute="top" secondItem="fwO-8d-kyp" secondAttribute="bottom" id="LVU-0J-46i"/>
+                            <constraint firstItem="LNY-Mw-Rf8" firstAttribute="top" secondItem="fwO-8d-kyp" secondAttribute="bottom" constant="10" id="LVU-0J-46i"/>
                             <constraint firstItem="f17-ON-UNQ" firstAttribute="bottom" secondItem="LNY-Mw-Rf8" secondAttribute="bottom" id="dih-G5-p0A"/>
                             <constraint firstItem="LNY-Mw-Rf8" firstAttribute="leading" secondItem="f17-ON-UNQ" secondAttribute="leading" constant="20" id="kzT-Ss-A3L"/>
                             <constraint firstItem="f17-ON-UNQ" firstAttribute="trailing" secondItem="fwO-8d-kyp" secondAttribute="trailing" constant="10" id="rIB-0G-fS0"/>
@@ -111,7 +111,9 @@
                             <outletCollection property="gestureRecognizers" destination="c2b-3y-BFv" appends="YES" id="Aem-t7-QLw"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Browse" id="MgL-vY-iun"/>
+                    <navigationItem key="navigationItem" title="Browse" id="MgL-vY-iun">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Wyu-di-Jwa"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="receiptCollection" destination="LNY-Mw-Rf8" id="aeT-nt-ya0"/>

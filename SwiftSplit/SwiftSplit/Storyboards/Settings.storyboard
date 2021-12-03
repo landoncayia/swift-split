@@ -13,7 +13,8 @@
         <!--Settings-->
         <scene sceneID="Qof-hG-tfw">
             <objects>
-                <navigationController storyboardIdentifier="SettingsNavViewController" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="2N4-1x-jr1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SettingsNavViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="2N4-1x-jr1" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Settings" image="gear.circle.fill" catalog="system" id="n2s-4h-HOX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="KqT-oz-3P5">
@@ -33,10 +34,9 @@
         <scene sceneID="OSj-6X-VsP">
             <objects>
                 <tableViewController title="Settings View Controller" id="8SP-8X-z0u" customClass="SettingsViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Ojh-qS-Mys">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" id="Ojh-qS-Mys">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection id="S7B-tm-Tph">
                                 <cells>
@@ -271,7 +271,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="chE-sB-pQA"/>
-        <segue reference="Bax-W1-eMc"/>
+        <segue reference="qOO-sg-Hgt"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gear.circle.fill" catalog="system" width="128" height="121"/>
