@@ -226,11 +226,6 @@ extension String {
         // Convert to a double
         let double = (cleaned as NSString).doubleValue
         number = NSNumber(value: double)
-
-        // if first number is 0 or all numbers were deleted
-        guard number != 0 as NSNumber else {
-            return ""
-        }
         
         let returnVal = formatter.string(from: number)!
         

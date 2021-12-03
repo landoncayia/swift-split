@@ -95,6 +95,22 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     //    self.persons[row].name = text
     //}
     
+    // MARK: --- NEW BUTTON ---
+    
+    @IBAction func receiptDetailsNew(_ sender: UIBarButtonItem) {
+        view.endEditing(true)
+        
+        // Set the receipt to nil
+        
+        receipt = nil
+        persons.removeAll()
+        
+        // Reset all fields so that new stuff can be entered
+        
+        self.loadView()
+    }
+    
+    
     // MARK: --- NEXT BUTTON ---
     
     @IBAction func receiptDetailsNext(_ sender: UIBarButtonItem) {
@@ -123,7 +139,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             // Validation passed
             // Now save the receipt
             
-            if currReceipt == -1 {
+            if receipt == nil {
                 // NEW receipt so...
                 print("NEW receipt")
                 
@@ -134,7 +150,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                 globalReceipts.receipts.append(receipt)
                 
                 // Update currReceipt index
-                currReceipt = globalReceipts.receipts.count - 1
+                // currReceipt = globalReceipts.receipts.count - 1
                 
                 // Generate a popover to choose the entry mode
                 let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
@@ -168,9 +184,9 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                 print("OLD receipt, skipping entry modes")
                 
                 // Update all the stuff in this receipt
-                globalReceipts.receipts[currReceipt].name = name
-                globalReceipts.receipts[currReceipt].date = date
-                globalReceipts.receipts[currReceipt].persons = self.persons
+                receipt.name = name
+                receipt.date = date
+                receipt.persons = self.persons
                 
                 self.performSegue(withIdentifier: "Manual", sender: sender)
             }
@@ -183,12 +199,12 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("CreateVC WillAppear currReceipt: \(currReceipt)")
+//        print("CreateVC WillAppear receipt: \(receipt.name)")
         // Check if we are editing or creating a new receipt
-        if currReceipt != -1 {
+        if receipt != nil {
             // OLD receipt so...
             // Load it
-            self.receipt = globalReceipts.receipts[currReceipt]
+            //self.receipt = globalReceipts.receipts[currReceipt]
             // Load its values onto this page
             receiptName.text = self.receipt.name
             datePicker.date = self.receipt.date
@@ -208,7 +224,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         
         super.viewDidLoad()
         
-        print("CreateVC viewDidLoad currReceipt: \(currReceipt)")
+//        print("CreateVC viewDidLoad receipt: \(receipt.name)")
 //        if currReceipt != -1 {
 //            self.receipt = globalReceipts.receipts[currReceipt]
 //            self.receiptName.text = self.receipt.name
