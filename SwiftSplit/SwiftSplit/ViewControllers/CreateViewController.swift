@@ -33,7 +33,9 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userTableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
         cell.userName.text = persons[indexPath.row].name
+        print("Index Path: \(indexPath.row)")
         cell.userName.tag = indexPath.row
+        cell.deleteBtn.tag = indexPath.row
         cell.userName.delegate = self
         
         
@@ -75,7 +77,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         // Remove the item from the store
         self.persons.remove(at: index)
         // Also remove that row from the table view with an animation
-        self.userTableView.deleteRows(at: [indexPath], with: .automatic)
+        self.userTableView.deleteRows(at: [indexPath], with: .none)
         userTableView.reloadData()
     }
     
