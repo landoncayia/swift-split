@@ -11,13 +11,6 @@ import Photos
 import Foundation
 import CoreGraphics
 
-enum LineType {
-    case none
-    case tax
-    case item
-}
-
-
 extension ReceiptViewController {
     
     func processRecognizedText(recognizedText: [VNRecognizedTextObservation]) {
@@ -86,7 +79,7 @@ extension ReceiptViewController {
         
         // word lists
         let balanceWords = ["balance", "subtotal", "total"]
-        let ignoreWords = globalSettings.currentSettings.ignoredWords
+        let ignoreWords = globalSettings.currentSettings.ignoredWords.map{$0.lowercased()}
         let wordsToIgnore = balanceWords + ignoreWords
         
         // letters for tax status
@@ -99,7 +92,6 @@ extension ReceiptViewController {
             
             if line.lowercased().contains("tax") {
                 // Is this line the tax?
-                print("tax line: ", line)
                 
                 // Split up the line so we can process each part
                 let splitLine = line.components(separatedBy: " ")
@@ -113,7 +105,6 @@ extension ReceiptViewController {
                 
             } else if wordsToIgnore.contains(where: line.lowercased().contains) {
                 // Is this line something we should ignore?
-                print("ignored line: ", line)
             } else {
                 // This line an item
                 
@@ -131,10 +122,18 @@ extension ReceiptViewController {
                 var priceIdx = 0
                 var taxIdx = -1
                 
-                for term in splitLine {
+                for var term in splitLine {
+                    // Handle negatives with a "-" after the price
+                    if term.last! == "-" {
+                        term.removeLast()
+                        term = "-" + term
+                    }
+                    
+                    // Find the price and tax status in this line
                     if Double(term) != nil && term.contains(".") {
-                        priceIdx = currIdx
+                        price = Double(term) ?? 0.0
                         hasPrice = true
+                        priceIdx = currIdx
                     } else if (term.uppercased().count == 1 && taxLetters.contains(term.uppercased())) {
                         taxed = true
                         taxIdx = currIdx
@@ -145,11 +144,10 @@ extension ReceiptViewController {
                 if (hasPrice) {
                     print("item line: ", line)
                     
-                    // Get the price
-                    price = Double(splitLine[priceIdx]) ?? 0.0
+                    // Remove price at index
                     splitLine.remove(at: priceIdx)
                     
-                    // Remove tax letter if needed
+                    // Remove tax letter at index if needed
                     if taxIdx != -1 {
                         splitLine.remove(at: taxIdx)
                     }
