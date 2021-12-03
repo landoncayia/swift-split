@@ -108,7 +108,7 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
         view.endEditing(true)
         
         if !checkItems() {
-            let alert = UIAlertController(title: "Required Data Missing", message: "Receipt must have one item", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Required Data Missing", message: "Receipt must have 1+ item.", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             
             alert.addAction(cancel)
@@ -199,6 +199,7 @@ extension ReceiptViewController {
     }
 
     @IBAction func itemNameDidEdit(_ sender: UITextField) {
+        print("itemNameDidEdit: tag ->", sender.tag)
         let item = self.receipt.items[sender.tag]
         item.name = sender.text! ?? ""
     }

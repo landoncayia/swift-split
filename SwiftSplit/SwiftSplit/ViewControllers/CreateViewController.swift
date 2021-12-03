@@ -137,7 +137,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         } else if !checkPersons() {
             // Remove empty people and make sure at least one
             print("Persons:", persons)
-            let empty = UIAlertController(title: "Required Data Missing", message: "Must be at least one person.", preferredStyle: .alert)
+            let empty = UIAlertController(title: "Required Data Missing", message: "Receipt must have 1+ person.", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             empty.addAction(cancel)
             present(empty, animated: true, completion: nil)
@@ -253,7 +253,9 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             if let results = request.results, !results.isEmpty {
                 if let requestResults = request.results as? [VNRecognizedTextObservation] {
                     DispatchQueue.main.async {
-                        self.receipt.items = receiptViewController.processRecognizedText(recognizedText: requestResults)
+                        // FINDME
+//                        self.receipt.items = receiptViewController.processRecognizedText(recognizedText: requestResults)
+                        receiptViewController.processRecognizedText(recognizedText: requestResults)
                     }
                 }
             }
