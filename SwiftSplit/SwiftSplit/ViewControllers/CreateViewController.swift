@@ -175,8 +175,14 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                 }
                 let canAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                 // Add actions to the popover
-                entryModePopover.addAction(camAction)
-                entryModePopover.addAction(galAction)
+                
+                // Checks to see if Camera and Gallery are available 
+                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                    entryModePopover.addAction(camAction)
+                }
+                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                    entryModePopover.addAction(galAction)
+                }
                 entryModePopover.addAction(manAction)
                 entryModePopover.addAction(canAction)
                 
