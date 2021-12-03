@@ -3,45 +3,39 @@
 
 import UIKit
 
-class BrowseViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
+class BrowseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     var filteredReceipts: [Receipt]!
+    //var editMode: Bool = false
     
+    @IBOutlet var editBar: UIBarButtonItem!
+    @IBOutlet var editBtn: UIButton!
     @IBOutlet var searchBar: UISearchBar!
-    
-    
+        
     // Nested collection view
-    @IBOutlet var receiptCollection: UICollectionView!{
+    @IBOutlet var receiptTable: UITableView!{
         didSet {
-            receiptCollection.delegate = self
-            receiptCollection.dataSource = self
-            //receiptCollection.rowHeight = UITableView.automaticDimension
-            //receiptCollection.estimatedRowHeight = 80
-                        
+            receiptTable.delegate = self
+            receiptTable.dataSource = self
+            receiptTable.estimatedRowHeight = 100
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.endEditing(true)
-        
+        editBtn.setTitle("Edit", for: .normal)
         globalReceipts.setTags()
         
         // Clears cell selection when you come from another view
-        if let indexPath = receiptCollection?.indexPathsForSelectedItems{
-            if !indexPath.isEmpty {
-                receiptCollection.deselectItem(at: indexPath[0], animated: true)
-            }
+        if let indexPath = receiptTable.indexPathForSelectedRow {
+            receiptTable.deselectRow(at: indexPath, animated: true)
         }
-        
-//        if let indexPath = receiptCollection.indexPathForSelectedRow {
-//            receiptCollection.deselectRow(at: indexPath, animated: true)
-//        }
         
         filteredReceipts = globalReceipts.receipts
         print("Browse WillAppear globalReceipts size: " + String(globalReceipts.receipts.count))
         print("BrowseVC WillAppear currReceipt: \(currReceipt)")
         
-        receiptCollection.reloadData()
+        receiptTable.reloadData()
     }
     
     override func viewDidLoad() {
@@ -51,9 +45,8 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
         searchBar.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = .done
         filteredReceipts = globalReceipts.receipts
-
-        navigationItem.rightBarButtonItem = editButtonItem
-        //navigationItem.rightBarButtonItem?.primaryAction =
+        editBtn.setTitle("Edit", for: .normal)
+        navigationItem.setRightBarButtonItems([editBar], animated: false)
         
         print("BrowseVC loaded")
         print("BrowseVC viewDidLoad currReceipt: \(currReceipt)")
@@ -62,136 +55,113 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBAction func bkgdTapped(_ sender: UITapGestureRecognizer){
         view.endEditing(true)
     }
-        
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredReceipts.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = receiptCollection.dequeueReusableCell(withReuseIdentifier: "ReceiptCell", for: indexPath) as! ReceiptCell
 
-        let receipt = filteredReceipts[indexPath.row]
-            
-        let cost = String(format: "%.2f", receipt.getWholeCost())
-            
-        item.nameLabel.text = receipt.name
-        item.costLabel.text = "$\(cost)"
-            
-        let dateFormat = DateFormatter()
-        dateFormat.locale = Locale(identifier: "en_US")
-        dateFormat.dateFormat = "MM/dd/yyyy"
-        item.dateLabel.text = dateFormat.string(from: receipt.date)
-            
-        item.clipsToBounds = true
-        item.layer.cornerRadius = 5
-        
-        return item
-    }
-    
-    
-    
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if !isEditing {
-            let receipt = filteredReceipts[indexPath.row]
-            currReceipt = receipt.tag
-            
-            print("Browse receipt selected with tag \(receipt.tag)")
 
-            // Open the existing receipt
-            performSegue(withIdentifier: "openReceipt", sender: self)
-    //        self.tabBarController?.selectedIndex = 1
-        }
-        
-        
-        
-        
-        
-    }
     
-    
-    @IBAction func toggleEdit(_ sender: UIBarButtonItem){
-        if isEditing {
-            setEditing(false, animated: true)
-            self.receiptCollection.isEditing = false
-        } else {
-            setEditing(true, animated: true)
-            self.receiptCollection.isEditing = true
-        }
-    }
-    
-    
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        
-
-        
-//        for path in receiptCollection.indexPathsForVisibleItems {
-//            let item = receiptCollection.cellForItem(at: path) as! ReceiptCell
-//
-//
-//
-//
-//        }
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        self.receiptTable.setEditing(editing, animated: animated)
+        
+        if editing {
+            
+        }
+        
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.delete
+    }
+
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            globalReceipts.removeReceipt(filteredReceipts[indexPath.row])
+            filteredReceipts.remove(at: indexPath.row)
+            receiptTable.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        }
+    }
+    
+    
+    @IBAction func toggleEdit(_ sender: UIButton){
+        if isEditing {
+            
+            print("Stopped editing cells")
+            editBtn.setTitle("Edit", for: .normal)
+            setEditing(false, animated: true)
+            if let indexPath = receiptTable.indexPathForSelectedRow {
+                receiptTable.deselectRow(at: indexPath, animated: true)
+            }
+            
+        } else {
+            print("Started editing cells")
+            editBtn.setTitle("Done", for: .normal)
+            setEditing(true, animated: true)
+        }
+    }
+    
+
     // Return num of rows in a section of the view
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return filteredReceipts.count
-//    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredReceipts.count
+    }
     
     // Insert a cell at a location in the view
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptCell", for: indexPath) as! ReceiptCell
-//
-//        let receipt = filteredReceipts[indexPath.row]
-//
-//        let cost = String(format: "%.2f", receipt.getWholeCost())
-//
-//        cell.nameLabel.text = receipt.name
-//        cell.costLabel.text = "$\(cost)"
-//
-//
-//        let dateFormat = DateFormatter()
-//        dateFormat.locale = Locale(identifier: "en_US")
-//
-//
-//        let date = Date()
-//        dateFormat.dateFormat = "MM/dd/yyyy"
-//        let today = dateFormat.string(from: date)
-//
-//        if today == dateFormat.string(from: receipt.date){
-//            dateFormat.dateFormat = "hh:mm a"
-//            cell.dateLabel.text = "Today @ \(dateFormat.string(from: date))"
-//        } else {
-//            cell.dateLabel.text = dateFormat.string(from: receipt.date)
-//            //cell.dateLabel.text = dateFormat.string(from: date)
-//        }
-//
-////        cell.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 255)
-////        cell.layer.borderWidth = 1.0
-////        cell.layer.cornerRadius = 8
-//        cell.clipsToBounds = true
-//
-//        return cell
-//
-//    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptCell", for: indexPath) as! ReceiptCell
+
+        let receipt = filteredReceipts[indexPath.row]
+
+        let cost = String(format: "%.2f", receipt.getWholeCost())
+
+        cell.nameLabel.text = receipt.name
+        cell.costLabel.text = "$\(cost)"
+
+
+        let dateFormat = DateFormatter()
+        dateFormat.locale = Locale(identifier: "en_US")
+
+
+        let date = Date()
+        dateFormat.dateFormat = "MM/dd/yyyy"
+        let today = dateFormat.string(from: date)
+
+        if today == dateFormat.string(from: receipt.date){
+            dateFormat.dateFormat = "hh:mm a"
+            cell.dateLabel.text = "Today @ \(dateFormat.string(from: date))"
+        } else {
+            cell.dateLabel.text = dateFormat.string(from: receipt.date)
+            //cell.dateLabel.text = dateFormat.string(from: date)
+        }
+
+        //cell.clipsToBounds = true
+
+        return cell
+
+    }
     
     // Segue from cell tap to receipt details in create storyboard
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let receipt = filteredReceipts[indexPath.row]
-//        currReceipt = receipt.tag
-//
-//        print("Browse cell selected with tag \(receipt.tag)")
-//
-//        self.tabBarController?.selectedIndex = 1
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if !isEditing {
+            let receipt = filteredReceipts[indexPath.row]
+            currReceipt = receipt.tag
+
+            print("Browse cell selected with tag \(receipt.tag)")
+
+            performSegue(withIdentifier: "openReceipt", sender: self)
+            //self.tabBarController?.selectedIndex = 1
+        }
+    }
     
     
     
@@ -205,7 +175,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
             }
         }
         
-        receiptCollection.reloadData()
+        receiptTable.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -217,12 +187,22 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) { print("Stopped editing") }
 }
 
-class ReceiptCell: UICollectionViewCell {
+class ReceiptCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var costLabel: UILabel!
     
-//    var isinEditingMode: Bool {
-//        return (superview as! UICollectionView).allowsMultipleSelection
-//    }
+    override func layoutSubviews() {
+    
+        super.layoutSubviews()
+        
+        
+        // Make the cell pretty
+        let verticalPadding: CGFloat = 10
+        let maskLayer = CALayer()
+        maskLayer.cornerRadius = 8    //if you want round edges
+        maskLayer.backgroundColor = UIColor.black.cgColor
+        maskLayer.frame = CGRect(x: self.bounds.origin.x, y: self.bounds.origin.y, width: self.bounds.width, height: self.bounds.height).insetBy(dx: 0, dy: verticalPadding/2)
+        self.layer.mask = maskLayer
+    }
 }
