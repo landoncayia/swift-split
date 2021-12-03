@@ -188,7 +188,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                 receipt.date = date
                 receipt.persons = self.persons
                 
-                self.performSegue(withIdentifier: "Manual", sender: sender)
+                self.performSegue(withIdentifier: "goToReceiptItems", sender: sender)
             }
         }
     }
@@ -210,12 +210,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             datePicker.date = self.receipt.date
             self.persons = self.receipt.persons
             userTableView.reloadData()
-        } else {
-            // NEW receipt so...
-            // Set the defaults
-            // We will save it after user clicks Next
-            receiptName.text = ""
-            datePicker.date = Date()
         }
     }
     
@@ -315,10 +309,18 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // if the triggered segue is the "showItem" segue
+        print("SEGUE")
+        let addr = unsafeBitCast(receipt, to: Int.self)
+        print("Receipt before:", String(format: "%p", addr))
+        
+        for item in receipt.items {
+            print(item.name)
+        }
+        
         switch segue.identifier {
-        case "Manual"?:
+        case "goToReceiptItems":
             let receiptViewController = segue.destination as! ReceiptViewController
-            receiptViewController.receipt = receipt
+            receiptViewController.receipt = self.receipt
         default:
             preconditionFailure("Unexpected segue identifier.")
         }
@@ -338,10 +340,15 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         let image = info[.originalImage] as! UIImage
         // take image picker off the screen -- must call this dismiss method
         dismiss(animated: true) {
-            self.processImage(image: image)
-            if let resultsVC = self.receiptViewController {
-                self.navigationController?.pushViewController(resultsVC, animated: true)
+            DispatchQueue.global(qos: .userInitiated).async {
+                DispatchQueue.main.async {
+                    self.processImage(image: image)
+                    self.performSegue(withIdentifier: "goToReceiptItems", sender: nil)
+                }
             }
+//            if let resultsVC = self.receiptViewController {
+//                self.navigationController?.pushViewController(resultsVC, animated: true)
+//            }
         }
     }
 }
@@ -375,9 +382,12 @@ extension CreateViewController: VNDocumentCameraViewControllerDelegate {
                     self.processImage(image: image)
                 }
                 DispatchQueue.main.async {
-                    if let resultsVC = self.receiptViewController {
-                        self.navigationController?.pushViewController(resultsVC, animated: true)
-                    }
+                    self.performSegue(withIdentifier: "goToReceiptItems", sender: nil)
+                    //if let resultsVC = self.receiptViewController {
+                        
+                        //resultsVC.receipt = self.receipt
+                        //self.navigationController?.pushViewController(resultsVC, animated: true)
+                    //}
                     //self.activityIndicator.stopAnimating()
                 }
             }

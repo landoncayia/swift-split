@@ -26,7 +26,9 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        print("ReceiptViewController will appear")
+        print("--- \n ReceiptViewController will appear")
+        let addr = unsafeBitCast(receipt, to: Int.self)
+        print("Receipt after:", String(format: "%p", addr))
         
         for item in receipt.items {
             print(item.name)
