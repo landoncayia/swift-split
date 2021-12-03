@@ -75,7 +75,9 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
         
         if let index = receipt.items.lastIndex(of: newItem) {
             let indexPath = IndexPath(row: index, section: 0)
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            tableView.insertRows(at: [indexPath], with: .none)
+            let newRow = tableView.cellForRow(at: indexPath) as! CreateReceiptCell
+            newRow.itemName.becomeFirstResponder()
         }
     }
     

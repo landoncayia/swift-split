@@ -88,7 +88,9 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         
         if let index = persons.lastIndex(of: newPerson) {
             let indexPath = IndexPath(row: index, section: 0)
-            userTableView.insertRows(at: [indexPath], with: .automatic)
+            userTableView.insertRows(at: [indexPath], with: .none)
+            let newRow = userTableView.cellForRow(at: indexPath) as! UserCell
+            newRow.userName.becomeFirstResponder()
         }
     }
     
@@ -167,7 +169,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                     self.galleryViewController()
                 }
                 let manAction = UIAlertAction(title: "Manual", style: .default) { _ in
-                    self.performSegue(withIdentifier: "Manual", sender: sender)
+                    self.performSegue(withIdentifier: "goToReceiptItems", sender: sender)
                 }
                 let canAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                 // Add actions to the popover
@@ -310,15 +312,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // if the triggered segue is the "showItem" segue
-        print("SEGUE")
-        let addr = unsafeBitCast(receipt, to: Int.self)
-        print("Receipt before:", String(format: "%p", addr))
-        
-        for item in receipt.items {
-            print(item.name)
-        }
-        
         switch segue.identifier {
         case "goToReceiptItems":
             let receiptViewController = segue.destination as! ReceiptViewController
