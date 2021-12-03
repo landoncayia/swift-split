@@ -56,7 +56,16 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         view.endEditing(true)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "openReceipt" {
+           if let receiptDetailsVC = segue.destination as? CreateViewController {
+               receiptDetailsVC.receipt = (sender as? ReceiptCell)?.thisReceipt
+               receiptDetailsVC.navigationItem.leftBarButtonItem = nil
+           }
+       }
+    }
 
+    
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -88,7 +97,6 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func toggleEdit(_ sender: UIButton){
         if isEditing {
-            
             print("Stopped editing cells")
             editBtn.setTitle("Edit", for: .normal)
             setEditing(false, animated: true)
@@ -119,7 +127,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
 
         cell.nameLabel.text = receipt.name
         cell.costLabel.text = "$\(cost)"
-
+        cell.thisReceipt = receipt
 
         let dateFormat = DateFormatter()
         dateFormat.locale = Locale(identifier: "en_US")
@@ -182,6 +190,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
 }
 
 class ReceiptCell: UITableViewCell {
+    var thisReceipt: Receipt!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var costLabel: UILabel!
