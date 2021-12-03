@@ -28,7 +28,34 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
     
     //MARK: --- NEXT BUTTON ---
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "toReceiptTotal", sender: sender)
+        if !checkAssignment() {
+            let unassined = getUnassignedItems()
+            let alert = UIAlertController(title: "Required Data Missing", message: "These items: "+unassined.joined(separator: ",")+" have not been assigned to a user", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "toReceiptTotal", sender: sender)
+        }
+    }
+    
+    func checkAssignment() -> Bool {
+        for i in receipt.items {
+            if i.persons.isEmpty {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func getUnassignedItems() -> [String] {
+        var unassigned = [String]()
+        for i in receipt.items {
+            if i.persons.isEmpty {
+                unassigned.append(i.name)
+            }
+        }
+        return unassigned
     }
     
     //SEGUE TO ASSIGN USERS
@@ -47,6 +74,12 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
         super.viewDidLoad()
         dataSource = self
         self.view.backgroundColor = UIColor.systemBackground
+        
+        // MARK: Fixes bug but potentially creates an overall app flaw
+        // Potentially may want to limit this only to create
+        for i in receipt.items {
+            i.persons.removeAll()
+        }
         
         // Setup a view for each person
         for idx in 0...receipt.persons.count-1 {
