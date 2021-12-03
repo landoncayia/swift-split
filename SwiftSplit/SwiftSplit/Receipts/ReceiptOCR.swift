@@ -11,9 +11,16 @@ import Photos
 import Foundation
 import CoreGraphics
 
+enum LineType {
+    case none
+    case tax
+    case item
+}
+
+
 extension ReceiptViewController {
     
-    func processRecognizedText(recognizedText: [VNRecognizedTextObservation])  -> [ReceiptItem] {
+    func processRecognizedText(recognizedText: [VNRecognizedTextObservation]) {
         
         // An array of all the observations on the page
         var locToObs = [ReceiptObservation]()
@@ -68,84 +75,104 @@ extension ReceiptViewController {
             // Remove this observation so we don't get it again
             locToObs.remove(at: 0)
         }
-
-        // DEBUG: Temporary printing of the scanned lines
-//        for line in lines {
-//            print(line)
-//        }
-        
-        return convertScannedReceipt(lines)
-//        convertToReceipt()
-//        tableView.reloadData()
-//        navigationItem.title = contents.name != nil ? contents.name : "Scanned Receipt"
+        convertScannedReceipt(lines)
         
     }
-}
-
-func convertScannedReceipt(_ lines: [String]) -> [ReceiptItem] {
     
-    var items = [ReceiptItem]()
-    
-    // words to ignore
-    let wordsToIgnore = globalSettings.currentSettings.ignoredWords
-    
-    // letters for tax status
-    // A for costco
-    // X for walmart
-    // B or T for shaws
-    let taxLetters = ["A", "B", "T", "X"]
-    
-    for line in lines {
-        // Check if this is an item by looking for a name and price
+    func convertScannedReceipt(_ lines: [String]) {
         
-        // Defaults for the item
-        var name = ""
-        var price = 0.0
-        var taxed = false
+        var items = [ReceiptItem]()
+        var taxAmt = 0.0
         
-        var hasPrice = false
-        var isItem = true
+        // word lists
+        let balanceWords = ["balance", "subtotal", "total"]
+        let ignoreWords = globalSettings.currentSettings.ignoredWords
+        let wordsToIgnore = balanceWords + ignoreWords
         
-        let splitLine = line.components(separatedBy: " ")
+        // letters for tax status
+        // A for costco
+        // X for walmart
+        // B or T for shaws
+        let taxLetters = ["A", "B", "T", "X"]
         
-        var currIdx = 0
-        var priceIdx = 0
-        
-        for term in splitLine {
-            // TODO add regex to remove anything other than number, letter, or period
-
-            if wordsToIgnore.contains(term.lowercased()) {
-                // This line contains a word that means we should ignore the whole thing
-                isItem = false
-            } else if Double(term) != nil && term.contains(".") {
+        for line in lines {
+            
+            if line.lowercased().contains("tax") {
+                // Is this line the tax?
+                print("tax line: ", line)
                 
-                //print("Found double: ", term, "at index", currIdx)
-                priceIdx = currIdx
-                hasPrice = true
+                // Split up the line so we can process each part
+                let splitLine = line.components(separatedBy: " ")
+
+                // Look for the tax amount in this line
+                for term in splitLine {
+                    if Double(term) != nil && term.contains(".") {
+                        taxAmt = Double(term) ?? 0.0
+                    }
+                }
                 
-            } else if (term.uppercased().count == 1 && taxLetters.contains(term.uppercased())) {
-                taxed = true
+            } else if wordsToIgnore.contains(where: line.lowercased().contains) {
+                // Is this line something we should ignore?
+                print("ignored line: ", line)
+            } else {
+                // This line an item
+                
+                // Defaults for the item
+                var name = ""
+                var price = 0.0
+                var taxed = false
+                var hasPrice = false
+                
+                // Split up the line so we can process each part
+                var splitLine = line.components(separatedBy: " ")
+
+                // To keep track of where parts are
+                var currIdx = 0
+                var priceIdx = 0
+                var taxIdx = -1
+                
+                for term in splitLine {
+                    if Double(term) != nil && term.contains(".") {
+                        priceIdx = currIdx
+                        hasPrice = true
+                    } else if (term.uppercased().count == 1 && taxLetters.contains(term.uppercased())) {
+                        taxed = true
+                        taxIdx = currIdx
+                    }
+                    currIdx += 1
+                }
+                
+                if (hasPrice) {
+                    print("item line: ", line)
+                    
+                    // Get the price
+                    price = Double(splitLine[priceIdx]) ?? 0.0
+                    splitLine.remove(at: priceIdx)
+                    
+                    // Remove tax letter if needed
+                    if taxIdx != -1 {
+                        splitLine.remove(at: taxIdx)
+                    }
+                    
+                    // Generate an item name
+                    name = splitLine.joined(separator: " ")
+                    
+                    // Add the item
+                    let newItem = ReceiptItem(name: name, price: price, taxed: taxed)
+                    items.append(newItem)
+                } else {
+                    print("ignored line: ", line)
+                }
+                
             }
-            
-            currIdx += 1
 
         }
         
-        if (isItem && hasPrice) {
-            
-            name = splitLine[0 ..< priceIdx].joined(separator: " ")
-            price = Double(splitLine[priceIdx]) ?? 0.0
-            
-            // DEBUG
-            // print("name:", name, ", price:", price, ", taxed:", taxed, "\n")
-
-            // Add the item
-            let newItem = ReceiptItem(name: name, price: price, taxed: taxed)
-            items.append(newItem)
-        }
+        // Load the new values into receipt
+        self.receipt.items = items
+        self.receipt.setTaxAmt(taxAmt)
+        
     }
-    
-    // Return an array of receipt items, to put into the receipt
-    return items
-    
+
 }
+

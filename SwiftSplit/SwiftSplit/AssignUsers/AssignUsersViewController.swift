@@ -28,8 +28,45 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
     
     //MARK: --- NEXT BUTTON ---
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
-        print("next button clicked")
-        performSegue(withIdentifier: "toReceiptTotals", sender: sender)
+        if !checkAssignment() {
+            let unassined = getUnassignedItems()
+            let alert = UIAlertController(title: "Required Data Missing", message: "These items: "+unassined.joined(separator: ",")+" have not been assigned to a user", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "toReceiptTotal", sender: sender)
+        }
+    }
+    
+    func checkAssignment() -> Bool {
+        for i in receipt.items {
+            if i.persons.isEmpty {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func getUnassignedItems() -> [String] {
+        var unassigned = [String]()
+        for i in receipt.items {
+            if i.persons.isEmpty {
+                unassigned.append(i.name)
+            }
+        }
+        return unassigned
+    }
+    
+    //SEGUE TO ASSIGN USERS
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "toReceiptTotal"?:
+            let receiptTotalViewController = segue.destination as! ReceiptTotalsViewController
+            receiptTotalViewController.receipt = receipt
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+        }
     }
     
     
@@ -37,6 +74,12 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
         super.viewDidLoad()
         dataSource = self
         self.view.backgroundColor = UIColor.systemBackground
+        
+        // MARK: Fixes bug but potentially creates an overall app flaw
+        // Potentially may want to limit this only to create
+        for i in receipt.items {
+            i.persons.removeAll()
+        }
         
         // Setup a view for each person
         for idx in 0...receipt.persons.count-1 {

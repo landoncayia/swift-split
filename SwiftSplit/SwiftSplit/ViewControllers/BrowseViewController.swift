@@ -33,7 +33,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         
         filteredReceipts = globalReceipts.receipts
         print("Browse WillAppear globalReceipts size: " + String(globalReceipts.receipts.count))
-        print("BrowseVC WillAppear currReceipt: \(currReceipt)")
+        //print("BrowseVC WillAppear currReceipt: \(currReceipt)")
         
         receiptTable.reloadData()
     }
@@ -49,7 +49,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         navigationItem.setRightBarButtonItems([editBar], animated: false)
         
         print("BrowseVC loaded")
-        print("BrowseVC viewDidLoad currReceipt: \(currReceipt)")
+        //print("BrowseVC viewDidLoad currReceipt: \(currReceipt)")
     }
  
     @IBAction func bkgdTapped(_ sender: UITapGestureRecognizer){
@@ -187,6 +187,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) { print("Began editing") }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) { print("Stopped editing") }
+    
 }
 
 class ReceiptCell: UITableViewCell {

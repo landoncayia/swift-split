@@ -13,7 +13,7 @@
         <!--Create-->
         <scene sceneID="8nn-7Z-oS4">
             <objects>
-                <navigationController storyboardIdentifier="CreateNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="jLe-SY-uwr" customClass="CreateNavViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CreateNavViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jLe-SY-uwr" customClass="CreateNavViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Create" image="plus.square.fill.on.square.fill" catalog="system" id="6tT-Pf-db3"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -42,40 +42,44 @@
                                 <rect key="frame" x="22" y="148" width="370" height="722"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xJn-Rr-Lqg">
-                                        <rect key="frame" x="0.0" y="0.0" width="370" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="370" height="23"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9n-Wc-TJ2">
-                                                <rect key="frame" x="0.0" y="0.0" width="36.5" height="34"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9n-Wc-TJ2">
+                                                <rect key="frame" x="0.0" y="0.0" width="42" height="23"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3pC-L3-abp">
-                                                <rect key="frame" x="44.5" y="0.0" width="325.5" height="34"/>
+                                                <rect key="frame" x="50" y="0.0" width="320" height="23"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQK-vR-jBz">
-                                        <rect key="frame" x="0.0" y="42" width="370" height="40"/>
+                                        <rect key="frame" x="0.0" y="31" width="370" height="150"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnS-qn-8j9">
-                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="150"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="ZjH-WG-qee">
-                                                <rect key="frame" x="40" y="0.0" width="330" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="QZF-US-oxh"/>
-                                                </constraints>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="ZjH-WG-qee">
+                                                <rect key="frame" x="50" y="0.0" width="320" height="150"/>
                                             </datePicker>
                                         </subviews>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BkO-PQ-i8s">
+                                        <rect key="frame" x="0.0" y="189" width="370" height="1"/>
+                                        <color key="backgroundColor" systemColor="separatorColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="B0U-H7-uJx"/>
+                                        </constraints>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWM-j3-Zpc">
-                                        <rect key="frame" x="0.0" y="90" width="370" height="40"/>
+                                        <rect key="frame" x="0.0" y="198" width="370" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Persons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebd-LG-elp">
                                                 <rect key="frame" x="0.0" y="0.0" width="68.5" height="40"/>
@@ -99,7 +103,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Dm5-c9-S3V">
-                                        <rect key="frame" x="0.0" y="138" width="370" height="584"/>
+                                        <rect key="frame" x="0.0" y="246" width="370" height="476"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="8CH-ZE-0fE" customClass="UserCell" customModule="SwiftSplit" customModuleProvider="target">
@@ -154,6 +158,9 @@
                                         </prototypes>
                                     </tableView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="ZjH-WG-qee" firstAttribute="leading" secondItem="3pC-L3-abp" secondAttribute="leading" id="SCy-Kp-1gY"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5UY-at-9gR"/>
@@ -170,6 +177,11 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Receipt Details" id="MBp-wP-osB">
+                        <barButtonItem key="leftBarButtonItem" title="New" id="0kU-af-EBw">
+                            <connections>
+                                <action selector="receiptDetailsNew:" destination="A1e-zY-9vK" id="Jgk-bL-yG4"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="GDh-Q4-t1k">
                             <connections>
                                 <action selector="receiptDetailsNext:" destination="A1e-zY-9vK" id="Xj8-54-Bxl"/>
@@ -180,7 +192,7 @@
                         <outlet property="datePicker" destination="ZjH-WG-qee" id="zfn-nH-Fhk"/>
                         <outlet property="receiptName" destination="3pC-L3-abp" id="EwA-VV-oBK"/>
                         <outlet property="userTableView" destination="Dm5-c9-S3V" id="9uf-sK-TnK"/>
-                        <segue destination="Mek-UJ-iqU" kind="show" identifier="Manual" id="3VX-8p-GgW"/>
+                        <segue destination="Mek-UJ-iqU" kind="show" identifier="goToReceiptItems" id="3VX-8p-GgW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Wz-zx-2mf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -338,7 +350,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="4R5-Rq-Ntw" kind="show" identifier="toReceiptTotals" id="BMd-TD-EIP"/>
+                        <segue destination="4R5-Rq-Ntw" kind="show" identifier="toReceiptTotal" id="5t1-VF-dJ0"/>
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UhM-Jn-pBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -415,7 +427,7 @@
         <!--Receipt Totals-->
         <scene sceneID="ZdH-JO-4cB">
             <objects>
-                <viewController storyboardIdentifier="receiptTotalsVC" id="4R5-Rq-Ntw" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="receiptTotalsVC" id="4R5-Rq-Ntw" customClass="ReceiptTotalsViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hRx-TY-6qA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -424,7 +436,7 @@
                                 <rect key="frame" x="20" y="160" width="374" height="601"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jc2-Dm-DRm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTotalCell" id="jc2-Dm-DRm" customClass="UserTotalCell" customModule="SwiftSplit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="374" height="21"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jc2-Dm-DRm" id="3Bb-vG-eEH">
@@ -456,6 +468,10 @@
                                                 <constraint firstItem="92b-LO-9ZC" firstAttribute="leading" secondItem="3Bb-vG-eEH" secondAttribute="leading" id="jTd-1Z-ABg"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="name" destination="X9M-jZ-Etn" id="zAP-EO-PPZ"/>
+                                            <outlet property="total" destination="1Oi-BV-6KM" id="fD2-av-BVR"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -510,6 +526,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Receipt Totals" id="rQ4-jy-deL"/>
+                    <connections>
+                        <outlet property="tax" destination="te1-Xg-1rr" id="zgI-9V-UlI"/>
+                        <outlet property="total" destination="HMj-PX-ok1" id="SHJ-Co-2Jm"/>
+                        <outlet property="totalTableView" destination="nA4-T5-wa3" id="gZB-Az-c53"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ckx-XS-81A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -523,6 +544,9 @@
         <namedColor name="AccentColor">
             <color red="0.24313725490196078" green="0.73333333333333328" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

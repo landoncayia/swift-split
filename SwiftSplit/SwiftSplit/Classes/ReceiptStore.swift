@@ -107,12 +107,8 @@ public class ReceiptStore {
             let receipt = Receipt(name: "Apple", date: d!, persons: [person_a, person_b, person_c])
             
             receipt.addItem(ReceiptItem(name: "MacBook", price: 999.00, taxed: true))
-            receipt.items[0].addPerson(person_a)
-            receipt.items[0].addPerson(person_b)
             
             receipt.addItem(ReceiptItem(name: "USB-C Cable", price: 19.99, taxed: false))
-            receipt.items[1].addPerson(person_a)
-            receipt.items[1].addPerson(person_b)
             
             //receipt.items[2].addPerson(person_c)
             

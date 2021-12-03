@@ -71,9 +71,10 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <connections>
-                                            <outlet property="costLabel" destination="WfI-rf-x0I" id="rF1-8v-Lqc"/>
-                                            <outlet property="dateLabel" destination="pA4-G8-Td0" id="F49-5s-5Di"/>
-                                            <outlet property="nameLabel" destination="DEQ-PQ-NKj" id="gYZ-tI-qbw"/>
+                                            <outlet property="costLabel" destination="WfI-rf-x0I" id="rsl-VB-QSL"/>
+                                            <outlet property="dateLabel" destination="pA4-G8-Td0" id="KP2-WU-tXZ"/>
+                                            <outlet property="nameLabel" destination="DEQ-PQ-NKj" id="tqa-JG-1Xc"/>
+                                            <segue destination="eTS-9W-CWD" kind="show" identifier="openReceipt" id="KXa-fl-uWq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -122,7 +123,6 @@
                         <outlet property="editBtn" destination="GAg-b5-U4W" id="BEQ-NJ-b2u"/>
                         <outlet property="receiptTable" destination="LhB-ZH-u4Y" id="eD1-tM-frs"/>
                         <outlet property="searchBar" destination="fwO-8d-kyp" id="J3T-r1-6f8"/>
-                        <segue destination="eTS-9W-CWD" kind="show" identifier="openReceipt" id="pot-fJ-9qu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jav-Cr-d24" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -147,7 +147,7 @@
         <!--Browse-->
         <scene sceneID="dMH-xO-yn8">
             <objects>
-                <navigationController storyboardIdentifier="BrowseNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="laB-if-Yn4" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BrowseNavViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="laB-if-Yn4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Browse" image="folder.fill" catalog="system" id="CUp-jN-gih"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Psz-wl-qdU">

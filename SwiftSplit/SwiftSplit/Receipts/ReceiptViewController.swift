@@ -26,7 +26,9 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        print("ReceiptViewController will appear")
+        print("--- \n ReceiptViewController will appear")
+        let addr = unsafeBitCast(receipt, to: Int.self)
+        print("Receipt after:", String(format: "%p", addr))
         
         for item in receipt.items {
             print(item.name)
@@ -63,7 +65,7 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     func deleteItem(_ index: Int) {
         let indexPath = IndexPath(item: index, section: 0)
         self.receipt.items.remove(at: index)
-        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        self.tableView.deleteRows(at: [indexPath], with: .none)
         tableView.reloadData()
     }
     
@@ -73,23 +75,27 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
         
         if let index = receipt.items.lastIndex(of: newItem) {
             let indexPath = IndexPath(row: index, section: 0)
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            tableView.insertRows(at: [indexPath], with: .none)
+            // Move to the new cell, focus on the name field
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            let newRow = tableView.cellForRow(at: indexPath) as! CreateReceiptCell
+            newRow.itemName.becomeFirstResponder()
         }
     }
     
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
-        if currReceipt != -1 {
+//        if currReceipt != -1 {
 //            globalReceipts.receipts[currReceipt] = self.receipt
 //            currReceipt = -1
 //            print("Receipt saved")
 //            print("Popping back to CreateNavViewController")
 //            navigationController?.popToRootViewController(animated: true)
-        } else {
+//        } else {
 //            globalReceipts.receipts.append(self.receipt)
 //            print("Receipt appended")
 //            print("Popping back to CreateNavViewController")
 //            navigationController?.popToRootViewController(animated: true)
-        }
+//        }
 //        
 //        if let assignUsersViewController = self.assignUsersViewController {
 //            assignUsersViewController.receipt = self.receipt
@@ -97,8 +103,19 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
 //        } else {
 //            print("receiptViewController is not set")
 //        }
-        self.performSegue(withIdentifier: "goToAssignItems", sender: sender)
         
+        // Ends editing for every cell thus saving the text
+        view.endEditing(true)
+        
+        if !checkItems() {
+            let alert = UIAlertController(title: "Required Data Missing", message: "Receipt must have 1+ item.", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+            
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        } else {
+            self.performSegue(withIdentifier: "goToAssignItems", sender: sender)
+        }
     }
     
     // SEGUE TO ASSIGN USERS
@@ -112,6 +129,28 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    func checkItems() -> Bool {
+        if self.receipt.items.isEmpty {
+            return false
+        }
+        
+        for item in self.receipt.items {
+            if item.name == "" {
+                // item name is empty, delete item
+                if let index = self.receipt.items.firstIndex(of: item) {
+                    self.receipt.items.remove(at: index)
+                    self.tableView.reloadData()
+                }
+            }
+            // TODO: maybe make a requirement for price to be non zero
+        }
+        
+        if self.receipt.items.isEmpty {
+            return false
+        } else {
+            return true
+        }
+    }
     
 }
 // MARK: UITableViewDataSource
@@ -127,7 +166,7 @@ extension ReceiptViewController {
         
         cell.itemName.text = field.name
         cell.itemName.delegate = self
-        cell.itemPrice.text = "\(field.price)"
+        cell.itemPrice.text = String(field.price).currencyInputFormatting()
         cell.itemPrice.delegate = self
         cell.taxSwitch.isOn = field.taxed
         cell.deleteBtn.tag = indexPath.row
@@ -140,8 +179,7 @@ extension ReceiptViewController {
         
         cell.itemPrice.tag = indexPath.row
         cell.itemPrice.addTarget(self, action: #selector(self.itemPriceDidEdit(_:)), for: .editingDidEnd)
-        // Used for price validation
-        cell.itemPrice.addTarget(self, action: #selector(self.currencyFieldChanged(_:)), for: .editingChanged)
+
         cell.itemPrice.locale = Locale(identifier: "en_US")
         
         return cell
@@ -161,23 +199,66 @@ extension ReceiptViewController {
     }
 
     @IBAction func itemNameDidEdit(_ sender: UITextField) {
+        print("itemNameDidEdit: tag ->", sender.tag)
         let item = self.receipt.items[sender.tag]
-        item.name = sender.text!
+        item.name = sender.text! ?? ""
     }
     
     @IBAction func itemPriceDidEdit(_ sender: UITextField) {
+        // Get the text from input
+        let rawString = sender.text ?? "0.00"
+        
+        // Set input to a cleaned version of the input
+        sender.text = rawString.currencyInputFormatting()
+        
+        // Actually update the item in receipt
         let item = self.receipt.items[sender.tag]
-//        item.price = Double(sender.text!) ?? 0.0 // Keyboard is set to decimal anyway but just in case
-//        sender.text = String(item.price)
+        item.price = rawString.currencyInputFiltering()
     }
     
-    @objc func currencyFieldChanged(_ sender: CurrencyField) {
-        // TODO: When deleting receipt items and/or exiting view, the prices all get divided by 10. It has something to do with ".decimal" or ".currency" in "CurrencyField"
-        let item = self.receipt.items[sender.tag]
-        item.price = (sender.decimal as NSDecimalNumber).doubleValue
-        print("currencyField:", sender.text!)
-        print("decimal:", sender.decimal)
-        print("doubleValue:", (sender.decimal as NSDecimalNumber).doubleValue, terminator: "\n\n")
+}
+
+extension String {
+
+    // formatting text for currency
+    func currencyInputFormatting() -> String {
+        
+        var number: NSNumber!
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currencyAccounting
+        formatter.currencySymbol = "$"
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+
+        // Clean the string to only contain numbers
+        let uncleaned = self
+        let cleaned = uncleaned.filter("0123456789.".contains)
+
+        // Convert to a double
+        let double = (cleaned as NSString).doubleValue
+        number = NSNumber(value: double)
+        
+        let returnVal = formatter.string(from: number)!
+        
+        print("formatting:", self, " -> ", returnVal)
+        
+        return returnVal
     }
     
+    func currencyInputFiltering() -> Double {
+
+        // Clean the string to only contain numbers
+        let uncleaned = self
+        let cleaned = uncleaned.filter("0123456789.".contains)
+
+        // Convert to a double
+        let double = (cleaned as NSString).doubleValue
+
+        // if first number is 0 or all numbers were deleted
+        guard double != 0 as Double else {
+            return 0
+        }
+        
+        return double
+    }
 }

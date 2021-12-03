@@ -33,7 +33,9 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userTableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
         cell.userName.text = persons[indexPath.row].name
+        print("Index Path: \(indexPath.row)")
         cell.userName.tag = indexPath.row
+        cell.deleteBtn.tag = indexPath.row
         cell.userName.delegate = self
         
         
@@ -75,7 +77,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         // Remove the item from the store
         self.persons.remove(at: index)
         // Also remove that row from the table view with an animation
-        self.userTableView.deleteRows(at: [indexPath], with: .automatic)
+        self.userTableView.deleteRows(at: [indexPath], with: .none)
         userTableView.reloadData()
     }
     
@@ -86,7 +88,11 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         
         if let index = persons.lastIndex(of: newPerson) {
             let indexPath = IndexPath(row: index, section: 0)
-            userTableView.insertRows(at: [indexPath], with: .automatic)
+            userTableView.insertRows(at: [indexPath], with: .none)
+            // Move to the new cell, focus on the name field
+            userTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            let newRow = userTableView.cellForRow(at: indexPath) as! UserCell
+            newRow.userName.becomeFirstResponder()
         }
     }
     
@@ -94,6 +100,22 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     //    let text = sender.text ?? ""
     //    self.persons[row].name = text
     //}
+    
+    // MARK: --- NEW BUTTON ---
+    
+    @IBAction func receiptDetailsNew(_ sender: UIBarButtonItem) {
+        view.endEditing(true)
+        
+        // Set the receipt to nil
+        
+        receipt = nil
+        persons.removeAll()
+        
+        // Reset all fields so that new stuff can be entered
+        
+        self.loadView()
+    }
+    
     
     // MARK: --- NEXT BUTTON ---
     
@@ -115,7 +137,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         } else if !checkPersons() {
             // Remove empty people and make sure at least one
             print("Persons:", persons)
-            let empty = UIAlertController(title: "Required Data Missing", message: "Must be at least one person.", preferredStyle: .alert)
+            let empty = UIAlertController(title: "Required Data Missing", message: "Receipt must have 1+ person.", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             empty.addAction(cancel)
             present(empty, animated: true, completion: nil)
@@ -123,7 +145,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             // Validation passed
             // Now save the receipt
             
-            if currReceipt == -1 {
+            if receipt == nil {
                 // NEW receipt so...
                 print("NEW receipt")
                 
@@ -134,7 +156,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                 globalReceipts.receipts.append(receipt)
                 
                 // Update currReceipt index
-                currReceipt = globalReceipts.receipts.count - 1
+                // currReceipt = globalReceipts.receipts.count - 1
                 
                 // Generate a popover to choose the entry mode
                 let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
@@ -149,7 +171,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                     self.galleryViewController()
                 }
                 let manAction = UIAlertAction(title: "Manual", style: .default) { _ in
-                    self.performSegue(withIdentifier: "Manual", sender: sender)
+                    self.performSegue(withIdentifier: "goToReceiptItems", sender: sender)
                 }
                 let canAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                 // Add actions to the popover
@@ -168,11 +190,11 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                 print("OLD receipt, skipping entry modes")
                 
                 // Update all the stuff in this receipt
-                globalReceipts.receipts[currReceipt].name = name
-                globalReceipts.receipts[currReceipt].date = date
-                globalReceipts.receipts[currReceipt].persons = self.persons
+                receipt.name = name
+                receipt.date = date
+                receipt.persons = self.persons
                 
-                self.performSegue(withIdentifier: "Manual", sender: sender)
+                self.performSegue(withIdentifier: "goToReceiptItems", sender: sender)
             }
         }
     }
@@ -183,23 +205,17 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("CreateVC WillAppear currReceipt: \(currReceipt)")
+//        print("CreateVC WillAppear receipt: \(receipt.name)")
         // Check if we are editing or creating a new receipt
-        if currReceipt != -1 {
+        if receipt != nil {
             // OLD receipt so...
             // Load it
-            self.receipt = globalReceipts.receipts[currReceipt]
+            //self.receipt = globalReceipts.receipts[currReceipt]
             // Load its values onto this page
             receiptName.text = self.receipt.name
             datePicker.date = self.receipt.date
             self.persons = self.receipt.persons
             userTableView.reloadData()
-        } else {
-            // NEW receipt so...
-            // Set the defaults
-            // We will save it after user clicks Next
-            receiptName.text = ""
-            datePicker.date = Date()
         }
     }
     
@@ -208,7 +224,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         
         super.viewDidLoad()
         
-        print("CreateVC viewDidLoad currReceipt: \(currReceipt)")
+//        print("CreateVC viewDidLoad receipt: \(receipt.name)")
 //        if currReceipt != -1 {
 //            self.receipt = globalReceipts.receipts[currReceipt]
 //            self.receiptName.text = self.receipt.name
@@ -231,7 +247,9 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             if let results = request.results, !results.isEmpty {
                 if let requestResults = request.results as? [VNRecognizedTextObservation] {
                     DispatchQueue.main.async {
-                        self.receipt.items = receiptViewController.processRecognizedText(recognizedText: requestResults)
+                        // FINDME
+//                        self.receipt.items = receiptViewController.processRecognizedText(recognizedText: requestResults)
+                        receiptViewController.processRecognizedText(recognizedText: requestResults)
                     }
                 }
             }
@@ -298,11 +316,10 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // if the triggered segue is the "showItem" segue
         switch segue.identifier {
-        case "Manual"?:
+        case "goToReceiptItems":
             let receiptViewController = segue.destination as! ReceiptViewController
-            receiptViewController.receipt = receipt
+            receiptViewController.receipt = self.receipt
         default:
             preconditionFailure("Unexpected segue identifier.")
         }
@@ -322,10 +339,15 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         let image = info[.originalImage] as! UIImage
         // take image picker off the screen -- must call this dismiss method
         dismiss(animated: true) {
-            self.processImage(image: image)
-            if let resultsVC = self.receiptViewController {
-                self.navigationController?.pushViewController(resultsVC, animated: true)
+            DispatchQueue.global(qos: .userInitiated).async {
+                DispatchQueue.main.async {
+                    self.processImage(image: image)
+                    self.performSegue(withIdentifier: "goToReceiptItems", sender: nil)
+                }
             }
+//            if let resultsVC = self.receiptViewController {
+//                self.navigationController?.pushViewController(resultsVC, animated: true)
+//            }
         }
     }
 }
@@ -359,9 +381,12 @@ extension CreateViewController: VNDocumentCameraViewControllerDelegate {
                     self.processImage(image: image)
                 }
                 DispatchQueue.main.async {
-                    if let resultsVC = self.receiptViewController {
-                        self.navigationController?.pushViewController(resultsVC, animated: true)
-                    }
+                    self.performSegue(withIdentifier: "goToReceiptItems", sender: nil)
+                    //if let resultsVC = self.receiptViewController {
+                        
+                        //resultsVC.receipt = self.receipt
+                        //self.navigationController?.pushViewController(resultsVC, animated: true)
+                    //}
                     //self.activityIndicator.stopAnimating()
                 }
             }

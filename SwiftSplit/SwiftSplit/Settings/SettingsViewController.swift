@@ -14,6 +14,8 @@ enum WordType: Codable {
 class SettingsViewController: UITableViewController {
     
 //    var settingsStore = SettingsStore()
+    @IBOutlet var recognitionLevelCell: SettingsCell!
+    @IBOutlet var languageCorrectionCell: SettingsCell!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -21,6 +23,9 @@ class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        recognitionLevelCell.selectionStyle = .none
+        languageCorrectionCell.selectionStyle = .none
+//        self.tableView.contentInset = UIEdgeInsets(top: -65, left: 0, bottom: 0, right: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
