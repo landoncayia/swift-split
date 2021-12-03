@@ -338,7 +338,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="4R5-Rq-Ntw" kind="show" identifier="toReceiptTotals" id="BMd-TD-EIP"/>
+                        <segue destination="4R5-Rq-Ntw" kind="show" identifier="toReceiptTotal" id="5t1-VF-dJ0"/>
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UhM-Jn-pBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -364,14 +364,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" id="s1o-ie-UfE" customClass="UserItemCell" customModule="SwiftSplit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="41"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="41.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s1o-ie-UfE" id="GZY-9h-0yw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8B-kb-454">
-                                                    <rect key="frame" x="20" y="10" width="374" height="21"/>
+                                                    <rect key="frame" x="20" y="10" width="374" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -424,7 +424,7 @@
                                 <rect key="frame" x="20" y="160" width="374" height="601"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jc2-Dm-DRm" customClass="UserTotalCell" customModule="SwiftSplit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTotalCell" id="jc2-Dm-DRm" customClass="UserTotalCell" customModule="SwiftSplit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="374" height="21"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jc2-Dm-DRm" id="3Bb-vG-eEH">
@@ -517,7 +517,7 @@
                     <connections>
                         <outlet property="tax" destination="te1-Xg-1rr" id="zgI-9V-UlI"/>
                         <outlet property="total" destination="HMj-PX-ok1" id="SHJ-Co-2Jm"/>
-                        <outlet property="userTableView" destination="nA4-T5-wa3" id="C2t-Fq-jav"/>
+                        <outlet property="totalTableView" destination="nA4-T5-wa3" id="gZB-Az-c53"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ckx-XS-81A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

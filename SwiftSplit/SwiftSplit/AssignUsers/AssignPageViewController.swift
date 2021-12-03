@@ -33,6 +33,16 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         print("Number of items that should appear in table:", receipt.items.count)
     }
     
+    // TODO: On the last page when pressing next the table view loads before this is executed
+    override func viewDidDisappear(_ animated: Bool) {
+        for i in 0...receipt.items.count-1 {
+            if assignTable.cellForRow(at: IndexPath(row: i, section: 0))!.isSelected {
+                let person = receipt.persons.firstIndex(of: Person(personName.text!))!
+                receipt.items[i].addPerson(receipt.persons[person])
+            }
+        }
+    }
+    
     //MARK: --- TABLE WIDGET ON THIS PAGE ---
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return receipt.items.count
@@ -45,15 +55,5 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    //SEGUE TO ASSIGN USERS
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "toReceiptTotal"?:
-            let receiptTotalViewController = segue.destination as! ReceiptTotalsViewController
-            receiptTotalViewController.receipt = receipt
-        default:
-            preconditionFailure("Unexpected segue identifier.")
-        }
-    }
 }
     

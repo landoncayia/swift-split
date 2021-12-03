@@ -28,8 +28,18 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
     
     //MARK: --- NEXT BUTTON ---
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
-        print("next button clicked")
-        performSegue(withIdentifier: "toReceiptTotals", sender: sender)
+        performSegue(withIdentifier: "toReceiptTotal", sender: sender)
+    }
+    
+    //SEGUE TO ASSIGN USERS
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "toReceiptTotal"?:
+            let receiptTotalViewController = segue.destination as! ReceiptTotalsViewController
+            receiptTotalViewController.receipt = receipt
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+        }
     }
     
     
