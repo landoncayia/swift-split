@@ -13,7 +13,7 @@
         <!--Create-->
         <scene sceneID="8nn-7Z-oS4">
             <objects>
-                <navigationController storyboardIdentifier="CreateNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="jLe-SY-uwr" customClass="CreateNavViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CreateNavViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jLe-SY-uwr" customClass="CreateNavViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Create" image="plus.square.fill.on.square.fill" catalog="system" id="6tT-Pf-db3"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -170,6 +170,11 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Receipt Details" id="MBp-wP-osB">
+                        <barButtonItem key="leftBarButtonItem" title="New" id="0kU-af-EBw">
+                            <connections>
+                                <action selector="receiptDetailsNew:" destination="A1e-zY-9vK" id="Jgk-bL-yG4"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="GDh-Q4-t1k">
                             <connections>
                                 <action selector="receiptDetailsNext:" destination="A1e-zY-9vK" id="Xj8-54-Bxl"/>
@@ -180,7 +185,7 @@
                         <outlet property="datePicker" destination="ZjH-WG-qee" id="zfn-nH-Fhk"/>
                         <outlet property="receiptName" destination="3pC-L3-abp" id="EwA-VV-oBK"/>
                         <outlet property="userTableView" destination="Dm5-c9-S3V" id="9uf-sK-TnK"/>
-                        <segue destination="Mek-UJ-iqU" kind="show" identifier="Manual" id="3VX-8p-GgW"/>
+                        <segue destination="Mek-UJ-iqU" kind="show" identifier="goToReceiptItems" id="3VX-8p-GgW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Wz-zx-2mf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

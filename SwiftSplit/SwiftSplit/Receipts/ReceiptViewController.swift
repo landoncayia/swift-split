@@ -26,7 +26,9 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        print("ReceiptViewController will appear")
+        print("--- \n ReceiptViewController will appear")
+        let addr = unsafeBitCast(receipt, to: Int.self)
+        print("Receipt after:", String(format: "%p", addr))
         
         for item in receipt.items {
             print(item.name)
@@ -63,7 +65,7 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     func deleteItem(_ index: Int) {
         let indexPath = IndexPath(item: index, section: 0)
         self.receipt.items.remove(at: index)
-        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        self.tableView.deleteRows(at: [indexPath], with: .none)
         tableView.reloadData()
     }
     
@@ -73,7 +75,11 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
         
         if let index = receipt.items.lastIndex(of: newItem) {
             let indexPath = IndexPath(row: index, section: 0)
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            tableView.insertRows(at: [indexPath], with: .none)
+            // Move to the new cell, focus on the name field
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            let newRow = tableView.cellForRow(at: indexPath) as! CreateReceiptCell
+            newRow.itemName.becomeFirstResponder()
         }
     }
     
@@ -230,11 +236,6 @@ extension String {
         // Convert to a double
         let double = (cleaned as NSString).doubleValue
         number = NSNumber(value: double)
-
-        // if first number is 0 or all numbers were deleted
-        guard number != 0 as NSNumber else {
-            return ""
-        }
         
         let returnVal = formatter.string(from: number)!
         

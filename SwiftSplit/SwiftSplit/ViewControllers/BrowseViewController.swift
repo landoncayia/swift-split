@@ -39,7 +39,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         filteredReceipts = globalReceipts.receipts
         print("Browse WillAppear globalReceipts size: " + String(globalReceipts.receipts.count))
-        print("BrowseVC WillAppear currReceipt: \(currReceipt)")
+        //print("BrowseVC WillAppear currReceipt: \(currReceipt)")
         
         receiptCollection.reloadData()
     }
@@ -56,11 +56,22 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
         //navigationItem.rightBarButtonItem?.primaryAction =
         
         print("BrowseVC loaded")
-        print("BrowseVC viewDidLoad currReceipt: \(currReceipt)")
+        //print("BrowseVC viewDidLoad currReceipt: \(currReceipt)")
     }
  
     @IBAction func bkgdTapped(_ sender: UITapGestureRecognizer){
         view.endEditing(true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+       if segue.identifier == "openReceipt" {
+           if let receiptDetailsVC = segue.destination as? CreateViewController {
+               receiptDetailsVC.receipt = (sender as? ReceiptCell)?.thisReceipt
+               receiptDetailsVC.navigationItem.leftBarButtonItem = nil
+           }
+
+       }
     }
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -76,6 +87,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
             
         item.nameLabel.text = receipt.name
         item.costLabel.text = "$\(cost)"
+        item.thisReceipt = receipt
             
         let dateFormat = DateFormatter()
         dateFormat.locale = Locale(identifier: "en_US")
@@ -94,12 +106,12 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !isEditing {
             let receipt = filteredReceipts[indexPath.row]
-            currReceipt = receipt.tag
+            //currReceipt = receipt.tag
             
-            print("Browse receipt selected with tag \(receipt.tag)")
+            //print("Browse receipt selected with tag \(receipt.tag)")
 
             // Open the existing receipt
-            performSegue(withIdentifier: "openReceipt", sender: self)
+            //performSegue(withIdentifier: "openReceipt", sender: self)
     //        self.tabBarController?.selectedIndex = 1
         }
         
@@ -215,9 +227,11 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) { print("Began editing") }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) { print("Stopped editing") }
+    
 }
 
 class ReceiptCell: UICollectionViewCell {
+    var thisReceipt: Receipt!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var costLabel: UILabel!
