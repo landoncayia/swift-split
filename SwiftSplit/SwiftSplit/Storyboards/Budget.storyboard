@@ -144,7 +144,7 @@
         <!--Budget-->
         <scene sceneID="o0j-uo-DHS">
             <objects>
-                <navigationController storyboardIdentifier="BudgetNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="hdx-w7-R0U" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BudgetNavViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hdx-w7-R0U" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Budget" image="dollarsign.circle.fill" catalog="system" id="evy-BQ-FN9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="UVZ-1T-Fix">

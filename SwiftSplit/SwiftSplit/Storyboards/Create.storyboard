@@ -13,7 +13,7 @@
         <!--Create-->
         <scene sceneID="8nn-7Z-oS4">
             <objects>
-                <navigationController storyboardIdentifier="CreateNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="jLe-SY-uwr" customClass="CreateNavViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CreateNavViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jLe-SY-uwr" customClass="CreateNavViewController" customModule="SwiftSplit" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Create" image="plus.square.fill.on.square.fill" catalog="system" id="6tT-Pf-db3"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>

@@ -143,7 +143,7 @@
         <!--Browse-->
         <scene sceneID="dMH-xO-yn8">
             <objects>
-                <navigationController storyboardIdentifier="BrowseNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="laB-if-Yn4" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BrowseNavViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="laB-if-Yn4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Browse" image="folder.fill" catalog="system" id="CUp-jN-gih"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Psz-wl-qdU">
