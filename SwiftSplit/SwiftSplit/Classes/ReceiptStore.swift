@@ -120,8 +120,5 @@ public class ReceiptStore {
             receipts.append(receipt)
         }
         
-        print("RECEIPT STORE LOADED")
-        print("Contents: ")
-        print(receipts)
     }
 }

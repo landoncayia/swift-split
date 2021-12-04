@@ -18,12 +18,10 @@ class BudgetViewController: UIViewController, UITableViewDataSource, UITableView
     
     // Date picker widget actions (to modify from SB)
     @IBAction func fromDateChange(_ sender: UIDatePicker) {
-        print("date changed")
         processReceipts()
     }
     
     @IBAction func toDateChange(_ sender: UIDatePicker) {
-        print("date changed")
         processReceipts()
     }
     
@@ -36,7 +34,6 @@ class BudgetViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("allBudgets count = ", allBudgets.count)
         return allBudgets.count
     }
     
@@ -71,13 +68,9 @@ class BudgetViewController: UIViewController, UITableViewDataSource, UITableView
         
         // Update the table based on receipts within this range
         processReceipts()
-        
-        print("viewDidLoad")
     }
     
     func processReceipts() {
-        print("processReceipts")
-        
         // Clear out the list of receipts
         allBudgets.removeAll()
         
@@ -114,8 +107,6 @@ class BudgetViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
         
-        // Reload the table
-        print("reloading table")
         self.budgetTable.reloadData()
         
     }

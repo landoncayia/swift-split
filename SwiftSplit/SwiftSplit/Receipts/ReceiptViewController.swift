@@ -137,8 +137,15 @@ extension ReceiptViewController {
         
         cell.itemName.text = field.name
         cell.itemName.delegate = self
+
         cell.itemPrice.text = String(field.price).currencyInputFormatting()
+        
+        var test = cell.itemPrice.text
+        
         cell.itemPrice.delegate = self
+        
+        test = cell.itemPrice.text
+        
         cell.taxSwitch.isOn = field.taxed
         cell.deleteBtn.tag = indexPath.row
         
@@ -151,7 +158,10 @@ extension ReceiptViewController {
         cell.itemPrice.tag = indexPath.row
         cell.itemPrice.addTarget(self, action: #selector(self.itemPriceDidEdit(_:)), for: .editingDidEnd)
 
-        cell.itemPrice.locale = Locale(identifier: "en_US")
+        //cell.itemPrice.locale = Locale(identifier: "en_US")
+        
+        
+        test = cell.itemPrice.text
         
         return cell
     }
@@ -201,15 +211,19 @@ extension String {
 
         // Clean the string to only contain numbers
         let uncleaned = self
-        let cleaned = uncleaned.filter("0123456789.".contains)
+        let cleaned = uncleaned.filter("-0123456789.".contains)
 
         // Convert to a double
         let double = (cleaned as NSString).doubleValue
         number = NSNumber(value: double)
         
-        let returnVal = formatter.string(from: number)!
+        var returnVal = formatter.string(from: number)!
         
         //print("formatting:", self, " -> ", returnVal)
+        
+        if returnVal.contains("("){
+            returnVal = "-" + returnVal.filter{ !["(", ")"].contains($0) }
+        }
         
         return returnVal
     }
