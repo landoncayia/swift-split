@@ -15,7 +15,6 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
 //    static let assignUsersVC = "assignUsersVC"
     
     required init?(coder aDecoder: NSCoder) {
-        print("ReceiptViewController loaded")
         super.init(coder: aDecoder)
     }
     
@@ -26,13 +25,13 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        print("--- \n ReceiptViewController will appear")
         let addr = unsafeBitCast(receipt, to: Int.self)
-        print("Receipt after:", String(format: "%p", addr))
+        //print("Receipt after:", String(format: "%p", addr))
         
-        for item in receipt.items {
-            print(item.name)
-        }
+//        for item in receipt.items {
+//            print(item.name)
+//        }
+        
         tableView.reloadData()
         
 //        let vcID = ReceiptViewController.assignUsersVC
@@ -44,21 +43,13 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
         return textField.endEditing(false)
     }
     
-    // TODO: For now I set it so that it brings you back to createnav when you click save
-    // Wasnt sure how I want to deal with changing currReceipt back to -1
-    // I might have to make a function in TabViewController.
-    
+
     @IBAction func itemCellDelete(_ sender: UIButton) {
         view.endEditing(true)
-        
-        print("delete tag -> ", sender.tag)
-        print(receipt.items)
         self.deleteItem(sender.tag)
-        print(receipt.items)
     }
     
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
-        print("bg tapped")
         view.endEditing(true)
     }
     
@@ -84,26 +75,6 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
-//        if currReceipt != -1 {
-//            globalReceipts.receipts[currReceipt] = self.receipt
-//            currReceipt = -1
-//            print("Receipt saved")
-//            print("Popping back to CreateNavViewController")
-//            navigationController?.popToRootViewController(animated: true)
-//        } else {
-//            globalReceipts.receipts.append(self.receipt)
-//            print("Receipt appended")
-//            print("Popping back to CreateNavViewController")
-//            navigationController?.popToRootViewController(animated: true)
-//        }
-//        
-//        if let assignUsersViewController = self.assignUsersViewController {
-//            assignUsersViewController.receipt = self.receipt
-//            self.performSegue(withIdentifier: "goToAssignItems", sender: sender)
-//        } else {
-//            print("receiptViewController is not set")
-//        }
-        
         // Ends editing for every cell thus saving the text
         view.endEditing(true)
         
@@ -191,15 +162,13 @@ extension ReceiptViewController {
         let item = receipt.items[cellID]
         if currentState {
             item.taxed = true
-            print("\(item.name) taxed set to true")
         } else {
             item.taxed = false
-            print("\(item.name) taxed set to false")
         }
     }
 
     @IBAction func itemNameDidEdit(_ sender: UITextField) {
-        print("itemNameDidEdit: tag ->", sender.tag)
+        //print("itemNameDidEdit: tag ->", sender.tag)
         let item = self.receipt.items[sender.tag]
         item.name = sender.text! ?? ""
     }
@@ -240,7 +209,7 @@ extension String {
         
         let returnVal = formatter.string(from: number)!
         
-        print("formatting:", self, " -> ", returnVal)
+        //print("formatting:", self, " -> ", returnVal)
         
         return returnVal
     }

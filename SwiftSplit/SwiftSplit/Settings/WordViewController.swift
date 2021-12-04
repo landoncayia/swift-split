@@ -139,9 +139,9 @@ class WordViewController: UITableViewController, UISearchBarDelegate {
             let alertController = UIAlertController(title: nil, message: "Are you sure you want to delete \(wordToDelete)", preferredStyle: .alert)
             
             let delete = UIAlertAction(title: "Delete", style: .default) { _ in
-                print("Deleting")
+                //print("Deleting")
                 
-                // Remove the Pokemon from the store
+                // Remove the word from the store
                 if let removeIndex = self.wordsList.firstIndex(of: wordToDelete) {
                     self.wordsList.remove(at: removeIndex)
                 }
@@ -155,7 +155,7 @@ class WordViewController: UITableViewController, UISearchBarDelegate {
             alertController.addAction(delete)
             
             let cancel = UIAlertAction(title: "Cancel", style: .default) { _ in
-                print("Canceling")
+                //print("Canceling")
             }
             alertController.addAction(cancel)
             

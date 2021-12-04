@@ -83,7 +83,7 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
         
         // Setup a view for each person
         for idx in 0...receipt.persons.count-1 {
-            print("Creating a subview for", receipt.persons[idx].name)
+            //print("Creating a subview for", receipt.persons[idx].name)
             
             let newView = self.storyboard?.instantiateViewController(withIdentifier: "assignPageVC") as! AssignPageViewController
             newView.receipt = receipt
@@ -94,7 +94,6 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
         // Prepare the first view
         if let firstViewController = views.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
-            print("setViewControllers")
         }
     }
     
