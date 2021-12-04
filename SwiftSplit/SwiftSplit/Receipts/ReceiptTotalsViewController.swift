@@ -33,6 +33,7 @@ class ReceiptTotalsViewController: UIViewController, UITableViewDataSource, UITa
         totals = receipt.getTotals()
         // currencyInputFormatting is a String extension found in ReceiptViewController
         tax.text = String(receipt.taxAmt).currencyInputFormatting()
+        tax.addTarget(self, action: #selector(self.taxFieldDidChange(_:)), for: .editingChanged)
         total.text = String(receipt.getWholeCost()).currencyInputFormatting()
     }
     
@@ -55,6 +56,11 @@ class ReceiptTotalsViewController: UIViewController, UITableViewDataSource, UITa
                 }
             }
         }
+    }
+    
+    @objc func taxFieldDidChange(_ taxField: CurrencyField) {
+        receipt.setTaxAmt(taxField.doubleValue)
+        self.loadView()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
