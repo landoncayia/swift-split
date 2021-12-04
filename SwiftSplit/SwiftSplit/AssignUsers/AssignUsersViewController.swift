@@ -30,7 +30,13 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if !checkAssignment() {
             let unassined = getUnassignedItems()
-            let alert = UIAlertController(title: "Required Data Missing", message: "These items: "+unassined.joined(separator: ",")+" have not been assigned to a user", preferredStyle: .alert)
+            var message = String()
+            if unassined.count < 5 {
+                message = "The following items have not been assigned to at least one user:\n \(unassined.joined(separator: "\n"))"
+            } else {
+                message = "\(unassined.count) Items have not been assigned to at least one user"
+            }
+            let alert = UIAlertController(title: "Required Data Missing", message: message, preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             alert.addAction(cancel)
             present(alert, animated: true, completion: nil)
@@ -77,9 +83,9 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
         
         // MARK: Fixes bug but potentially creates an overall app flaw
         // Potentially may want to limit this only to create
-        for i in receipt.items {
-            i.persons.removeAll()
-        }
+        //for i in receipt.items {
+        //    i.persons.removeAll()
+        //}
         
         // Setup a view for each person
         for idx in 0...receipt.persons.count-1 {
