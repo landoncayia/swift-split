@@ -60,10 +60,8 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         // MARK: Doesn't work not sure how to get the cell selection animation
         if receipt.items[indexPath.row].persons.contains(Person(personName.text!)) {
             cell.accessoryType = .checkmark
-            cell.setSelected(true, animated: true)
         } else {
             cell.accessoryType = .none
-            cell.setSelected(false, animated: false)
         }
         
         return cell
@@ -76,7 +74,7 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
             cell.setSelected(true, animated: true)
         } else {
             cell.accessoryType = .none
-            cell.setSelected(false, animated: false)
+            cell.setSelected(false, animated: true)
         }
     }
     
