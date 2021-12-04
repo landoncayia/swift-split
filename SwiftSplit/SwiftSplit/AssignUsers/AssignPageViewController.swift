@@ -53,30 +53,21 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = assignTable.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! UserItemCell
+        let cell = assignTable.dequeueReusableCell(withIdentifier: "UserItemCell", for: indexPath) as! UserItemCell
         cell.itemName.text = receipt.items[indexPath.row].name
         cell.itemName.tag = indexPath.row
         
         // MARK: Doesn't work not sure how to get the cell selection animation
         if receipt.items[indexPath.row].persons.contains(Person(personName.text!)) {
-            cell.accessoryType = .checkmark
-            cell.setSelected(true, animated: true)
-        } else {
-            cell.accessoryType = .none
-            cell.setSelected(false, animated: false)
+            assignTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = assignTable.cellForRow(at: indexPath) as! UserItemCell
         if updateItemPersons(indexPath: indexPath) {
-            cell.accessoryType = .checkmark
-            cell.setSelected(true, animated: true)
-        } else {
-            cell.accessoryType = .none
-            cell.setSelected(false, animated: false)
+            assignTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
     }
     
