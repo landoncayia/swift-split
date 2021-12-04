@@ -7,14 +7,24 @@
 
 import UIKit
 
-class UserCell: UITableViewCell, UITextViewDelegate {
+class DetailsPersonCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet var userName: UITextField!
     @IBOutlet var deleteBtn: UIButton!
     
-    override func layoutSubviews() {
-        
-        super.layoutSubviews()
-        deleteBtn.setTitle("", for: .normal)
-        
-    }
+}
+
+
+class DetailsPersonHeadingCell: UITableViewCell {
+    @IBOutlet var addBtn: UIButton!
+    
+}
+
+class DetailsNameCell: UITableViewCell, UITextViewDelegate {
+    @IBOutlet var nameField: UITextField!
+    
+}
+
+class DetailsDateCell: UITableViewCell, UITextViewDelegate {
+    @IBOutlet var datePicker: UIDatePicker!
+    
 }

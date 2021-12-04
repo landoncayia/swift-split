@@ -135,10 +135,10 @@
             </objects>
             <point key="canvasLocation" x="2047.826086956522" y="-647.54464285714278"/>
         </scene>
-        <!--receiptDetailsVC-->
+        <!--ReceiptDetailsController-->
         <scene sceneID="LnU-EV-Ztq">
             <objects>
-                <viewControllerPlaceholder storyboardName="Create" referencedIdentifier="receiptDetailsVC" id="eTS-9W-CWD" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Create" referencedIdentifier="ReceiptDetailsController" id="eTS-9W-CWD" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="l5y-Ld-OGr"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzm-74-h8a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
