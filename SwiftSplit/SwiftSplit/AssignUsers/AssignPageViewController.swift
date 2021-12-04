@@ -28,9 +28,7 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
         
         personName.text = receipt.persons[idx].name
-        print("AssignPageViewController did load")
-        
-        print("Number of items that should appear in table:", receipt.items.count)
+        //print("Number of items that should appear in table:", receipt.items.count)
     }
     
     func updateItemPersons(indexPath: IndexPath, selected: Bool) {
