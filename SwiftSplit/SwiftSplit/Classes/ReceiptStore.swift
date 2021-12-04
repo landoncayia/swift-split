@@ -88,34 +88,35 @@ public class ReceiptStore {
         setTags()
         
         if receipts.isEmpty {
-            let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "MM/dd/yyyy"
-            let d = dateFormat.date(from: "08/10/2021")
-            
-            
-            
-            
-//            let date = Date()
-//            let calendar = Calendar.current
-//            let startDate = calendar.startOfDay(for: date)
             
             // Create a default receipt for new users
             let person_a = Person("Steve Jobs")
             let person_b = Person("Jony Ive")
             let person_c = Person("Tim Cook")
             
-            let receipt = Receipt(name: "Apple", date: d!, persons: [person_a, person_b, person_c])
+            let item_a = ReceiptItem(name: "Apples", price: 1.99, taxed: false)
+            let item_b = ReceiptItem(name: "Bananas", price: 1.99, taxed: false)
+            let item_c = ReceiptItem(name: "Lemons", price: 0.99, taxed: false)
+            let item_d = ReceiptItem(name: "Toothbrush", price: 2.99, taxed: true)
+            let item_e = ReceiptItem(name: "Toothpaste", price: 3.99, taxed: true)
             
-            receipt.addItem(ReceiptItem(name: "MacBook", price: 999.00, taxed: true))
+            item_a.persons = [person_a, person_b, person_c]
+            item_b.persons = [person_a, person_b, person_c]
+            item_c.persons = [person_a, person_c]
             
-            receipt.addItem(ReceiptItem(name: "USB-C Cable", price: 19.99, taxed: false))
+            item_d.persons = [person_b]
+            item_e.persons = [person_b]
             
-            //receipt.items[2].addPerson(person_c)
+            let receipt = Receipt(name: "Sample", date: Date(), persons: [person_a, person_b, person_c])
             
-            // Assume 7% tax for a second
-            // Should be $0.35 tax total
+            receipt.addItem(item_a)
+            receipt.addItem(item_b)
+            receipt.addItem(item_c)
+            receipt.addItem(item_d)
+            receipt.addItem(item_e)
             
-            receipt.setTaxAmt(0.35)
+            receipt.setTaxPercent(0.06)
+            
             receipt.tag = 0
             receipts.append(receipt)
         }
