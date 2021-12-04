@@ -25,7 +25,9 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         recognitionLevelCell.selectionStyle = .none
         languageCorrectionCell.selectionStyle = .none
-//        self.tableView.contentInset = UIEdgeInsets(top: -65, left: 0, bottom: 0, right: 0)
+        // Hide the stupid footer
+        self.tableView.estimatedSectionFooterHeight = 0
+        self.tableView.estimatedSectionHeaderHeight = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -33,7 +33,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userTableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
         cell.userName.text = persons[indexPath.row].name
-        print("Index Path: \(indexPath.row)")
         cell.userName.tag = indexPath.row
         cell.deleteBtn.tag = indexPath.row
         cell.userName.delegate = self
@@ -43,31 +42,23 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func personCellEditingEnd(_ sender: UITextField) {
-        print("person cell editing end")
-        print("\(sender.tag) -> , \(sender.text ?? "")")
-        print(persons)
         persons[sender.tag].name = sender.text ?? ""
-        print(persons)
     }
     
     @IBAction func personCellDelete(_ sender: UIButton) {
         // Forces editing of cells to stop thus saving the text
         view.endEditing(true)
-        
-        print("delete tag -> ", sender.tag)
-        print(persons)
         self.deletePerson(sender.tag)
-        print(persons)
+    }
+
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
-    //    // MARK: textFieldDidEndEditing
-//    func textFieldDidEndEditing(userName: UITextField) {
-//        print("END EDITING")
-//        persons[userName.tag].name = userName.text ?? ""
-//    }
-//
+    
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
-        print("bg tapped")
         view.endEditing(true)
     }
 
@@ -136,7 +127,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             present(empty, animated: true, completion: nil)
         } else if !checkPersons() {
             // Remove empty people and make sure at least one
-            print("Persons:", persons)
             let empty = UIAlertController(title: "Required Data Missing", message: "Receipt must have 1+ person.", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             empty.addAction(cancel)
@@ -147,7 +137,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
             
             if receipt == nil {
                 // NEW receipt so...
-                print("NEW receipt")
                 
                 // Create the receipt
                 receipt = Receipt(name: name, date: date, persons: self.persons)
@@ -193,8 +182,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
                 present(entryModePopover, animated: true, completion: nil)
             } else {
                 // OLD receipt so...
-                print("OLD receipt, skipping entry modes")
-                
                 // Update all the stuff in this receipt
                 receipt.name = name
                 receipt.date = date
@@ -211,12 +198,12 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        print("CreateVC WillAppear receipt: \(receipt.name)")
         // Check if we are editing or creating a new receipt
         if receipt != nil {
             // OLD receipt so...
             // Load it
             //self.receipt = globalReceipts.receipts[currReceipt]
+            
             // Load its values onto this page
             receiptName.text = self.receipt.name
             datePicker.date = self.receipt.date
@@ -227,24 +214,13 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-//        print("CreateVC viewDidLoad receipt: \(receipt.name)")
-//        if currReceipt != -1 {
-//            self.receipt = globalReceipts.receipts[currReceipt]
-//            self.receiptName.text = self.receipt.name
-//            self.datePicker.date = self.receipt.date
-//            self.persons = self.receipt.persons
-//        }
-//
-//        print("persons:", self.persons)
-        
+    
         receiptName.delegate = self
         
         textRecognitionRequest = VNRecognizeTextRequest(completionHandler: { (request, error) in
             guard let receiptViewController = self.receiptViewController else {
-                print("receiptViewController is not set")
+                // receiptViewController is not set
                 return
             }
             
@@ -271,17 +247,6 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
         }
         
         textRecognitionRequest.usesLanguageCorrection = globalSettings.currentSettings.languageCorrection
-        
-        //print("CREATE VIEW LOADED")
-        //print("Contents: ")
-        //print(receiptStore!)
-        
-        
-        
-        //receiptStore.receipts.append(newReceipt)
-        
-        //print("new receipt appended")
-        
     }
 
     func checkPersons() -> Bool {
@@ -308,7 +273,7 @@ class CreateViewController : UIViewController, UITableViewDataSource, UITableVie
     
     func processImage(image: UIImage) {
         guard let cgImage = image.cgImage else {
-            print("Failed to get cgimage from input image")
+            // Failed to get cgimage from input image
             return
         }
         
