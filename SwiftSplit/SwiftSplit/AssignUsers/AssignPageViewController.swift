@@ -31,7 +31,7 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         //print("Number of items that should appear in table:", receipt.items.count)
     }
     
-    func updateItemPersons(indexPath: IndexPath, selected: Bool) {
+    func updateItemPersons(indexPath: IndexPath) -> Bool {
         let item = receipt.items[indexPath.row]
         let person = Person("")
         var index = 0
@@ -39,11 +39,11 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         index = receipt.persons.firstIndex(of: person)!
         
         if !item.persons.contains(person) {
-            if selected {
-                item.addPerson(receipt.persons[index])
-            } else {
-                item.removePerson(receipt.persons[index])
-            }
+            item.addPerson(receipt.persons[index])
+            return true
+        } else {
+            item.removePerson(receipt.persons[index])
+            return false
         }
     }
     
@@ -57,22 +57,27 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         cell.itemName.text = receipt.items[indexPath.row].name
         cell.itemName.tag = indexPath.row
         
-        // MARK: Doesn't work not sure how to get the cell selection animation 
+        // MARK: Doesn't work not sure how to get the cell selection animation
         if receipt.items[indexPath.row].persons.contains(Person(personName.text!)) {
-            cell.setHighlighted(true, animated: true)
+            cell.accessoryType = .checkmark
+            cell.setSelected(true, animated: true)
+        } else {
+            cell.accessoryType = .none
+            cell.setSelected(false, animated: false)
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let cell = assignTable.cellForRow(at: indexPath) as! UserItemCell
-        updateItemPersons(indexPath: indexPath, selected: true)
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        //let cell = assignTable.cellForRow(at: indexPath) as! UserItemCell
-        updateItemPersons(indexPath: indexPath, selected: false)
+        let cell = assignTable.cellForRow(at: indexPath) as! UserItemCell
+        if updateItemPersons(indexPath: indexPath) {
+            cell.accessoryType = .checkmark
+            cell.setSelected(true, animated: true)
+        } else {
+            cell.accessoryType = .none
+            cell.setSelected(false, animated: false)
+        }
     }
     
 }
