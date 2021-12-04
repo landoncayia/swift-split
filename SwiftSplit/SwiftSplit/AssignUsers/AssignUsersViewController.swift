@@ -81,12 +81,6 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
         dataSource = self
         self.view.backgroundColor = UIColor.systemBackground
         
-        // MARK: Fixes bug but potentially creates an overall app flaw
-        // Potentially may want to limit this only to create
-        //for i in receipt.items {
-        //    i.persons.removeAll()
-        //}
-        
         // Setup a view for each person
         for idx in 0...receipt.persons.count-1 {
             //print("Creating a subview for", receipt.persons[idx].name)
