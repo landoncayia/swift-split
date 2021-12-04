@@ -151,7 +151,10 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
 
     }
     
-    // Segue from cell tap to receipt details in create storyboard
+    
+    // ***** Brad said this is not needed anymore *****
+    
+    // Segue from cell tap to receipt details in create
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //
 //        if !isEditing {
