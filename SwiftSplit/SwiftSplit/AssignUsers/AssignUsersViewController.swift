@@ -34,7 +34,7 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
             if unassined.count < 5 {
                 message = "The following items have not been assigned to at least one user:\n \(unassined.joined(separator: "\n"))"
             } else {
-                message = "\(unassined.count) Items have not been assigned to at least one user"
+                message = "\(unassined.count) items have not been assigned to at least one user"
             }
             let alert = UIAlertController(title: "Required Data Missing", message: message, preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
