@@ -151,19 +151,22 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
 
     }
     
-    // Segue from cell tap to receipt details in create storyboard
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if !isEditing {
-            let receipt = filteredReceipts[indexPath.row]
-            currReceipt = receipt.tag
-
-            print("Browse cell selected with tag \(receipt.tag)")
-
-            performSegue(withIdentifier: "openReceipt", sender: self)
-            //self.tabBarController?.selectedIndex = 1
-        }
-    }
+    
+    // ***** Brad said this is not needed anymore *****
+    
+    // Segue from cell tap to receipt details in create
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        if !isEditing {
+//            let receipt = filteredReceipts[indexPath.row]
+//            currReceipt = receipt.tag
+//
+//            print("Browse cell selected with tag \(receipt.tag)")
+//
+//            performSegue(withIdentifier: "openReceipt", sender: self)
+//            //self.tabBarController?.selectedIndex = 1
+//        }
+//    }
     
     
     

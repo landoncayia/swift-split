@@ -25,8 +25,9 @@ class ReceiptTotalsViewController: UIViewController, UITableViewDataSource, UITa
 
     override func viewDidLoad() {
         totals = receipt.getTotals()
-        tax.text = String(receipt.taxAmt)
-        total.text = String(receipt.getWholeCost())
+        // currencyInputFormatting is a String extension found in ReceiptViewController
+        tax.text = String(receipt.taxAmt).currencyInputFormatting()
+        total.text = String(receipt.getWholeCost()).currencyInputFormatting()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,7 +37,7 @@ class ReceiptTotalsViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = totalTableView.dequeueReusableCell(withIdentifier: "UserTotalCell", for: indexPath) as! UserTotalCell
         cell.name.text = totals[indexPath.row].person.name
-        cell.total.text = "$"+String(totals[indexPath.row].amount)
+        cell.total.text = String(totals[indexPath.row].amount).currencyInputFormatting()
         return cell
     }
     
