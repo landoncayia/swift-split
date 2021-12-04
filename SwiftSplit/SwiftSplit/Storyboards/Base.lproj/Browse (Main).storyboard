@@ -22,52 +22,53 @@
                                 <rect key="frame" x="20" y="149" width="374" height="664"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReceiptCell" rowHeight="100" id="ZQQ-Mf-94z" customClass="ReceiptCell" customModule="SwiftSplit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="374" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReceiptCell" id="ZQQ-Mf-94z" customClass="ReceiptCell" customModule="SwiftSplit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZQQ-Mf-94z" id="pUs-Fh-UUd">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZQQ-Mf-94z" id="pUs-Fh-UUd">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" id="MaU-NY-phv" userLabel="Horiz Stack">
-                                                    <rect key="frame" x="10" y="10" width="354" height="80"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MT0-lI-wVh">
+                                                    <rect key="frame" x="10" y="10" width="354" height="60"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEQ-PQ-NKj">
-                                                            <rect key="frame" x="0.0" y="0.0" width="211" height="80"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PoO-cp-FiG" userLabel="Vert Stack">
-                                                            <rect key="frame" x="211" y="0.0" width="143" height="80"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="746" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hju-ce-aZt">
+                                                            <rect key="frame" x="0.0" y="0.0" width="172" height="60"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pA4-G8-Td0">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="143" height="17"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEQ-PQ-NKj">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="172" height="60"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="755" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PoO-cp-FiG" userLabel="Vert Stack">
+                                                            <rect key="frame" x="182" y="0.0" width="172" height="60"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="right" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pA4-G8-Td0">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="172" height="17"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfI-rf-x0I">
-                                                                    <rect key="frame" x="0.0" y="17" width="143" height="63"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="right" text="Cost" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfI-rf-x0I">
+                                                                    <rect key="frame" x="0.0" y="17" width="172" height="43"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="pA4-G8-Td0" firstAttribute="top" secondItem="PoO-cp-FiG" secondAttribute="top" id="bu6-S9-beQ"/>
-                                                                <constraint firstItem="WfI-rf-x0I" firstAttribute="top" secondItem="pA4-G8-Td0" secondAttribute="bottom" id="dOK-Qd-mDL"/>
-                                                                <constraint firstAttribute="bottom" secondItem="WfI-rf-x0I" secondAttribute="bottom" id="kdy-1r-Gfd"/>
-                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="PoO-cp-FiG" firstAttribute="top" secondItem="MaU-NY-phv" secondAttribute="top" id="Pdo-pw-Fn5"/>
-                                                        <constraint firstAttribute="bottom" secondItem="PoO-cp-FiG" secondAttribute="bottom" id="hef-Yz-bor"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="MT0-lI-wVh" secondAttribute="bottom" constant="10" id="S41-nX-Lam"/>
+                                                <constraint firstAttribute="trailing" secondItem="MT0-lI-wVh" secondAttribute="trailing" constant="10" id="dFi-ae-Yff"/>
+                                                <constraint firstItem="MT0-lI-wVh" firstAttribute="leading" secondItem="pUs-Fh-UUd" secondAttribute="leading" constant="10" id="gqB-q2-rWc"/>
+                                                <constraint firstItem="MT0-lI-wVh" firstAttribute="top" secondItem="pUs-Fh-UUd" secondAttribute="top" constant="10" id="ltj-Hk-ge6"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <connections>

@@ -15,7 +15,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         didSet {
             receiptTable.delegate = self
             receiptTable.dataSource = self
-            receiptTable.estimatedRowHeight = 100
+            receiptTable.rowHeight = UITableView.automaticDimension
         }
     }
     
