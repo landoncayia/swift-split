@@ -24,18 +24,8 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        let addr = unsafeBitCast(receipt, to: Int.self)
-        //print("Receipt after:", String(format: "%p", addr))
-        
-//        for item in receipt.items {
-//            print(item.name)
-//        }
-        
         tableView.reloadData()
         
-//        let vcID = ReceiptViewController.assignUsersVC
-//        assignUsersViewController = storyboard?.instantiateViewController(withIdentifier: vcID) as? AssignUsersViewController
         
     }
     

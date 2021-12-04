@@ -56,9 +56,6 @@ class Receipt: Equatable, Codable {
     }
     
     func getTotals() -> [ReceiptTotal] {
-        // TODO: NEEDS WORK!!!
-        // Right now, it splits items
-        // But ignores tax, for testing ONLY
         
         var receiptTotals = [ReceiptTotal]()
         

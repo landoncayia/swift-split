@@ -15,7 +15,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         didSet {
             receiptTable.delegate = self
             receiptTable.dataSource = self
-            receiptTable.estimatedRowHeight = 100
+            receiptTable.rowHeight = UITableView.automaticDimension
         }
     }
     
@@ -52,7 +52,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     // When a user selects a cell, it segues to the receipt details in Create
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if segue.identifier == "openReceipt" {
-           if let receiptDetailsVC = segue.destination as? CreateViewController {
+           if let receiptDetailsVC = segue.destination as? ReceiptDetailsController {
                receiptDetailsVC.receipt = (sender as? ReceiptCell)?.thisReceipt
                receiptDetailsVC.navigationItem.leftBarButtonItem = nil
            }
