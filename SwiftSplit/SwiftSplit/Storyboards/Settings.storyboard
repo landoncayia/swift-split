@@ -13,15 +13,19 @@
         <!--Settings-->
         <scene sceneID="Qof-hG-tfw">
             <objects>
-                <navigationController storyboardIdentifier="SettingsNavViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="2N4-1x-jr1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SettingsNavViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2N4-1x-jr1" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Settings" image="gear.circle.fill" catalog="system" id="n2s-4h-HOX"/>
                     <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="KqT-oz-3P5">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WRp-uO-vX1">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="8SP-8X-z0u" kind="relationship" relationship="rootViewController" id="XbV-wC-Zwn"/>
                     </connections>
@@ -183,6 +187,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="wlS-oc-bWe"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="languageCorrectionCell" destination="Zs1-YI-Izf" id="ovI-x7-tpw"/>
                         <outlet property="recognitionLevelCell" destination="gd9-P2-R3Y" id="sdZ-ui-HiD"/>
@@ -243,6 +248,7 @@
                             <barButtonItem style="plain" systemItem="edit" id="N49-aw-unf"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="wordSearchBar" destination="WeJ-4Q-hJd" id="1CB-hy-7Lo"/>
                     </connections>
@@ -286,6 +292,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PLt-eH-PVh"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="settingDescription" destination="HVk-Yy-vnY" id="XzB-Xx-aCe"/>
                         <outlet property="wordField" destination="Ua1-6B-OL6" id="qb5-wL-GK0"/>
