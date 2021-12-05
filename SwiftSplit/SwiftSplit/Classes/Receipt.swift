@@ -84,7 +84,7 @@ class Receipt: Equatable, Codable {
                     receiptTotals[index].amount = previousAmt + itemShare
                     
                 } else {
-                    print("just go home, it didnt work")
+                    print("Warning: Unrecognized person")
                 }
             }
         }
@@ -94,13 +94,13 @@ class Receipt: Equatable, Codable {
     
     
     // Returns the total receipt cost (not per person)
-    func getWholeCost() -> Double{
-        let totals = getTotals()
-        var totalCost = 0.0
-        for r in totals{
-            totalCost += r.amount
+    func getWholeCost() -> Double {
+        var wholeCost = 0.0
+        for item in items {
+            wholeCost += item.price
         }
-        return totalCost
+        wholeCost += taxAmt
+        return wholeCost
     }
     
     
