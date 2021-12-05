@@ -39,9 +39,8 @@ class AddEditWordViewController: UIViewController, UITextFieldDelegate {
         if let wordEdit = wordField.text {
             if wordEdit != "" {
                 currentWord = wordEdit
-            } else {
-                currentWord = "Word"
             }
+            
             if let returnWord = currentWord {
                 callback?(returnWord)
             }

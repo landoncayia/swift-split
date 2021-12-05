@@ -221,6 +221,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Ignored/Custom Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="W13-jC-nYu">
                                             <rect key="frame" x="20" y="0.0" width="356.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <gestureRecognizers/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -282,6 +283,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="edL-1x-kfv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Ua1-6B-OL6" firstAttribute="leading" secondItem="edL-1x-kfv" secondAttribute="leading" constant="20" id="34s-Mx-JJu"/>
                             <constraint firstItem="HVk-Yy-vnY" firstAttribute="leading" secondItem="edL-1x-kfv" secondAttribute="leading" constant="20" id="5SL-Ia-5aH"/>
@@ -290,6 +292,9 @@
                             <constraint firstItem="edL-1x-kfv" firstAttribute="trailing" secondItem="HVk-Yy-vnY" secondAttribute="trailing" constant="20" id="j1k-Ap-eMr"/>
                             <constraint firstItem="Ua1-6B-OL6" firstAttribute="top" secondItem="edL-1x-kfv" secondAttribute="top" id="vq2-Mu-kiY"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="7Ex-bB-BO9" appends="YES" id="fCP-S4-jWH"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="PLt-eH-PVh"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -299,6 +304,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWX-sD-JKI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="7Ex-bB-BO9">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="hXt-Lx-Bo2" id="Aio-YM-N9r"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3676.811594202899" y="90.489130434782609"/>
         </scene>
