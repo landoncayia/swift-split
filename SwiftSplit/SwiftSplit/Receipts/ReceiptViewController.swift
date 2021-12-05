@@ -161,7 +161,7 @@ extension ReceiptViewController {
     @IBAction func itemNameDidEdit(_ sender: UITextField) {
         //print("itemNameDidEdit: tag ->", sender.tag)
         let item = self.receipt.items[sender.tag]
-        item.name = sender.text! ?? ""
+        item.name = sender.text ?? ""
     }
     
     @IBAction func itemPriceDidEdit(_ sender: UITextField) {

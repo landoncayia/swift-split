@@ -114,27 +114,29 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsPersonsHeadingCell" id="kIf-jZ-2Ue" customClass="DetailsPersonHeadingCell" customModule="SwiftSplit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="168.5" width="375" height="51"/>
+                                <rect key="frame" x="0.0" y="168.5" width="375" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kIf-jZ-2Ue" id="1MI-vh-nMq">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dct-of-FtS">
-                                            <rect key="frame" x="20" y="10" width="335" height="31"/>
+                                            <rect key="frame" x="20" y="10" width="335" height="23"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Persons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPU-jI-Wq0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="68.5" height="31"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="68.5" height="23"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMu-mX-fSi">
-                                                    <rect key="frame" x="68.5" y="0.0" width="266.5" height="31"/>
+                                                    <rect key="frame" x="68.5" y="0.0" width="266.5" height="23"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
                                                     </accessibility>
-                                                    <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" image="plus" catalog="system"/>
                                                     <connections>
                                                         <action selector="addUser:" destination="DZy-EZ-gbx" eventType="touchUpInside" id="H9N-zt-dKr"/>
                                                     </connections>
@@ -154,7 +156,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsPersonCell" id="uSz-6I-Bb5" customClass="DetailsPersonCell" customModule="SwiftSplit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="219.5" width="375" height="54"/>
+                                <rect key="frame" x="0.0" y="211.5" width="375" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uSz-6I-Bb5" id="njG-AI-t1Z">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
@@ -164,7 +166,7 @@
                                             <rect key="frame" x="20" y="10" width="335" height="34"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NMg-kj-bDB">
-                                                    <rect key="frame" x="0.0" y="0.0" width="284" height="34"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="308" height="34"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -172,11 +174,11 @@
                                                     </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZA-Fu-1Dl">
-                                                    <rect key="frame" x="292" y="0.0" width="43" height="34"/>
+                                                    <rect key="frame" x="316" y="0.0" width="19" height="34"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="tintColor" name="AccentColor"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="trash.fill" catalog="system"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system"/>
                                                     <connections>
                                                         <action selector="personCellDelete:" destination="DZy-EZ-gbx" eventType="touchUpInside" id="Ujw-3J-Abi"/>
                                                     </connections>
@@ -256,7 +258,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8av-hA-fBY">
-                                                            <rect key="frame" x="46" y="0.0" width="238" height="34.5"/>
+                                                            <rect key="frame" x="46" y="0.0" width="261.5" height="34.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <connections>
@@ -264,10 +266,11 @@
                                                             </connections>
                                                         </textField>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tei-ZW-CVT" userLabel="Delete Btn">
-                                                            <rect key="frame" x="292" y="0.0" width="43" height="34.5"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system">
-                                                                <color key="baseForegroundColor" name="AccentColor"/>
-                                                            </buttonConfiguration>
+                                                            <rect key="frame" x="315.5" y="0.0" width="19.5" height="34.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <color key="tintColor" name="AccentColor"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="trash.fill" catalog="system"/>
                                                             <connections>
                                                                 <action selector="itemCellDelete:" destination="Mek-UJ-iqU" eventType="touchUpInside" id="5Pz-rW-Wt3"/>
                                                             </connections>
