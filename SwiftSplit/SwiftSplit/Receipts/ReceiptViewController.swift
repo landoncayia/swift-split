@@ -30,7 +30,8 @@ class ReceiptViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return textField.endEditing(false)
+        textField.resignFirstResponder()
+        return true
     }
     
 

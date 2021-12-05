@@ -49,6 +49,7 @@ class AddEditWordViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        wordField.delegate = self
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

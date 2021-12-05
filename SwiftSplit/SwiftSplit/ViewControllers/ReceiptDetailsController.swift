@@ -36,6 +36,7 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
         if indexPath.section == 0 {
             // Section 0 contains detailsNameCell
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "detailsNameCell", for: indexPath) as! DetailsNameCell
+            cell.nameField.delegate = self
             return cell
         } else if indexPath.section == 1 {
             // Section 1 contains detailsDateCell
@@ -82,8 +83,8 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
 
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
+        textField.resignFirstResponder()
+        return true
     }
     
     
