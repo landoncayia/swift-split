@@ -87,15 +87,15 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
             
             let alertController = UIAlertController(title: nil, message: "Are you sure you want to delete the receipt named \(receiptToDelete.name)?", preferredStyle: .alert)
             
-            let delete = UIAlertAction(title: "Delete", style: .default) { _ in
+            let cancel = UIAlertAction(title: "Cancel", style: .default)
+            alertController.addAction(cancel)
+            
+            let delete = UIAlertAction(title: "Delete", style: .destructive) { _ in
                 globalReceipts.removeReceipt(self.filteredReceipts[indexPath.row])
                 self.filteredReceipts = globalReceipts.receipts
                 self.receiptTable.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             }
             alertController.addAction(delete)
-            
-            let cancel = UIAlertAction(title: "Cancel", style: .default)
-            alertController.addAction(cancel)
             
             present(alertController, animated: true, completion: nil)
         }
