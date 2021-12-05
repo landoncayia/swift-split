@@ -152,60 +152,59 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
             // Validation passed
             // Now save the receipt
             
-            if receipt == nil {
-                // NEW receipt so...
-                
-                // Create the receipt
-                receipt = Receipt(name: self.name, date: self.date!, persons: self.persons)
-                
-                // Save the receipt
-                globalReceipts.receipts.append(receipt)
-                
-                // Update currReceipt index
-                // currReceipt = globalReceipts.receipts.count - 1
-                
-                // Generate a popover to choose the entry mode
-                let entryModePopover = UIAlertController(title: "How would you like to add items to the receipt?", message: nil, preferredStyle: .actionSheet)
-                
-                // Setup actions for the popover
-                let camAction = UIAlertAction(title: "Camera", style: .default) { _ in
-                    let documentCameraViewController = VNDocumentCameraViewController()
-                    documentCameraViewController.delegate = self
-                    self.present(documentCameraViewController, animated: true)
-                }
-                let galAction = UIAlertAction(title: "Gallery", style: .default) { _ in
-                    self.galleryViewController()
-                }
-                let manAction = UIAlertAction(title: "Manual", style: .default) { _ in
-                    self.performSegue(withIdentifier: "goToReceiptItems", sender: sender)
-                }
-                let canAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                // Add actions to the popover
-                
-                // Checks to see if Camera and Gallery are available
-                if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                    entryModePopover.addAction(camAction)
-                }
-                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                    entryModePopover.addAction(galAction)
-                }
-                entryModePopover.addAction(manAction)
-                entryModePopover.addAction(canAction)
-                
-                // Setup the location for popover
-                if let popoverController = entryModePopover.popoverPresentationController {
-                    popoverController.barButtonItem = sender
-                }
-                present(entryModePopover, animated: true, completion: nil)
-            } else {
-                // OLD receipt so...
-                // Update all the stuff in this receipt
+            // What message should appear
+            var userMessage = "How would you like to add items to the receipt?"
+            var thirdOption = "Manually"
+            
+            if receipt != nil {
                 receipt.name = self.name
                 receipt.date = self.date!
                 receipt.persons = self.persons
                 
+                if receipt.items.count > 0 {
+                    // Different messages for existing receipt with item already in it
+                    userMessage = "Would you like to overwrite the items in this receipt?"
+                    thirdOption = "Keep Existing Items"
+                }
+            } else {
+                // Create new receipt
+                receipt = Receipt(name: self.name, date: self.date!, persons: self.persons)
+                // Save the receipt
+                globalReceipts.receipts.append(receipt)
+            }
+            
+            // Generate a popover to choose the entry mode
+            let entryModePopover = UIAlertController(title: userMessage, message: nil, preferredStyle: .actionSheet)
+            
+            // Setup actions for the popover
+            let camAction = UIAlertAction(title: "Camera", style: .default) { _ in
+                let documentCameraViewController = VNDocumentCameraViewController()
+                documentCameraViewController.delegate = self
+                self.present(documentCameraViewController, animated: true)
+            }
+            let galAction = UIAlertAction(title: "Gallery", style: .default) { _ in
+                self.galleryViewController()
+            }
+            let manAction = UIAlertAction(title: thirdOption, style: .default) { _ in
                 self.performSegue(withIdentifier: "goToReceiptItems", sender: sender)
             }
+            let canAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            // Checks to see if Camera and Gallery are available
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                entryModePopover.addAction(camAction)
+            }
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                entryModePopover.addAction(galAction)
+            }
+            entryModePopover.addAction(manAction)
+            entryModePopover.addAction(canAction)
+            
+            // Setup the location for popover
+            if let popoverController = entryModePopover.popoverPresentationController {
+                popoverController.barButtonItem = sender
+            }
+            present(entryModePopover, animated: true, completion: nil)
         }
     }
     
