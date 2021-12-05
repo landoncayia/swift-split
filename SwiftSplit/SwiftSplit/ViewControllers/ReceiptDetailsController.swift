@@ -8,7 +8,7 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
     
     var receipt: Receipt!
     var name: String!
-    var date: Date?
+    var date: Date!
     var persons = [Person]()
     
     // Table related
@@ -234,6 +234,8 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
             detailsNameCell.nameField.text = self.receipt.name
             detailsDateCell.datePicker.date = self.receipt.date
             self.tableView.reloadData()
+        } else {
+            self.date = Date()
         }
     }
     
