@@ -60,14 +60,13 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.sectionsCount
     }
-
     
     @IBAction func nameCellEditingDidEnd(_ sender: UITextField) {
-        name = sender.text ?? ""
+        receipt.name = sender.text!
     }
     
     @IBAction func dateCellEditingDidEnd(_ sender: UIDatePicker) {
-        date = sender.date
+        receipt.date = sender.date
     }
     
     
