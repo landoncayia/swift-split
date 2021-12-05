@@ -71,5 +71,11 @@ class AssignPageViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if updateItemPersons(indexPath: indexPath) {
+            assignTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
+    }
+    
 }
     
