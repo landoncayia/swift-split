@@ -122,8 +122,8 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
         // Set the receipt to nil
         
         receipt = nil
-        name = nil
-        date = nil
+        name = ""
+        date = Date()
         persons.removeAll()
         
         // Reset all fields so that new stuff can be entered

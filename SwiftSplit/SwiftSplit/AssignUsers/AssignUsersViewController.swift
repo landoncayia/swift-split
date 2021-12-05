@@ -78,7 +78,11 @@ class AssignUsersViewController: UIPageViewController, UIPageViewControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource = self
+        
+        if receipt.persons.count > 1 {
+            dataSource = self
+        }
+        
         self.view.backgroundColor = UIColor.systemBackground
         
         // Setup a view for each person
