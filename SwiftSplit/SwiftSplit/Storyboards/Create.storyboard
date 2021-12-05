@@ -494,8 +494,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <connections>
-                                            <outlet property="name" destination="X9M-jZ-Etn" id="zAP-EO-PPZ"/>
-                                            <outlet property="total" destination="1Oi-BV-6KM" id="fD2-av-BVR"/>
+                                            <outlet property="userName" destination="X9M-jZ-Etn" id="ypN-qC-DMI"/>
+                                            <outlet property="userTotal" destination="1Oi-BV-6KM" id="6uu-je-rBJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -526,7 +526,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMj-PX-ok1" userLabel="Total Amount">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMj-PX-ok1" userLabel="Grand Total">
                                         <rect key="frame" x="285" y="0.0" width="50" height="23"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <nil key="textColor"/>
@@ -556,8 +556,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Receipt Totals" id="rQ4-jy-deL"/>
                     <connections>
-                        <outlet property="tax" destination="izx-bg-Uya" id="PfU-fp-Wv5"/>
-                        <outlet property="total" destination="HMj-PX-ok1" id="SHJ-Co-2Jm"/>
+                        <outlet property="grandTax" destination="izx-bg-Uya" id="IZv-oW-kMt"/>
+                        <outlet property="grandTotal" destination="HMj-PX-ok1" id="tqT-3o-NZc"/>
                         <outlet property="totalTableView" destination="nA4-T5-wa3" id="gZB-Az-c53"/>
                     </connections>
                 </viewController>

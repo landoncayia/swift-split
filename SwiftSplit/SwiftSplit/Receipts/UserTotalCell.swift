@@ -8,8 +8,8 @@
 import UIKit
 class UserTotalCell: UITableViewCell {
     //TODO: connect
-    @IBOutlet var name: UILabel!
-    @IBOutlet var total: UILabel!
+    @IBOutlet var userName: UILabel!
+    @IBOutlet var userTotal: UILabel!
     
     override func layoutSubviews() {
         

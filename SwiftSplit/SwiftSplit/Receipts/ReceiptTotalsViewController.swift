@@ -12,8 +12,8 @@ class ReceiptTotalsViewController: UIViewController, UITableViewDataSource, UITa
     var receipt:  Receipt!
     var totals = [ReceiptTotal]()
  
-    @IBOutlet var tax: CurrencyField!
-    @IBOutlet var total: UILabel!
+    @IBOutlet var grandTax: CurrencyField!
+    @IBOutlet var grandTotal: UILabel!
     
     @IBOutlet var totalTableView: UITableView! {
         didSet {
@@ -32,9 +32,9 @@ class ReceiptTotalsViewController: UIViewController, UITableViewDataSource, UITa
         
         totals = receipt.getTotals()
         // currencyInputFormatting is a String extension found in ReceiptViewController
-        tax.text = String(receipt.taxAmt).currencyInputFormatting()
-        tax.addTarget(self, action: #selector(self.taxFieldDidChange(_:)), for: .editingChanged)
-        total.text = String(receipt.getWholeCost()).currencyInputFormatting()
+        grandTax.text = String(receipt.taxAmt).currencyInputFormatting()
+        grandTax.addTarget(self, action: #selector(self.taxFieldDidChange(_:)), for: .editingChanged)
+        grandTotal.text = String(receipt.getWholeCost()).currencyInputFormatting()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,7 +51,7 @@ class ReceiptTotalsViewController: UIViewController, UITableViewDataSource, UITa
     @objc func keyboardWillChange(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if let tabBarHeight = tabBarController?.tabBar.frame.size.height {
-                if tax.isFirstResponder {
+                if grandTax.isFirstResponder {
                     self.view.frame.origin.y = -keyboardSize.height + tabBarHeight
                 }
             }
@@ -59,8 +59,9 @@ class ReceiptTotalsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     @objc func taxFieldDidChange(_ taxField: CurrencyField) {
+        // Set tax amount and update the total
         receipt.setTaxAmt(taxField.doubleValue)
-        self.loadView()
+        grandTotal.text = String(receipt.getWholeCost()).currencyInputFormatting()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,8 +70,8 @@ class ReceiptTotalsViewController: UIViewController, UITableViewDataSource, UITa
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = totalTableView.dequeueReusableCell(withIdentifier: "UserTotalCell", for: indexPath) as! UserTotalCell
-        cell.name.text = totals[indexPath.row].person.name
-        cell.total.text = String(totals[indexPath.row].amount).currencyInputFormatting()
+        cell.userName.text = totals[indexPath.row].person.name
+        cell.userTotal.text = String(totals[indexPath.row].amount).currencyInputFormatting()
         return cell
     }
     
