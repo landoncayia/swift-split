@@ -26,16 +26,21 @@ class Receipt: Equatable, Codable {
     func setTaxAmt(_ amount: Double) {
         self.taxAmt = amount;
         
-        // Need to update the percent too
-        var itemTotals = 0.0;
+        if amount == 0 {
+            self.taxPercent = 0
+        } else {
         
-        for item in items {
-            if item.taxed {
-                itemTotals = itemTotals + item.price
+            // Need to update the percent too
+            var itemTotals = 0.0;
+            
+            for item in items {
+                if item.taxed {
+                    itemTotals = itemTotals + item.price
+                }
             }
+            
+            self.taxPercent = amount / itemTotals
         }
-        
-        self.taxPercent = amount / itemTotals
         
     }
     
