@@ -60,13 +60,14 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.sectionsCount
     }
+
     
     @IBAction func nameCellEditingDidEnd(_ sender: UITextField) {
-        receipt.name = sender.text!
+        name = sender.text ?? ""
     }
     
     @IBAction func dateCellEditingDidEnd(_ sender: UIDatePicker) {
-        receipt.date = sender.date
+        date = sender.date
     }
     
     
@@ -241,7 +242,7 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        name = ""
         textRecognitionRequest = VNRecognizeTextRequest(completionHandler: { (request, error) in
             guard let receiptViewController = self.receiptViewController else {
                 // receiptViewController is not set
