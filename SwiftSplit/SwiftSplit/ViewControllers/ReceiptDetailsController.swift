@@ -62,11 +62,19 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
     }
     
     @IBAction func nameCellEditingDidEnd(_ sender: UITextField) {
-        receipt.name = sender.text!
+        self.name = sender.text ?? ""
+        if receipt != nil {
+            if let t = sender.text, t != "" {
+                receipt.name = t
+            }
+        }
     }
     
     @IBAction func dateCellEditingDidEnd(_ sender: UIDatePicker) {
-        receipt.date = sender.date
+        self.date = sender.date
+        if receipt != nil {
+            receipt.date = sender.date
+        }
     }
     
     
@@ -168,7 +176,7 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
                 }
             } else {
                 // Create new receipt
-                receipt = Receipt(name: self.name, date: self.date!, persons: self.persons)
+                receipt = Receipt(name: self.name ?? "", date: self.date!, persons: self.persons)
                 // Save the receipt
                 globalReceipts.receipts.append(receipt)
             }
