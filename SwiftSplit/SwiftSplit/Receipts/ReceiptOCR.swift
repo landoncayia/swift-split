@@ -134,7 +134,7 @@ extension ReceiptViewController {
                         price = Double(term) ?? 0.0
                         hasPrice = true
                         priceIdx = currIdx
-                    } else if (term.uppercased().count == 1 && taxLetters.contains(term.uppercased())) {
+                    } else if (term.uppercased().count == 1 && taxLetters.contains(term.uppercased()) && (currIdx == priceIdx + 1 || currIdx == priceIdx - 1)) {
                         taxed = true
                         taxIdx = currIdx
                     }
