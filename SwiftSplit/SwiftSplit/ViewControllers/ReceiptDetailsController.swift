@@ -87,6 +87,15 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
         return true
     }
     
+    func saveReceipt() {
+        // A method to save existing receipts, only if it is not nil
+        if receipt != nil {
+            receipt.name = self.name
+            receipt.date = self.date!
+            receipt.persons = self.persons
+        }
+    }
+    
     
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -272,6 +281,12 @@ class ReceiptDetailsController : UITableViewController, UIImagePickerControllerD
         }
         
         textRecognitionRequest.usesLanguageCorrection = globalSettings.currentSettings.languageCorrection
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.view.endEditing(true)
+        self.saveReceipt()
     }
 
     func checkPersons() -> Bool {

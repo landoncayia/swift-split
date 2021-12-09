@@ -5,11 +5,11 @@ import UIKit
 
 class BrowseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     var filteredReceipts: [Receipt]!
-
+    
     @IBOutlet var editBar: UIBarButtonItem!
     @IBOutlet var editBtn: UIButton!
     @IBOutlet var searchBar: UISearchBar!
-        
+    
     // Nested collection view
     @IBOutlet var receiptTable: UITableView!{
         didSet {
@@ -44,21 +44,21 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         editBtn.setTitle("Edit", for: .normal)
         navigationItem.setRightBarButtonItems([editBar], animated: false)
     }
- 
+    
     @IBAction func bkgdTapped(_ sender: UITapGestureRecognizer){
         view.endEditing(true)
     }
-
+    
     // When a user selects a cell, it segues to the receipt details in Create
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if segue.identifier == "openReceipt" {
-           if let receiptDetailsVC = segue.destination as? ReceiptDetailsController {
-               receiptDetailsVC.receipt = (sender as? ReceiptCell)?.thisReceipt
-               receiptDetailsVC.navigationItem.leftBarButtonItem = nil
-           }
-       }
+        if segue.identifier == "openReceipt" {
+            if let receiptDetailsVC = segue.destination as? ReceiptDetailsController {
+                receiptDetailsVC.receipt = (sender as? ReceiptCell)?.thisReceipt
+                receiptDetailsVC.navigationItem.leftBarButtonItem = nil
+            }
+        }
     }
-
+    
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -77,17 +77,19 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return UITableViewCell.EditingStyle.delete
     }
-
-    // Delete a row
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+    -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
             
-            let receiptToDelete = filteredReceipts[indexPath.row]
+            let receiptToDelete = self.filteredReceipts[indexPath.row]
             
             
             let alertController = UIAlertController(title: nil, message: "Are you sure you want to delete the receipt named \(receiptToDelete.name)?", preferredStyle: .alert)
             
-            let cancel = UIAlertAction(title: "Cancel", style: .default)
+            let cancel = UIAlertAction(title: "Cancel", style: .default) { _ in
+                completionHandler(true)
+            }
             alertController.addAction(cancel)
             
             let delete = UIAlertAction(title: "Delete", style: .destructive) { _ in
@@ -97,9 +99,25 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
             }
             alertController.addAction(delete)
             
-            present(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
+            
         }
+        let imageIcon = UIImage(systemName: "trash")?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        deleteAction.image = imageIcon
+        deleteAction.backgroundColor = .systemBackground
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
     }
+    
+    
+    // Delete a row
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//
+//
+//        }
+//    }
+    
     
     // Edit button onTap
     @IBAction func toggleEdit(_ sender: UIButton){
@@ -115,7 +133,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-
+    
     // Return num of rows in a section of the view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredReceipts.count
@@ -124,25 +142,25 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     // Insert a cell at a location in the view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptCell", for: indexPath) as! ReceiptCell
-
+        
         let receipt = filteredReceipts[indexPath.row]
-
+        
         let cost = String(format: "%.2f", receipt.getWholeCost())
-
+        
         cell.nameLabel.text = receipt.name
         cell.costLabel.text = "$\(cost)"
         cell.thisReceipt = receipt
-
+        
         let dateFormat = DateFormatter()
         dateFormat.locale = Locale(identifier: "en_US")
         dateFormat.dateFormat = "MM/dd/yyyy"
         cell.dateLabel.text = dateFormat.string(from: receipt.date)
-
+        
         return cell
-
+        
     }
     
-
+    
     // Search Bar filter function
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -169,7 +187,7 @@ class ReceiptCell: UITableViewCell {
     @IBOutlet var costLabel: UILabel!
     
     override func layoutSubviews() {
-    
+        
         super.layoutSubviews()
         
         // Adds padding between cells and rounded edges
