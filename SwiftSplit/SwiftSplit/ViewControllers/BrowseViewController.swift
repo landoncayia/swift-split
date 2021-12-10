@@ -6,8 +6,7 @@ import UIKit
 class BrowseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     var filteredReceipts: [Receipt]!
     
-    @IBOutlet var editBar: UIBarButtonItem!
-    @IBOutlet var editBtn: UIButton!
+//    @IBOutlet var editBtn: UIBarButtonItem!
     @IBOutlet var searchBar: UISearchBar!
     
     // Nested collection view
@@ -21,17 +20,26 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        view.endEditing(true)
-        editBtn.setTitle("Edit", for: .normal)
+//        view.endEditing(true)
+//        editBtn.title = "Edit"
         globalReceipts.setTags()
         
         // Clears cell selection when you come from another view
-        if let indexPath = receiptTable.indexPathForSelectedRow {
-            receiptTable.deselectRow(at: indexPath, animated: true)
-        }
+//        if let indexPath = receiptTable.indexPathForSelectedRow {
+//            receiptTable.deselectRow(at: indexPath, animated: true)
+//        }
         
         filteredReceipts = globalReceipts.receipts
         receiptTable.reloadData()
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        print("setediting")
+        // Takes care of toggling the button's title.
+        super.setEditing(editing, animated: true)
+
+        // Toggle table view editing.
+        receiptTable.setEditing(editing, animated: true)
     }
     
     override func viewDidLoad() {
@@ -41,8 +49,9 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = .done
         filteredReceipts = globalReceipts.receipts
-        editBtn.setTitle("Edit", for: .normal)
-        navigationItem.setRightBarButtonItems([editBar], animated: false)
+        
+        navigationItem.rightBarButtonItem = editButtonItem
+//        editBtn.title = "Edit"
     }
     
     @IBAction func bkgdTapped(_ sender: UITapGestureRecognizer){
@@ -60,23 +69,18 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        self.receiptTable.setEditing(editing, animated: animated)
-    }
+//    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
     
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return UITableViewCell.EditingStyle.delete
-    }
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//        return UITableViewCell.EditingStyle.delete
+//    }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
     -> UISwipeActionsConfiguration? {
@@ -84,11 +88,10 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
             
             let receiptToDelete = self.filteredReceipts[indexPath.row]
             
-            
             let alertController = UIAlertController(title: nil, message: "Are you sure you want to delete the receipt named \(receiptToDelete.name)?", preferredStyle: .alert)
             
             let cancel = UIAlertAction(title: "Cancel", style: .default) { _ in
-                completionHandler(true)
+                completionHandler(false)
             }
             alertController.addAction(cancel)
             
@@ -96,42 +99,33 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
                 globalReceipts.removeReceipt(self.filteredReceipts[indexPath.row])
                 self.filteredReceipts = globalReceipts.receipts
                 self.receiptTable.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+                completionHandler(true)
             }
             alertController.addAction(delete)
             
             self.present(alertController, animated: true, completion: nil)
             
         }
-        let imageIcon = UIImage(systemName: "trash")?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        let imageIcon = UIImage(systemName: "trash")?.withTintColor(.white, renderingMode: .alwaysOriginal)
         deleteAction.image = imageIcon
-        deleteAction.backgroundColor = .systemBackground
+        deleteAction.backgroundColor = UIColor.red
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         return configuration
     }
     
-    
-    // Delete a row
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//
-//
+    // Edit button onTap
+//    @IBAction func toggleEdit(_ sender: UIBarButtonItem){
+//        if self.receiptTable.isEditing {
+//            editBtn.title = "Edit"
+//            self.receiptTable.setEditing(false, animated: true)
+//            if let indexPath = receiptTable.indexPathForSelectedRow {
+//                receiptTable.deselectRow(at: indexPath, animated: true)
+//            }
+//        } else {
+//            editBtn.title = "Done"
+//            self.receiptTable.setEditing(true, animated: true)
 //        }
 //    }
-    
-    
-    // Edit button onTap
-    @IBAction func toggleEdit(_ sender: UIButton){
-        if isEditing {
-            editBtn.setTitle("Edit", for: .normal)
-            setEditing(false, animated: true)
-            if let indexPath = receiptTable.indexPathForSelectedRow {
-                receiptTable.deselectRow(at: indexPath, animated: true)
-            }
-        } else {
-            editBtn.setTitle("Done", for: .normal)
-            setEditing(true, animated: true)
-        }
-    }
     
     
     // Return num of rows in a section of the view
@@ -155,6 +149,10 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         dateFormat.locale = Locale(identifier: "en_US")
         dateFormat.dateFormat = "MM/dd/yyyy"
         cell.dateLabel.text = dateFormat.string(from: receipt.date)
+        
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
         
         return cell
         
@@ -186,16 +184,22 @@ class ReceiptCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var costLabel: UILabel!
     
-    override func layoutSubviews() {
-        
-        super.layoutSubviews()
-        
-        // Adds padding between cells and rounded edges
-        let verticalPadding: CGFloat = 10
-        let maskLayer = CALayer()
-        maskLayer.cornerRadius = 8
-        maskLayer.backgroundColor = UIColor.black.cgColor
-        maskLayer.frame = CGRect(x: self.bounds.origin.x, y: self.bounds.origin.y, width: self.bounds.width, height: self.bounds.height).insetBy(dx: 0, dy: verticalPadding/2)
-        self.layer.mask = maskLayer
-    }
+//    override func layoutSubviews() {
+//
+//        super.layoutSubviews()
+//
+//        // Adds padding between cells and rounded edges
+//        let xPadding: CGFloat = 0
+//        let yPadding: CGFloat = 10
+//        let maskLayer = CALayer()
+//        maskLayer.cornerRadius = 8
+//        maskLayer.backgroundColor = UIColor.black.cgColor
+//        maskLayer.frame = CGRect(x: self.bounds.origin.x, y: self.bounds.origin.y, width: self.bounds.width, height: self.bounds.height).insetBy(dx: xPadding, dy: yPadding)
+//        self.layer.mask = maskLayer
+//
+//    }
+    
+    
+    
 }
+

@@ -55,6 +55,10 @@ class BudgetViewController: UIViewController, UITableViewDataSource, UITableView
             cell.dollarLabel.text = "$" + displayAmt
         }
         
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+        
         return cell
     }
     

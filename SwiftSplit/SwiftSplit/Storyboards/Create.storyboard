@@ -459,28 +459,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nA4-T5-wa3">
-                                <rect key="frame" x="20" y="116" width="335" height="434"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nA4-T5-wa3">
+                                <rect key="frame" x="0.0" y="116" width="375" height="434"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTotalCell" id="jc2-Dm-DRm" customClass="UserTotalCell" customModule="SwiftSplit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="335" height="37"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="37.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jc2-Dm-DRm" id="3Bb-vG-eEH">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="37"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="37.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92b-LO-9ZC">
-                                                    <rect key="frame" x="10" y="10" width="315" height="17"/>
+                                                    <rect key="frame" x="10" y="10" width="355" height="17.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9M-jZ-Etn">
-                                                            <rect key="frame" x="0.0" y="0.0" width="38" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="38" height="17.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Oi-BV-6KM">
-                                                            <rect key="frame" x="38" y="0.0" width="277" height="17"/>
+                                                            <rect key="frame" x="38" y="0.0" width="317" height="17.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -547,10 +548,10 @@
                             <constraint firstItem="O1c-fF-OdV" firstAttribute="leading" secondItem="g90-Vx-e2A" secondAttribute="leading" constant="20" id="SM9-wO-ndG"/>
                             <constraint firstItem="g90-Vx-e2A" firstAttribute="trailing" secondItem="O1c-fF-OdV" secondAttribute="trailing" constant="20" id="Ymp-oW-3AY"/>
                             <constraint firstItem="GDF-fJ-Wf2" firstAttribute="leading" secondItem="g90-Vx-e2A" secondAttribute="leading" constant="20" id="ajB-0P-b6q"/>
-                            <constraint firstItem="nA4-T5-wa3" firstAttribute="leading" secondItem="g90-Vx-e2A" secondAttribute="leading" constant="20" id="cWF-hL-449"/>
+                            <constraint firstItem="nA4-T5-wa3" firstAttribute="leading" secondItem="g90-Vx-e2A" secondAttribute="leading" id="cWF-hL-449"/>
                             <constraint firstItem="GDF-fJ-Wf2" firstAttribute="top" secondItem="nA4-T5-wa3" secondAttribute="bottom" constant="20" id="e91-gj-lnn"/>
                             <constraint firstItem="g90-Vx-e2A" firstAttribute="bottom" secondItem="O1c-fF-OdV" secondAttribute="bottom" constant="20" id="eC8-ce-hdJ"/>
-                            <constraint firstItem="g90-Vx-e2A" firstAttribute="trailing" secondItem="nA4-T5-wa3" secondAttribute="trailing" constant="20" id="q5f-Iw-6M6"/>
+                            <constraint firstItem="g90-Vx-e2A" firstAttribute="trailing" secondItem="nA4-T5-wa3" secondAttribute="trailing" id="q5f-Iw-6M6"/>
                             <constraint firstItem="O1c-fF-OdV" firstAttribute="top" secondItem="GDF-fJ-Wf2" secondAttribute="bottom" constant="20" id="vwz-u4-Xfz"/>
                         </constraints>
                         <connections>

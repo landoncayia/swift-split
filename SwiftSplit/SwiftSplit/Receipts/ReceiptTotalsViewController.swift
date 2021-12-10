@@ -72,6 +72,11 @@ class ReceiptTotalsViewController: UIViewController, UITableViewDataSource, UITa
         let cell = totalTableView.dequeueReusableCell(withIdentifier: "UserTotalCell", for: indexPath) as! UserTotalCell
         cell.userName.text = totals[indexPath.row].person.name
         cell.userTotal.text = String(totals[indexPath.row].amount).currencyInputFormatting()
+        
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+        
         return cell
     }
     

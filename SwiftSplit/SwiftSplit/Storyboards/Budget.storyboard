@@ -72,29 +72,29 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sdM-RY-aNW">
-                                <rect key="frame" x="20" y="431.5" width="374" height="381.5"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sdM-RY-aNW">
+                                <rect key="frame" x="0.0" y="431.5" width="414" height="381.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="separatorColor" name="AccentColor"/>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BudgetCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BudgetCell" id="Tyf-W2-NdY" customClass="BudgetCell" customModule="SwiftSplit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="374" height="40.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tyf-W2-NdY" id="WeC-4o-hcX">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="40.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="65L-gL-AOM">
-                                                    <rect key="frame" x="10" y="10" width="354" height="20.5"/>
+                                                    <rect key="frame" x="10" y="10" width="394" height="21"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKc-dc-UOb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="299.5" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="339.5" height="21"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dollar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LQ-nt-SZE">
-                                                            <rect key="frame" x="309.5" y="0.0" width="44.5" height="20.5"/>
+                                                            <rect key="frame" x="349.5" y="0.0" width="44.5" height="21"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -123,9 +123,9 @@
                         <constraints>
                             <constraint firstItem="CtY-8c-VC5" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="HNU-AZ-ST5"/>
                             <constraint firstItem="sdM-RY-aNW" firstAttribute="top" secondItem="CtY-8c-VC5" secondAttribute="bottom" constant="10" id="PRt-Na-QGw"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="sdM-RY-aNW" secondAttribute="trailing" constant="20" id="Ws3-2R-fIe"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="sdM-RY-aNW" secondAttribute="trailing" id="Ws3-2R-fIe"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="CtY-8c-VC5" secondAttribute="trailing" constant="20" id="jV4-Oq-uwX"/>
-                            <constraint firstItem="sdM-RY-aNW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="lTR-nV-gkG"/>
+                            <constraint firstItem="sdM-RY-aNW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="lTR-nV-gkG"/>
                             <constraint firstItem="CtY-8c-VC5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="yEC-Dv-CMw"/>
                             <constraint firstItem="sdM-RY-aNW" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="yue-JB-82b"/>
                         </constraints>
