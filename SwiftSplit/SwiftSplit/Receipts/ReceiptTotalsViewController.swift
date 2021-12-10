@@ -61,6 +61,8 @@ class ReceiptTotalsViewController: UIViewController, UITableViewDataSource, UITa
     @objc func taxFieldDidChange(_ taxField: CurrencyField) {
         // Set tax amount and update the total
         receipt.setTaxAmt(taxField.doubleValue)
+        totals = receipt.getTotals()
+        totalTableView.reloadData()
         grandTotal.text = String(receipt.getWholeCost()).currencyInputFormatting()
     }
     
