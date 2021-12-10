@@ -29,7 +29,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
 //            receiptTable.deselectRow(at: indexPath, animated: true)
 //        }
         
-        filteredReceipts = globalReceipts.receipts
+        // filteredReceipts = globalReceipts.receipts
         receiptTable.reloadData()
     }
     
@@ -48,6 +48,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.placeholder = "Search for a receipt name"
         searchBar.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = .done
+        searchBar.backgroundImage = UIImage()
         filteredReceipts = globalReceipts.receipts
         
         navigationItem.rightBarButtonItem = editButtonItem
