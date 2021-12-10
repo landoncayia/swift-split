@@ -30,7 +30,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
 //        }
         
         // filteredReceipts = globalReceipts.receipts
-        receiptTable.reloadData()
+        performSearch()
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -49,7 +49,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = .done
         searchBar.backgroundImage = UIImage()
-        filteredReceipts = globalReceipts.receipts
+        performSearch()
         
         navigationItem.rightBarButtonItem = editButtonItem
 //        editBtn.title = "Edit"
@@ -159,9 +159,8 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    
-    // Search Bar filter function
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func performSearch() {
+        let searchText = searchBar.text ?? ""
         
         if searchText.isEmpty {
             filteredReceipts = globalReceipts.receipts
@@ -172,6 +171,12 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         receiptTable.reloadData()
+    }
+    
+    
+    // Search Bar filter function
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        performSearch()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
